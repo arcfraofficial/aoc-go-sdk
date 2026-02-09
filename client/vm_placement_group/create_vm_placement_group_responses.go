@@ -62,7 +62,7 @@ func NewCreateVMPlacementGroupOK() *CreateVMPlacementGroupOK {
 CreateVMPlacementGroupOK create Vm placement group o k
 */
 type CreateVMPlacementGroupOK struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload []*models.WithTaskVMPlacementGroup
 }
@@ -76,11 +76,11 @@ func (o *CreateVMPlacementGroupOK) GetPayload() []*models.WithTaskVMPlacementGro
 
 func (o *CreateVMPlacementGroupOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	// response payload
@@ -101,7 +101,7 @@ func NewCreateVMPlacementGroupBadRequest() *CreateVMPlacementGroupBadRequest {
 Bad request
 */
 type CreateVMPlacementGroupBadRequest struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -115,11 +115,11 @@ func (o *CreateVMPlacementGroupBadRequest) GetPayload() *models.ErrorBody {
 
 func (o *CreateVMPlacementGroupBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -142,7 +142,7 @@ func NewCreateVMPlacementGroupNotFound() *CreateVMPlacementGroupNotFound {
 Not found
 */
 type CreateVMPlacementGroupNotFound struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -156,11 +156,11 @@ func (o *CreateVMPlacementGroupNotFound) GetPayload() *models.ErrorBody {
 
 func (o *CreateVMPlacementGroupNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -183,7 +183,7 @@ func NewCreateVMPlacementGroupInternalServerError() *CreateVMPlacementGroupInter
 Server error
 */
 type CreateVMPlacementGroupInternalServerError struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -197,11 +197,11 @@ func (o *CreateVMPlacementGroupInternalServerError) GetPayload() *models.ErrorBo
 
 func (o *CreateVMPlacementGroupInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)

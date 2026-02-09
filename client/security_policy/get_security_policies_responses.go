@@ -62,7 +62,7 @@ func NewGetSecurityPoliciesOK() *GetSecurityPoliciesOK {
 GetSecurityPoliciesOK get security policies o k
 */
 type GetSecurityPoliciesOK struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload []*models.SecurityPolicy
 }
@@ -76,11 +76,11 @@ func (o *GetSecurityPoliciesOK) GetPayload() []*models.SecurityPolicy {
 
 func (o *GetSecurityPoliciesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	// response payload
@@ -101,7 +101,7 @@ func NewGetSecurityPoliciesBadRequest() *GetSecurityPoliciesBadRequest {
 Bad request
 */
 type GetSecurityPoliciesBadRequest struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -115,11 +115,11 @@ func (o *GetSecurityPoliciesBadRequest) GetPayload() *models.ErrorBody {
 
 func (o *GetSecurityPoliciesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -142,7 +142,7 @@ func NewGetSecurityPoliciesNotFound() *GetSecurityPoliciesNotFound {
 Not found
 */
 type GetSecurityPoliciesNotFound struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -156,11 +156,11 @@ func (o *GetSecurityPoliciesNotFound) GetPayload() *models.ErrorBody {
 
 func (o *GetSecurityPoliciesNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -183,7 +183,7 @@ func NewGetSecurityPoliciesInternalServerError() *GetSecurityPoliciesInternalSer
 Server error
 */
 type GetSecurityPoliciesInternalServerError struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -197,11 +197,11 @@ func (o *GetSecurityPoliciesInternalServerError) GetPayload() *models.ErrorBody 
 
 func (o *GetSecurityPoliciesInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)

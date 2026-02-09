@@ -62,7 +62,7 @@ func NewUpdateElfImageOK() *UpdateElfImageOK {
 UpdateElfImageOK update elf image o k
 */
 type UpdateElfImageOK struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload []*models.WithTaskElfImage
 }
@@ -76,11 +76,11 @@ func (o *UpdateElfImageOK) GetPayload() []*models.WithTaskElfImage {
 
 func (o *UpdateElfImageOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	// response payload
@@ -101,7 +101,7 @@ func NewUpdateElfImageBadRequest() *UpdateElfImageBadRequest {
 Bad request
 */
 type UpdateElfImageBadRequest struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -115,11 +115,11 @@ func (o *UpdateElfImageBadRequest) GetPayload() *models.ErrorBody {
 
 func (o *UpdateElfImageBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -142,7 +142,7 @@ func NewUpdateElfImageNotFound() *UpdateElfImageNotFound {
 Not found
 */
 type UpdateElfImageNotFound struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -156,11 +156,11 @@ func (o *UpdateElfImageNotFound) GetPayload() *models.ErrorBody {
 
 func (o *UpdateElfImageNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -183,7 +183,7 @@ func NewUpdateElfImageInternalServerError() *UpdateElfImageInternalServerError {
 Server error
 */
 type UpdateElfImageInternalServerError struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -197,11 +197,11 @@ func (o *UpdateElfImageInternalServerError) GetPayload() *models.ErrorBody {
 
 func (o *UpdateElfImageInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)

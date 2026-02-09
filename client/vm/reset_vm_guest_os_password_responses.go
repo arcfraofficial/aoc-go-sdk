@@ -68,7 +68,7 @@ func NewResetVMGuestOsPasswordOK() *ResetVMGuestOsPasswordOK {
 ResetVMGuestOsPasswordOK reset Vm guest os password o k
 */
 type ResetVMGuestOsPasswordOK struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload []*models.WithTaskVM
 }
@@ -82,11 +82,11 @@ func (o *ResetVMGuestOsPasswordOK) GetPayload() []*models.WithTaskVM {
 
 func (o *ResetVMGuestOsPasswordOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	// response payload
@@ -128,7 +128,7 @@ func NewResetVMGuestOsPasswordBadRequest() *ResetVMGuestOsPasswordBadRequest {
 Bad request
 */
 type ResetVMGuestOsPasswordBadRequest struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -142,11 +142,11 @@ func (o *ResetVMGuestOsPasswordBadRequest) GetPayload() *models.ErrorBody {
 
 func (o *ResetVMGuestOsPasswordBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -169,7 +169,7 @@ func NewResetVMGuestOsPasswordNotFound() *ResetVMGuestOsPasswordNotFound {
 Not found
 */
 type ResetVMGuestOsPasswordNotFound struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -183,11 +183,11 @@ func (o *ResetVMGuestOsPasswordNotFound) GetPayload() *models.ErrorBody {
 
 func (o *ResetVMGuestOsPasswordNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -210,7 +210,7 @@ func NewResetVMGuestOsPasswordInternalServerError() *ResetVMGuestOsPasswordInter
 Server error
 */
 type ResetVMGuestOsPasswordInternalServerError struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -224,11 +224,11 @@ func (o *ResetVMGuestOsPasswordInternalServerError) GetPayload() *models.ErrorBo
 
 func (o *ResetVMGuestOsPasswordInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)

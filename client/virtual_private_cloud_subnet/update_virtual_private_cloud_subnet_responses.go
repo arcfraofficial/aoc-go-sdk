@@ -62,7 +62,7 @@ func NewUpdateVirtualPrivateCloudSubnetOK() *UpdateVirtualPrivateCloudSubnetOK {
 UpdateVirtualPrivateCloudSubnetOK update virtual private cloud subnet o k
 */
 type UpdateVirtualPrivateCloudSubnetOK struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload []*models.WithTaskVirtualPrivateCloudSubnet
 }
@@ -76,11 +76,11 @@ func (o *UpdateVirtualPrivateCloudSubnetOK) GetPayload() []*models.WithTaskVirtu
 
 func (o *UpdateVirtualPrivateCloudSubnetOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	// response payload
@@ -101,7 +101,7 @@ func NewUpdateVirtualPrivateCloudSubnetBadRequest() *UpdateVirtualPrivateCloudSu
 Bad request
 */
 type UpdateVirtualPrivateCloudSubnetBadRequest struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -115,11 +115,11 @@ func (o *UpdateVirtualPrivateCloudSubnetBadRequest) GetPayload() *models.ErrorBo
 
 func (o *UpdateVirtualPrivateCloudSubnetBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -142,7 +142,7 @@ func NewUpdateVirtualPrivateCloudSubnetNotFound() *UpdateVirtualPrivateCloudSubn
 Not found
 */
 type UpdateVirtualPrivateCloudSubnetNotFound struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -156,11 +156,11 @@ func (o *UpdateVirtualPrivateCloudSubnetNotFound) GetPayload() *models.ErrorBody
 
 func (o *UpdateVirtualPrivateCloudSubnetNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -183,7 +183,7 @@ func NewUpdateVirtualPrivateCloudSubnetInternalServerError() *UpdateVirtualPriva
 Server error
 */
 type UpdateVirtualPrivateCloudSubnetInternalServerError struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -197,11 +197,11 @@ func (o *UpdateVirtualPrivateCloudSubnetInternalServerError) GetPayload() *model
 
 func (o *UpdateVirtualPrivateCloudSubnetInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)

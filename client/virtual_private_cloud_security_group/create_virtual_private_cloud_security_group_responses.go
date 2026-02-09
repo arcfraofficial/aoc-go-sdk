@@ -62,7 +62,7 @@ func NewCreateVirtualPrivateCloudSecurityGroupOK() *CreateVirtualPrivateCloudSec
 CreateVirtualPrivateCloudSecurityGroupOK create virtual private cloud security group o k
 */
 type CreateVirtualPrivateCloudSecurityGroupOK struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload []*models.WithTaskVirtualPrivateCloudSecurityGroup
 }
@@ -76,11 +76,11 @@ func (o *CreateVirtualPrivateCloudSecurityGroupOK) GetPayload() []*models.WithTa
 
 func (o *CreateVirtualPrivateCloudSecurityGroupOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	// response payload
@@ -101,7 +101,7 @@ func NewCreateVirtualPrivateCloudSecurityGroupBadRequest() *CreateVirtualPrivate
 Bad request
 */
 type CreateVirtualPrivateCloudSecurityGroupBadRequest struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -115,11 +115,11 @@ func (o *CreateVirtualPrivateCloudSecurityGroupBadRequest) GetPayload() *models.
 
 func (o *CreateVirtualPrivateCloudSecurityGroupBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -142,7 +142,7 @@ func NewCreateVirtualPrivateCloudSecurityGroupNotFound() *CreateVirtualPrivateCl
 Not found
 */
 type CreateVirtualPrivateCloudSecurityGroupNotFound struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -156,11 +156,11 @@ func (o *CreateVirtualPrivateCloudSecurityGroupNotFound) GetPayload() *models.Er
 
 func (o *CreateVirtualPrivateCloudSecurityGroupNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -183,7 +183,7 @@ func NewCreateVirtualPrivateCloudSecurityGroupInternalServerError() *CreateVirtu
 Server error
 */
 type CreateVirtualPrivateCloudSecurityGroupInternalServerError struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -197,11 +197,11 @@ func (o *CreateVirtualPrivateCloudSecurityGroupInternalServerError) GetPayload()
 
 func (o *CreateVirtualPrivateCloudSecurityGroupInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)

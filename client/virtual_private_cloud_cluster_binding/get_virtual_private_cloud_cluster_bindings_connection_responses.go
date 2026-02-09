@@ -62,7 +62,7 @@ func NewGetVirtualPrivateCloudClusterBindingsConnectionOK() *GetVirtualPrivateCl
 GetVirtualPrivateCloudClusterBindingsConnectionOK get virtual private cloud cluster bindings connection o k
 */
 type GetVirtualPrivateCloudClusterBindingsConnectionOK struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.VirtualPrivateCloudClusterBindingConnection
 }
@@ -76,11 +76,11 @@ func (o *GetVirtualPrivateCloudClusterBindingsConnectionOK) GetPayload() *models
 
 func (o *GetVirtualPrivateCloudClusterBindingsConnectionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.VirtualPrivateCloudClusterBindingConnection)
@@ -103,7 +103,7 @@ func NewGetVirtualPrivateCloudClusterBindingsConnectionBadRequest() *GetVirtualP
 Bad request
 */
 type GetVirtualPrivateCloudClusterBindingsConnectionBadRequest struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -117,11 +117,11 @@ func (o *GetVirtualPrivateCloudClusterBindingsConnectionBadRequest) GetPayload()
 
 func (o *GetVirtualPrivateCloudClusterBindingsConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -144,7 +144,7 @@ func NewGetVirtualPrivateCloudClusterBindingsConnectionNotFound() *GetVirtualPri
 Not found
 */
 type GetVirtualPrivateCloudClusterBindingsConnectionNotFound struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -158,11 +158,11 @@ func (o *GetVirtualPrivateCloudClusterBindingsConnectionNotFound) GetPayload() *
 
 func (o *GetVirtualPrivateCloudClusterBindingsConnectionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -185,7 +185,7 @@ func NewGetVirtualPrivateCloudClusterBindingsConnectionInternalServerError() *Ge
 Server error
 */
 type GetVirtualPrivateCloudClusterBindingsConnectionInternalServerError struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -199,11 +199,11 @@ func (o *GetVirtualPrivateCloudClusterBindingsConnectionInternalServerError) Get
 
 func (o *GetVirtualPrivateCloudClusterBindingsConnectionInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)

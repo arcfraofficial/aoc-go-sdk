@@ -62,7 +62,7 @@ func NewConvertContentLibraryVMTemplateFromVMOK() *ConvertContentLibraryVMTempla
 ConvertContentLibraryVMTemplateFromVMOK convert content library Vm template from Vm o k
 */
 type ConvertContentLibraryVMTemplateFromVMOK struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload []*models.WithTaskContentLibraryVMTemplate
 }
@@ -76,11 +76,11 @@ func (o *ConvertContentLibraryVMTemplateFromVMOK) GetPayload() []*models.WithTas
 
 func (o *ConvertContentLibraryVMTemplateFromVMOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	// response payload
@@ -101,7 +101,7 @@ func NewConvertContentLibraryVMTemplateFromVMBadRequest() *ConvertContentLibrary
 Bad request
 */
 type ConvertContentLibraryVMTemplateFromVMBadRequest struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -115,11 +115,11 @@ func (o *ConvertContentLibraryVMTemplateFromVMBadRequest) GetPayload() *models.E
 
 func (o *ConvertContentLibraryVMTemplateFromVMBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -142,7 +142,7 @@ func NewConvertContentLibraryVMTemplateFromVMNotFound() *ConvertContentLibraryVM
 Not found
 */
 type ConvertContentLibraryVMTemplateFromVMNotFound struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -156,11 +156,11 @@ func (o *ConvertContentLibraryVMTemplateFromVMNotFound) GetPayload() *models.Err
 
 func (o *ConvertContentLibraryVMTemplateFromVMNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -183,7 +183,7 @@ func NewConvertContentLibraryVMTemplateFromVMInternalServerError() *ConvertConte
 Server error
 */
 type ConvertContentLibraryVMTemplateFromVMInternalServerError struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -197,11 +197,11 @@ func (o *ConvertContentLibraryVMTemplateFromVMInternalServerError) GetPayload() 
 
 func (o *ConvertContentLibraryVMTemplateFromVMInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)

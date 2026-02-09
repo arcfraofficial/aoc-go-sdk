@@ -62,7 +62,7 @@ func NewBatchCreateVirtualPrivateCloudFloatingIpsOK() *BatchCreateVirtualPrivate
 BatchCreateVirtualPrivateCloudFloatingIpsOK batch create virtual private cloud floating ips o k
 */
 type BatchCreateVirtualPrivateCloudFloatingIpsOK struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload []*models.WithTaskBatchCreateVirtualPrivateCloudFloatingIP
 }
@@ -76,11 +76,11 @@ func (o *BatchCreateVirtualPrivateCloudFloatingIpsOK) GetPayload() []*models.Wit
 
 func (o *BatchCreateVirtualPrivateCloudFloatingIpsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	// response payload
@@ -101,7 +101,7 @@ func NewBatchCreateVirtualPrivateCloudFloatingIpsBadRequest() *BatchCreateVirtua
 Bad request
 */
 type BatchCreateVirtualPrivateCloudFloatingIpsBadRequest struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -115,11 +115,11 @@ func (o *BatchCreateVirtualPrivateCloudFloatingIpsBadRequest) GetPayload() *mode
 
 func (o *BatchCreateVirtualPrivateCloudFloatingIpsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -142,7 +142,7 @@ func NewBatchCreateVirtualPrivateCloudFloatingIpsNotFound() *BatchCreateVirtualP
 Not found
 */
 type BatchCreateVirtualPrivateCloudFloatingIpsNotFound struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -156,11 +156,11 @@ func (o *BatchCreateVirtualPrivateCloudFloatingIpsNotFound) GetPayload() *models
 
 func (o *BatchCreateVirtualPrivateCloudFloatingIpsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -183,7 +183,7 @@ func NewBatchCreateVirtualPrivateCloudFloatingIpsInternalServerError() *BatchCre
 Server error
 */
 type BatchCreateVirtualPrivateCloudFloatingIpsInternalServerError struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -197,11 +197,11 @@ func (o *BatchCreateVirtualPrivateCloudFloatingIpsInternalServerError) GetPayloa
 
 func (o *BatchCreateVirtualPrivateCloudFloatingIpsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)

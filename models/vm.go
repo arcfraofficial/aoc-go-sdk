@@ -21,6 +21,12 @@ import (
 // swagger:model Vm
 type VM struct {
 
+	// anti malware enabled
+	AntiMalwareEnabled *bool `json:"anti_malware_enabled,omitempty"`
+
+	// backup plans
+	BackupPlans []*NestedBackupPlan `json:"backup_plans,omitempty"`
+
 	// bios uuid
 	BiosUUID *string `json:"bios_uuid,omitempty"`
 
@@ -55,8 +61,14 @@ type VM struct {
 	// dns servers
 	DNSServers *string `json:"dns_servers,omitempty"`
 
+	// dpi enabled
+	DpiEnabled *bool `json:"dpi_enabled,omitempty"`
+
 	// entity async status
 	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
+
+	// entity filter results
+	EntityFilterResults []*NestedVMEntityFilterResult `json:"entity_filter_results,omitempty"`
 
 	// firmware
 	// Required: true
@@ -104,6 +116,12 @@ type VM struct {
 	// internal
 	// Required: true
 	Internal *bool `json:"internal"`
+
+	// internal product
+	InternalProduct *string `json:"internal_product,omitempty"`
+
+	// internal product name
+	InternalProductName *string `json:"internal_product_name,omitempty"`
 
 	// io policy
 	IoPolicy *VMDiskIoPolicy `json:"io_policy,omitempty"`
@@ -188,6 +206,9 @@ type VM struct {
 	// size
 	Size *int64 `json:"size,omitempty"`
 
+	// snapshot plan
+	SnapshotPlan *NestedSnapshotPlan `json:"snapshot_plan,omitempty"`
+
 	// snapshots
 	Snapshots []*NestedVMSnapshot `json:"snapshots,omitempty"`
 
@@ -244,6 +265,10 @@ type VM struct {
 }
 
 type VMMarshalOpts struct {
+	AntiMalwareEnabled_Explicit_Null_When_Empty bool
+
+	BackupPlans_Explicit_Null_When_Empty bool
+
 	BiosUUID_Explicit_Null_When_Empty bool
 
 	ClockOffset_Explicit_Null_When_Empty bool
@@ -264,7 +289,11 @@ type VMMarshalOpts struct {
 
 	DNSServers_Explicit_Null_When_Empty bool
 
+	DpiEnabled_Explicit_Null_When_Empty bool
+
 	EntityAsyncStatus_Explicit_Null_When_Empty bool
+
+	EntityFilterResults_Explicit_Null_When_Empty bool
 
 	Firmware_Explicit_Null_When_Empty bool
 
@@ -293,6 +322,10 @@ type VMMarshalOpts struct {
 	InRecycleBin_Explicit_Null_When_Empty bool
 
 	Internal_Explicit_Null_When_Empty bool
+
+	InternalProduct_Explicit_Null_When_Empty bool
+
+	InternalProductName_Explicit_Null_When_Empty bool
 
 	IoPolicy_Explicit_Null_When_Empty bool
 
@@ -344,6 +377,8 @@ type VMMarshalOpts struct {
 
 	Size_Explicit_Null_When_Empty bool
 
+	SnapshotPlan_Explicit_Null_When_Empty bool
+
 	Snapshots_Explicit_Null_When_Empty bool
 
 	Status_Explicit_Null_When_Empty bool
@@ -382,6 +417,40 @@ func (m VM) MarshalJSON() ([]byte, error) {
 	b.WriteString("{")
 
 	first := true
+
+	// handle nullable field anti_malware_enabled
+	if m.AntiMalwareEnabled != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"anti_malware_enabled\":")
+		bytes, err := swag.WriteJSON(m.AntiMalwareEnabled)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.AntiMalwareEnabled_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"anti_malware_enabled\":null")
+		first = false
+	}
+
+	// handle non nullable field backup_plans with omitempty
+	if !swag.IsZero(m.BackupPlans) {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"backup_plans\":")
+		bytes, err := swag.WriteJSON(m.BackupPlans)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	}
 
 	// handle nullable field bios_uuid
 	if m.BiosUUID != nil {
@@ -583,6 +652,26 @@ func (m VM) MarshalJSON() ([]byte, error) {
 		first = false
 	}
 
+	// handle nullable field dpi_enabled
+	if m.DpiEnabled != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"dpi_enabled\":")
+		bytes, err := swag.WriteJSON(m.DpiEnabled)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.DpiEnabled_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"dpi_enabled\":null")
+		first = false
+	}
+
 	// handle nullable field entityAsyncStatus
 	if m.EntityAsyncStatus != nil {
 		if !first {
@@ -600,6 +689,20 @@ func (m VM) MarshalJSON() ([]byte, error) {
 			b.WriteString(",")
 		}
 		b.WriteString("\"entityAsyncStatus\":null")
+		first = false
+	}
+
+	// handle non nullable field entity_filter_results with omitempty
+	if !swag.IsZero(m.EntityFilterResults) {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"entity_filter_results\":")
+		bytes, err := swag.WriteJSON(m.EntityFilterResults)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
 		first = false
 	}
 
@@ -874,6 +977,46 @@ func (m VM) MarshalJSON() ([]byte, error) {
 			b.WriteString(",")
 		}
 		b.WriteString("\"internal\":null")
+		first = false
+	}
+
+	// handle nullable field internal_product
+	if m.InternalProduct != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"internal_product\":")
+		bytes, err := swag.WriteJSON(m.InternalProduct)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.InternalProduct_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"internal_product\":null")
+		first = false
+	}
+
+	// handle nullable field internal_product_name
+	if m.InternalProductName != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"internal_product_name\":")
+		bytes, err := swag.WriteJSON(m.InternalProductName)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.InternalProductName_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"internal_product_name\":null")
 		first = false
 	}
 
@@ -1359,6 +1502,26 @@ func (m VM) MarshalJSON() ([]byte, error) {
 		first = false
 	}
 
+	// handle nullable field snapshot_plan
+	if m.SnapshotPlan != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"snapshot_plan\":")
+		bytes, err := swag.WriteJSON(m.SnapshotPlan)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.SnapshotPlan_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"snapshot_plan\":null")
+		first = false
+	}
+
 	// handle non nullable field snapshots with omitempty
 	if !swag.IsZero(m.Snapshots) {
 		if !first {
@@ -1657,6 +1820,10 @@ func (m VM) MarshalJSON() ([]byte, error) {
 func (m *VM) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateBackupPlans(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateClockOffset(formats); err != nil {
 		res = append(res, err)
 	}
@@ -1678,6 +1845,10 @@ func (m *VM) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateEntityAsyncStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEntityFilterResults(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1777,6 +1948,10 @@ func (m *VM) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateSnapshotPlan(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSnapshots(formats); err != nil {
 		res = append(res, err)
 	}
@@ -1824,6 +1999,32 @@ func (m *VM) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *VM) validateBackupPlans(formats strfmt.Registry) error {
+	if swag.IsZero(m.BackupPlans) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.BackupPlans); i++ {
+		if swag.IsZero(m.BackupPlans[i]) { // not required
+			continue
+		}
+
+		if m.BackupPlans[i] != nil {
+			if err := m.BackupPlans[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("backup_plans" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("backup_plans" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -1922,6 +2123,32 @@ func (m *VM) validateEntityAsyncStatus(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *VM) validateEntityFilterResults(formats strfmt.Registry) error {
+	if swag.IsZero(m.EntityFilterResults) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.EntityFilterResults); i++ {
+		if swag.IsZero(m.EntityFilterResults[i]) { // not required
+			continue
+		}
+
+		if m.EntityFilterResults[i] != nil {
+			if err := m.EntityFilterResults[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("entity_filter_results" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("entity_filter_results" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -2289,6 +2516,25 @@ func (m *VM) validateProtected(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *VM) validateSnapshotPlan(formats strfmt.Registry) error {
+	if swag.IsZero(m.SnapshotPlan) { // not required
+		return nil
+	}
+
+	if m.SnapshotPlan != nil {
+		if err := m.SnapshotPlan.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshot_plan")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshot_plan")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *VM) validateSnapshots(formats strfmt.Registry) error {
 	if swag.IsZero(m.Snapshots) { // not required
 		return nil
@@ -2527,6 +2773,10 @@ func (m *VM) validateWinOpt(formats strfmt.Registry) error {
 func (m *VM) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateBackupPlans(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateClockOffset(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -2540,6 +2790,10 @@ func (m *VM) ContextValidate(ctx context.Context, formats strfmt.Registry) error
 	}
 
 	if err := m.contextValidateEntityAsyncStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEntityFilterResults(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2591,6 +2845,10 @@ func (m *VM) ContextValidate(ctx context.Context, formats strfmt.Registry) error
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateSnapshotPlan(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateSnapshots(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -2630,6 +2888,26 @@ func (m *VM) ContextValidate(ctx context.Context, formats strfmt.Registry) error
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *VM) contextValidateBackupPlans(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.BackupPlans); i++ {
+
+		if m.BackupPlans[i] != nil {
+			if err := m.BackupPlans[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("backup_plans" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("backup_plans" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -2692,6 +2970,26 @@ func (m *VM) contextValidateEntityAsyncStatus(ctx context.Context, formats strfm
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *VM) contextValidateEntityFilterResults(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.EntityFilterResults); i++ {
+
+		if m.EntityFilterResults[i] != nil {
+			if err := m.EntityFilterResults[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("entity_filter_results" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("entity_filter_results" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -2896,6 +3194,22 @@ func (m *VM) contextValidatePciNics(ctx context.Context, formats strfmt.Registry
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *VM) contextValidateSnapshotPlan(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SnapshotPlan != nil {
+		if err := m.SnapshotPlan.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshot_plan")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshot_plan")
+			}
+			return err
+		}
 	}
 
 	return nil

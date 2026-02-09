@@ -86,6 +86,24 @@ type LoadBalancerServiceWhereInput struct {
 	// id starts with
 	IDStartsWith *string `json:"id_starts_with,omitempty"`
 
+	// load balancer instance groups every
+	LoadBalancerInstanceGroupsEvery *LoadBalancerInstanceGroupWhereInput `json:"load_balancer_instance_groups_every,omitempty"`
+
+	// load balancer instance groups none
+	LoadBalancerInstanceGroupsNone *LoadBalancerInstanceGroupWhereInput `json:"load_balancer_instance_groups_none,omitempty"`
+
+	// load balancer instance groups some
+	LoadBalancerInstanceGroupsSome *LoadBalancerInstanceGroupWhereInput `json:"load_balancer_instance_groups_some,omitempty"`
+
+	// load balancer instances every
+	LoadBalancerInstancesEvery *LoadBalancerInstanceWhereInput `json:"load_balancer_instances_every,omitempty"`
+
+	// load balancer instances none
+	LoadBalancerInstancesNone *LoadBalancerInstanceWhereInput `json:"load_balancer_instances_none,omitempty"`
+
+	// load balancer instances some
+	LoadBalancerInstancesSome *LoadBalancerInstanceWhereInput `json:"load_balancer_instances_some,omitempty"`
+
 	// phase
 	Phase *EverouteClusterPhase `json:"phase,omitempty"`
 
@@ -106,6 +124,15 @@ type LoadBalancerServiceWhereInput struct {
 
 	// vm instances some
 	VMInstancesSome *VMWhereInput `json:"vm_instances_some,omitempty"`
+
+	// vnet bonds every
+	VnetBondsEvery *VnetBondWhereInput `json:"vnet_bonds_every,omitempty"`
+
+	// vnet bonds none
+	VnetBondsNone *VnetBondWhereInput `json:"vnet_bonds_none,omitempty"`
+
+	// vnet bonds some
+	VnetBondsSome *VnetBondWhereInput `json:"vnet_bonds_some,omitempty"`
 
 	MarshalOpts *LoadBalancerServiceWhereInputMarshalOpts `json:"-"`
 }
@@ -155,6 +182,18 @@ type LoadBalancerServiceWhereInputMarshalOpts struct {
 
 	IDStartsWith_Explicit_Null_When_Empty bool
 
+	LoadBalancerInstanceGroupsEvery_Explicit_Null_When_Empty bool
+
+	LoadBalancerInstanceGroupsNone_Explicit_Null_When_Empty bool
+
+	LoadBalancerInstanceGroupsSome_Explicit_Null_When_Empty bool
+
+	LoadBalancerInstancesEvery_Explicit_Null_When_Empty bool
+
+	LoadBalancerInstancesNone_Explicit_Null_When_Empty bool
+
+	LoadBalancerInstancesSome_Explicit_Null_When_Empty bool
+
 	Phase_Explicit_Null_When_Empty bool
 
 	PhaseIn_Explicit_Null_When_Empty bool
@@ -168,6 +207,12 @@ type LoadBalancerServiceWhereInputMarshalOpts struct {
 	VMInstancesNone_Explicit_Null_When_Empty bool
 
 	VMInstancesSome_Explicit_Null_When_Empty bool
+
+	VnetBondsEvery_Explicit_Null_When_Empty bool
+
+	VnetBondsNone_Explicit_Null_When_Empty bool
+
+	VnetBondsSome_Explicit_Null_When_Empty bool
 }
 
 func (m LoadBalancerServiceWhereInput) MarshalJSON() ([]byte, error) {
@@ -574,6 +619,126 @@ func (m LoadBalancerServiceWhereInput) MarshalJSON() ([]byte, error) {
 		first = false
 	}
 
+	// handle nullable field load_balancer_instance_groups_every
+	if m.LoadBalancerInstanceGroupsEvery != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"load_balancer_instance_groups_every\":")
+		bytes, err := swag.WriteJSON(m.LoadBalancerInstanceGroupsEvery)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.LoadBalancerInstanceGroupsEvery_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"load_balancer_instance_groups_every\":null")
+		first = false
+	}
+
+	// handle nullable field load_balancer_instance_groups_none
+	if m.LoadBalancerInstanceGroupsNone != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"load_balancer_instance_groups_none\":")
+		bytes, err := swag.WriteJSON(m.LoadBalancerInstanceGroupsNone)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.LoadBalancerInstanceGroupsNone_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"load_balancer_instance_groups_none\":null")
+		first = false
+	}
+
+	// handle nullable field load_balancer_instance_groups_some
+	if m.LoadBalancerInstanceGroupsSome != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"load_balancer_instance_groups_some\":")
+		bytes, err := swag.WriteJSON(m.LoadBalancerInstanceGroupsSome)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.LoadBalancerInstanceGroupsSome_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"load_balancer_instance_groups_some\":null")
+		first = false
+	}
+
+	// handle nullable field load_balancer_instances_every
+	if m.LoadBalancerInstancesEvery != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"load_balancer_instances_every\":")
+		bytes, err := swag.WriteJSON(m.LoadBalancerInstancesEvery)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.LoadBalancerInstancesEvery_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"load_balancer_instances_every\":null")
+		first = false
+	}
+
+	// handle nullable field load_balancer_instances_none
+	if m.LoadBalancerInstancesNone != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"load_balancer_instances_none\":")
+		bytes, err := swag.WriteJSON(m.LoadBalancerInstancesNone)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.LoadBalancerInstancesNone_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"load_balancer_instances_none\":null")
+		first = false
+	}
+
+	// handle nullable field load_balancer_instances_some
+	if m.LoadBalancerInstancesSome != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"load_balancer_instances_some\":")
+		bytes, err := swag.WriteJSON(m.LoadBalancerInstancesSome)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.LoadBalancerInstancesSome_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"load_balancer_instances_some\":null")
+		first = false
+	}
+
 	// handle nullable field phase
 	if m.Phase != nil {
 		if !first {
@@ -702,6 +867,66 @@ func (m LoadBalancerServiceWhereInput) MarshalJSON() ([]byte, error) {
 		first = false
 	}
 
+	// handle nullable field vnet_bonds_every
+	if m.VnetBondsEvery != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"vnet_bonds_every\":")
+		bytes, err := swag.WriteJSON(m.VnetBondsEvery)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.VnetBondsEvery_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"vnet_bonds_every\":null")
+		first = false
+	}
+
+	// handle nullable field vnet_bonds_none
+	if m.VnetBondsNone != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"vnet_bonds_none\":")
+		bytes, err := swag.WriteJSON(m.VnetBondsNone)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.VnetBondsNone_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"vnet_bonds_none\":null")
+		first = false
+	}
+
+	// handle nullable field vnet_bonds_some
+	if m.VnetBondsSome != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"vnet_bonds_some\":")
+		bytes, err := swag.WriteJSON(m.VnetBondsSome)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.VnetBondsSome_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"vnet_bonds_some\":null")
+		first = false
+	}
+
 	b.WriteString("}")
 	return b.Bytes(), nil
 }
@@ -742,6 +967,30 @@ func (m *LoadBalancerServiceWhereInput) Validate(formats strfmt.Registry) error 
 		res = append(res, err)
 	}
 
+	if err := m.validateLoadBalancerInstanceGroupsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLoadBalancerInstanceGroupsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLoadBalancerInstanceGroupsSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLoadBalancerInstancesEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLoadBalancerInstancesNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLoadBalancerInstancesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePhase(formats); err != nil {
 		res = append(res, err)
 	}
@@ -767,6 +1016,18 @@ func (m *LoadBalancerServiceWhereInput) Validate(formats strfmt.Registry) error 
 	}
 
 	if err := m.validateVMInstancesSome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVnetBondsEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVnetBondsNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVnetBondsSome(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -953,6 +1214,120 @@ func (m *LoadBalancerServiceWhereInput) validateEverouteCluster(formats strfmt.R
 	return nil
 }
 
+func (m *LoadBalancerServiceWhereInput) validateLoadBalancerInstanceGroupsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.LoadBalancerInstanceGroupsEvery) { // not required
+		return nil
+	}
+
+	if m.LoadBalancerInstanceGroupsEvery != nil {
+		if err := m.LoadBalancerInstanceGroupsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("load_balancer_instance_groups_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("load_balancer_instance_groups_every")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoadBalancerServiceWhereInput) validateLoadBalancerInstanceGroupsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.LoadBalancerInstanceGroupsNone) { // not required
+		return nil
+	}
+
+	if m.LoadBalancerInstanceGroupsNone != nil {
+		if err := m.LoadBalancerInstanceGroupsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("load_balancer_instance_groups_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("load_balancer_instance_groups_none")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoadBalancerServiceWhereInput) validateLoadBalancerInstanceGroupsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.LoadBalancerInstanceGroupsSome) { // not required
+		return nil
+	}
+
+	if m.LoadBalancerInstanceGroupsSome != nil {
+		if err := m.LoadBalancerInstanceGroupsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("load_balancer_instance_groups_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("load_balancer_instance_groups_some")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoadBalancerServiceWhereInput) validateLoadBalancerInstancesEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.LoadBalancerInstancesEvery) { // not required
+		return nil
+	}
+
+	if m.LoadBalancerInstancesEvery != nil {
+		if err := m.LoadBalancerInstancesEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("load_balancer_instances_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("load_balancer_instances_every")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoadBalancerServiceWhereInput) validateLoadBalancerInstancesNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.LoadBalancerInstancesNone) { // not required
+		return nil
+	}
+
+	if m.LoadBalancerInstancesNone != nil {
+		if err := m.LoadBalancerInstancesNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("load_balancer_instances_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("load_balancer_instances_none")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoadBalancerServiceWhereInput) validateLoadBalancerInstancesSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.LoadBalancerInstancesSome) { // not required
+		return nil
+	}
+
+	if m.LoadBalancerInstancesSome != nil {
+		if err := m.LoadBalancerInstancesSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("load_balancer_instances_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("load_balancer_instances_some")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *LoadBalancerServiceWhereInput) validatePhase(formats strfmt.Registry) error {
 	if swag.IsZero(m.Phase) { // not required
 		return nil
@@ -1090,6 +1465,63 @@ func (m *LoadBalancerServiceWhereInput) validateVMInstancesSome(formats strfmt.R
 	return nil
 }
 
+func (m *LoadBalancerServiceWhereInput) validateVnetBondsEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.VnetBondsEvery) { // not required
+		return nil
+	}
+
+	if m.VnetBondsEvery != nil {
+		if err := m.VnetBondsEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vnet_bonds_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vnet_bonds_every")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoadBalancerServiceWhereInput) validateVnetBondsNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.VnetBondsNone) { // not required
+		return nil
+	}
+
+	if m.VnetBondsNone != nil {
+		if err := m.VnetBondsNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vnet_bonds_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vnet_bonds_none")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoadBalancerServiceWhereInput) validateVnetBondsSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.VnetBondsSome) { // not required
+		return nil
+	}
+
+	if m.VnetBondsSome != nil {
+		if err := m.VnetBondsSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vnet_bonds_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vnet_bonds_some")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this load balancer service where input based on the context it is used
 func (m *LoadBalancerServiceWhereInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -1126,6 +1558,30 @@ func (m *LoadBalancerServiceWhereInput) ContextValidate(ctx context.Context, for
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateLoadBalancerInstanceGroupsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLoadBalancerInstanceGroupsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLoadBalancerInstanceGroupsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLoadBalancerInstancesEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLoadBalancerInstancesNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLoadBalancerInstancesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidatePhase(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1151,6 +1607,18 @@ func (m *LoadBalancerServiceWhereInput) ContextValidate(ctx context.Context, for
 	}
 
 	if err := m.contextValidateVMInstancesSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVnetBondsEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVnetBondsNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVnetBondsSome(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1304,6 +1772,102 @@ func (m *LoadBalancerServiceWhereInput) contextValidateEverouteCluster(ctx conte
 	return nil
 }
 
+func (m *LoadBalancerServiceWhereInput) contextValidateLoadBalancerInstanceGroupsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LoadBalancerInstanceGroupsEvery != nil {
+		if err := m.LoadBalancerInstanceGroupsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("load_balancer_instance_groups_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("load_balancer_instance_groups_every")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoadBalancerServiceWhereInput) contextValidateLoadBalancerInstanceGroupsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LoadBalancerInstanceGroupsNone != nil {
+		if err := m.LoadBalancerInstanceGroupsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("load_balancer_instance_groups_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("load_balancer_instance_groups_none")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoadBalancerServiceWhereInput) contextValidateLoadBalancerInstanceGroupsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LoadBalancerInstanceGroupsSome != nil {
+		if err := m.LoadBalancerInstanceGroupsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("load_balancer_instance_groups_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("load_balancer_instance_groups_some")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoadBalancerServiceWhereInput) contextValidateLoadBalancerInstancesEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LoadBalancerInstancesEvery != nil {
+		if err := m.LoadBalancerInstancesEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("load_balancer_instances_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("load_balancer_instances_every")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoadBalancerServiceWhereInput) contextValidateLoadBalancerInstancesNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LoadBalancerInstancesNone != nil {
+		if err := m.LoadBalancerInstancesNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("load_balancer_instances_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("load_balancer_instances_none")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoadBalancerServiceWhereInput) contextValidateLoadBalancerInstancesSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LoadBalancerInstancesSome != nil {
+		if err := m.LoadBalancerInstancesSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("load_balancer_instances_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("load_balancer_instances_some")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *LoadBalancerServiceWhereInput) contextValidatePhase(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Phase != nil {
@@ -1412,6 +1976,54 @@ func (m *LoadBalancerServiceWhereInput) contextValidateVMInstancesSome(ctx conte
 				return ve.ValidateName("vm_instances_some")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("vm_instances_some")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoadBalancerServiceWhereInput) contextValidateVnetBondsEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VnetBondsEvery != nil {
+		if err := m.VnetBondsEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vnet_bonds_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vnet_bonds_every")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoadBalancerServiceWhereInput) contextValidateVnetBondsNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VnetBondsNone != nil {
+		if err := m.VnetBondsNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vnet_bonds_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vnet_bonds_none")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoadBalancerServiceWhereInput) contextValidateVnetBondsSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VnetBondsSome != nil {
+		if err := m.VnetBondsSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vnet_bonds_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vnet_bonds_some")
 			}
 			return err
 		}

@@ -68,7 +68,7 @@ func NewRemoveVMPciNicOK() *RemoveVMPciNicOK {
 RemoveVMPciNicOK remove Vm pci nic o k
 */
 type RemoveVMPciNicOK struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload []*models.WithTaskVM
 }
@@ -82,11 +82,11 @@ func (o *RemoveVMPciNicOK) GetPayload() []*models.WithTaskVM {
 
 func (o *RemoveVMPciNicOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	// response payload
@@ -128,7 +128,7 @@ func NewRemoveVMPciNicBadRequest() *RemoveVMPciNicBadRequest {
 Bad request
 */
 type RemoveVMPciNicBadRequest struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -142,11 +142,11 @@ func (o *RemoveVMPciNicBadRequest) GetPayload() *models.ErrorBody {
 
 func (o *RemoveVMPciNicBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -169,7 +169,7 @@ func NewRemoveVMPciNicNotFound() *RemoveVMPciNicNotFound {
 Not found
 */
 type RemoveVMPciNicNotFound struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -183,11 +183,11 @@ func (o *RemoveVMPciNicNotFound) GetPayload() *models.ErrorBody {
 
 func (o *RemoveVMPciNicNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -210,7 +210,7 @@ func NewRemoveVMPciNicInternalServerError() *RemoveVMPciNicInternalServerError {
 Server error
 */
 type RemoveVMPciNicInternalServerError struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -224,11 +224,11 @@ func (o *RemoveVMPciNicInternalServerError) GetPayload() *models.ErrorBody {
 
 func (o *RemoveVMPciNicInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)

@@ -30,8 +30,17 @@ func (m ClusterType) Pointer() *ClusterType {
 
 const (
 
-	// ClusterTypeACOS captures enum value "ACOS"
-	ClusterTypeACOS ClusterType = "ACOS"
+	// ClusterTypeBLUESHARK captures enum value "BLUESHARK"
+	ClusterTypeBLUESHARK ClusterType = "BLUESHARK"
+
+	// ClusterTypeSMTXELF captures enum value "SMTX_ELF"
+	ClusterTypeSMTXELF ClusterType = "SMTX_ELF"
+
+	// ClusterTypeSMTXOS captures enum value "SMTX_OS"
+	ClusterTypeSMTXOS ClusterType = "SMTX_OS"
+
+	// ClusterTypeSMTXZBS captures enum value "SMTX_ZBS"
+	ClusterTypeSMTXZBS ClusterType = "SMTX_ZBS"
 )
 
 // for schema
@@ -39,7 +48,7 @@ var clusterTypeEnum []interface{}
 
 func init() {
 	var res []ClusterType
-	if err := json.Unmarshal([]byte(`["ACOS"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["BLUESHARK","SMTX_ELF","SMTX_OS","SMTX_ZBS"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

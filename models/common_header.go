@@ -20,15 +20,15 @@ import (
 // swagger:model CommonHeader
 type CommonHeader struct {
 
-	// x aoc request id
+	// x tower request id
 	// Required: true
-	XAocRequestID *string `json:"x-aoc-request-id"`
+	XTowerRequestID *string `json:"x-tower-request-id"`
 
 	MarshalOpts *CommonHeaderMarshalOpts `json:"-"`
 }
 
 type CommonHeaderMarshalOpts struct {
-	XAocRequestID_Explicit_Null_When_Empty bool
+	XTowerRequestID_Explicit_Null_When_Empty bool
 }
 
 func (m CommonHeader) MarshalJSON() ([]byte, error) {
@@ -37,23 +37,23 @@ func (m CommonHeader) MarshalJSON() ([]byte, error) {
 
 	first := true
 
-	// handle nullable field x-aoc-request-id
-	if m.XAocRequestID != nil {
+	// handle nullable field x-tower-request-id
+	if m.XTowerRequestID != nil {
 		if !first {
 			b.WriteString(",")
 		}
-		b.WriteString("\"x-aoc-request-id\":")
-		bytes, err := swag.WriteJSON(m.XAocRequestID)
+		b.WriteString("\"x-tower-request-id\":")
+		bytes, err := swag.WriteJSON(m.XTowerRequestID)
 		if err != nil {
 			return nil, err
 		}
 		b.Write(bytes)
 		first = false
-	} else if m.MarshalOpts != nil && m.MarshalOpts.XAocRequestID_Explicit_Null_When_Empty {
+	} else if m.MarshalOpts != nil && m.MarshalOpts.XTowerRequestID_Explicit_Null_When_Empty {
 		if !first {
 			b.WriteString(",")
 		}
-		b.WriteString("\"x-aoc-request-id\":null")
+		b.WriteString("\"x-tower-request-id\":null")
 		first = false
 	}
 
@@ -65,7 +65,7 @@ func (m CommonHeader) MarshalJSON() ([]byte, error) {
 func (m *CommonHeader) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateXAocRequestID(formats); err != nil {
+	if err := m.validateXTowerRequestID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -75,9 +75,9 @@ func (m *CommonHeader) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *CommonHeader) validateXAocRequestID(formats strfmt.Registry) error {
+func (m *CommonHeader) validateXTowerRequestID(formats strfmt.Registry) error {
 
-	if err := validate.Required("x-aoc-request-id", "body", m.XAocRequestID); err != nil {
+	if err := validate.Required("x-tower-request-id", "body", m.XTowerRequestID); err != nil {
 		return err
 	}
 

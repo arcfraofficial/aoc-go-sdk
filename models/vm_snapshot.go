@@ -100,6 +100,9 @@ type VMSnapshot struct {
 	// Required: true
 	Size *int64 `json:"size"`
 
+	// snapshot group
+	SnapshotGroup *NestedSnapshotGroup `json:"snapshot_group,omitempty"`
+
 	// vcpu
 	// Required: true
 	Vcpu *int32 `json:"vcpu"`
@@ -164,6 +167,8 @@ type VMSnapshotMarshalOpts struct {
 	Name_Explicit_Null_When_Empty bool
 
 	Size_Explicit_Null_When_Empty bool
+
+	SnapshotGroup_Explicit_Null_When_Empty bool
 
 	Vcpu_Explicit_Null_When_Empty bool
 
@@ -616,6 +621,26 @@ func (m VMSnapshot) MarshalJSON() ([]byte, error) {
 		first = false
 	}
 
+	// handle nullable field snapshot_group
+	if m.SnapshotGroup != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"snapshot_group\":")
+		bytes, err := swag.WriteJSON(m.SnapshotGroup)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.SnapshotGroup_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"snapshot_group\":null")
+		first = false
+	}
+
 	// handle nullable field vcpu
 	if m.Vcpu != nil {
 		if !first {
@@ -785,6 +810,10 @@ func (m *VMSnapshot) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSize(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSnapshotGroup(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1119,6 +1148,25 @@ func (m *VMSnapshot) validateSize(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *VMSnapshot) validateSnapshotGroup(formats strfmt.Registry) error {
+	if swag.IsZero(m.SnapshotGroup) { // not required
+		return nil
+	}
+
+	if m.SnapshotGroup != nil {
+		if err := m.SnapshotGroup.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshot_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshot_group")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *VMSnapshot) validateVcpu(formats strfmt.Registry) error {
 
 	if err := validate.Required("vcpu", "body", m.Vcpu); err != nil {
@@ -1253,6 +1301,10 @@ func (m *VMSnapshot) ContextValidate(ctx context.Context, formats strfmt.Registr
 	}
 
 	if err := m.contextValidateMaxIopsPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSnapshotGroup(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1446,6 +1498,22 @@ func (m *VMSnapshot) contextValidateMaxIopsPolicy(ctx context.Context, formats s
 				return ve.ValidateName("max_iops_policy")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("max_iops_policy")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *VMSnapshot) contextValidateSnapshotGroup(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SnapshotGroup != nil {
+		if err := m.SnapshotGroup.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("snapshot_group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("snapshot_group")
 			}
 			return err
 		}

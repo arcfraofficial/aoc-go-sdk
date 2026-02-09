@@ -62,7 +62,7 @@ func NewGetEverouteLicensesConnectionOK() *GetEverouteLicensesConnectionOK {
 GetEverouteLicensesConnectionOK get everoute licenses connection o k
 */
 type GetEverouteLicensesConnectionOK struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.EverouteLicenseConnection
 }
@@ -76,11 +76,11 @@ func (o *GetEverouteLicensesConnectionOK) GetPayload() *models.EverouteLicenseCo
 
 func (o *GetEverouteLicensesConnectionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.EverouteLicenseConnection)
@@ -103,7 +103,7 @@ func NewGetEverouteLicensesConnectionBadRequest() *GetEverouteLicensesConnection
 Bad request
 */
 type GetEverouteLicensesConnectionBadRequest struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -117,11 +117,11 @@ func (o *GetEverouteLicensesConnectionBadRequest) GetPayload() *models.ErrorBody
 
 func (o *GetEverouteLicensesConnectionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -144,7 +144,7 @@ func NewGetEverouteLicensesConnectionNotFound() *GetEverouteLicensesConnectionNo
 Not found
 */
 type GetEverouteLicensesConnectionNotFound struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -158,11 +158,11 @@ func (o *GetEverouteLicensesConnectionNotFound) GetPayload() *models.ErrorBody {
 
 func (o *GetEverouteLicensesConnectionNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)
@@ -185,7 +185,7 @@ func NewGetEverouteLicensesConnectionInternalServerError() *GetEverouteLicensesC
 Server error
 */
 type GetEverouteLicensesConnectionInternalServerError struct {
-	XAocRequestID string
+	XTowerRequestID string
 
 	Payload *models.ErrorBody
 }
@@ -199,11 +199,11 @@ func (o *GetEverouteLicensesConnectionInternalServerError) GetPayload() *models.
 
 func (o *GetEverouteLicensesConnectionInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header x-aoc-request-id
-	hdrXAocRequestID := response.GetHeader("x-aoc-request-id")
+	// hydrates response header x-tower-request-id
+	hdrXTowerRequestID := response.GetHeader("x-tower-request-id")
 
-	if hdrXAocRequestID != "" {
-		o.XAocRequestID = hdrXAocRequestID
+	if hdrXTowerRequestID != "" {
+		o.XTowerRequestID = hdrXTowerRequestID
 	}
 
 	o.Payload = new(models.ErrorBody)

@@ -29,6 +29,9 @@ type AlertWhereInput struct {
 	// o r
 	OR []*AlertWhereInput `json:"OR,omitempty"`
 
+	// alert rule
+	AlertRule *AlertRuleWhereInput `json:"alert_rule,omitempty"`
+
 	// cause
 	Cause *string `json:"cause,omitempty"`
 
@@ -97,6 +100,9 @@ type AlertWhereInput struct {
 
 	// create time not in
 	CreateTimeNotIn []string `json:"create_time_not_in,omitempty"`
+
+	// disk
+	Disk *DiskWhereInput `json:"disk,omitempty"`
 
 	// ended
 	Ended *bool `json:"ended,omitempty"`
@@ -576,6 +582,8 @@ type AlertWhereInputMarshalOpts struct {
 
 	OR_Explicit_Null_When_Empty bool
 
+	AlertRule_Explicit_Null_When_Empty bool
+
 	Cause_Explicit_Null_When_Empty bool
 
 	CauseContains_Explicit_Null_When_Empty bool
@@ -621,6 +629,8 @@ type AlertWhereInputMarshalOpts struct {
 	CreateTimeNot_Explicit_Null_When_Empty bool
 
 	CreateTimeNotIn_Explicit_Null_When_Empty bool
+
+	Disk_Explicit_Null_When_Empty bool
 
 	Ended_Explicit_Null_When_Empty bool
 
@@ -980,6 +990,26 @@ func (m AlertWhereInput) MarshalJSON() ([]byte, error) {
 			return nil, err
 		}
 		b.Write(bytes)
+		first = false
+	}
+
+	// handle nullable field alert_rule
+	if m.AlertRule != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"alert_rule\":")
+		bytes, err := swag.WriteJSON(m.AlertRule)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.AlertRule_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"alert_rule\":null")
 		first = false
 	}
 
@@ -1416,6 +1446,26 @@ func (m AlertWhereInput) MarshalJSON() ([]byte, error) {
 			return nil, err
 		}
 		b.Write(bytes)
+		first = false
+	}
+
+	// handle nullable field disk
+	if m.Disk != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"disk\":")
+		bytes, err := swag.WriteJSON(m.Disk)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.Disk_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"disk\":null")
 		first = false
 	}
 
@@ -4415,7 +4465,15 @@ func (m *AlertWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateAlertRule(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCluster(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisk(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -4519,6 +4577,25 @@ func (m *AlertWhereInput) validateOR(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *AlertWhereInput) validateAlertRule(formats strfmt.Registry) error {
+	if swag.IsZero(m.AlertRule) { // not required
+		return nil
+	}
+
+	if m.AlertRule != nil {
+		if err := m.AlertRule.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("alert_rule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alert_rule")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AlertWhereInput) validateCluster(formats strfmt.Registry) error {
 	if swag.IsZero(m.Cluster) { // not required
 		return nil
@@ -4530,6 +4607,25 @@ func (m *AlertWhereInput) validateCluster(formats strfmt.Registry) error {
 				return ve.ValidateName("cluster")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AlertWhereInput) validateDisk(formats strfmt.Registry) error {
+	if swag.IsZero(m.Disk) { // not required
+		return nil
+	}
+
+	if m.Disk != nil {
+		if err := m.Disk.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk")
 			}
 			return err
 		}
@@ -4630,7 +4726,15 @@ func (m *AlertWhereInput) ContextValidate(ctx context.Context, formats strfmt.Re
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateAlertRule(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateCluster(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDisk(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -4716,6 +4820,22 @@ func (m *AlertWhereInput) contextValidateOR(ctx context.Context, formats strfmt.
 	return nil
 }
 
+func (m *AlertWhereInput) contextValidateAlertRule(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AlertRule != nil {
+		if err := m.AlertRule.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("alert_rule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alert_rule")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AlertWhereInput) contextValidateCluster(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Cluster != nil {
@@ -4724,6 +4844,22 @@ func (m *AlertWhereInput) contextValidateCluster(ctx context.Context, formats st
 				return ve.ValidateName("cluster")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("cluster")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AlertWhereInput) contextValidateDisk(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Disk != nil {
+		if err := m.Disk.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("disk")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("disk")
 			}
 			return err
 		}

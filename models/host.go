@@ -84,11 +84,26 @@ type Host struct {
 	// data ip
 	DataIP *string `json:"data_ip,omitempty"`
 
+	// dirty cache space
+	DirtyCacheSpace *int64 `json:"dirty_cache_space,omitempty"`
+
+	// dirty cache usage
+	DirtyCacheUsage *float64 `json:"dirty_cache_usage,omitempty"`
+
+	// disk pools
+	DiskPools []*NestedDiskPool `json:"disk_pools,omitempty"`
+
+	// disks
+	Disks []*NestedDisk `json:"disks,omitempty"`
+
 	// downgraded prioritized space
 	DowngradedPrioritizedSpace *int64 `json:"downgraded_prioritized_space,omitempty"`
 
 	// entity async status
 	EntityAsyncStatus *EntityAsyncStatus `json:"entityAsyncStatus,omitempty"`
+
+	// failure cache space
+	FailureCacheSpace *int64 `json:"failure_cache_space,omitempty"`
 
 	// failure data space
 	// Required: true
@@ -117,6 +132,9 @@ type Host struct {
 
 	// iommu
 	Iommu *IommuStatus `json:"iommu,omitempty"`
+
+	// ipmi
+	Ipmi *NestedIpmi `json:"ipmi,omitempty"`
 
 	// is os in raid1
 	IsOsInRaid1 *bool `json:"is_os_in_raid1,omitempty"`
@@ -193,6 +211,9 @@ type Host struct {
 	// pmem dimm count
 	// Required: true
 	PmemDimmCount *int32 `json:"pmem_dimm_count"`
+
+	// pmem dimms
+	PmemDimms []*NestedPmemDimm `json:"pmem_dimms,omitempty"`
 
 	// pmem disk count
 	// Required: true
@@ -303,8 +324,14 @@ type Host struct {
 	// vms
 	Vms []*NestedVM `json:"vms,omitempty"`
 
+	// vsphere esxi account
+	VsphereEsxiAccount *NestedVsphereEsxiAccount `json:"vsphereEsxiAccount,omitempty"`
+
 	// with faster ssd as cache
 	WithFasterSsdAsCache *bool `json:"with_faster_ssd_as_cache,omitempty"`
+
+	// zone
+	Zone *NestedZone `json:"zone,omitempty"`
 
 	MarshalOpts *HostMarshalOpts `json:"-"`
 }
@@ -346,9 +373,19 @@ type HostMarshalOpts struct {
 
 	DataIP_Explicit_Null_When_Empty bool
 
+	DirtyCacheSpace_Explicit_Null_When_Empty bool
+
+	DirtyCacheUsage_Explicit_Null_When_Empty bool
+
+	DiskPools_Explicit_Null_When_Empty bool
+
+	Disks_Explicit_Null_When_Empty bool
+
 	DowngradedPrioritizedSpace_Explicit_Null_When_Empty bool
 
 	EntityAsyncStatus_Explicit_Null_When_Empty bool
+
+	FailureCacheSpace_Explicit_Null_When_Empty bool
 
 	FailureDataSpace_Explicit_Null_When_Empty bool
 
@@ -365,6 +402,8 @@ type HostMarshalOpts struct {
 	ID_Explicit_Null_When_Empty bool
 
 	Iommu_Explicit_Null_When_Empty bool
+
+	Ipmi_Explicit_Null_When_Empty bool
 
 	IsOsInRaid1_Explicit_Null_When_Empty bool
 
@@ -409,6 +448,8 @@ type HostMarshalOpts struct {
 	PmemDimmCapacity_Explicit_Null_When_Empty bool
 
 	PmemDimmCount_Explicit_Null_When_Empty bool
+
+	PmemDimms_Explicit_Null_When_Empty bool
 
 	PmemDiskCount_Explicit_Null_When_Empty bool
 
@@ -474,7 +515,11 @@ type HostMarshalOpts struct {
 
 	Vms_Explicit_Null_When_Empty bool
 
+	VsphereEsxiAccount_Explicit_Null_When_Empty bool
+
 	WithFasterSsdAsCache_Explicit_Null_When_Empty bool
+
+	Zone_Explicit_Null_When_Empty bool
 }
 
 func (m Host) MarshalJSON() ([]byte, error) {
@@ -825,6 +870,74 @@ func (m Host) MarshalJSON() ([]byte, error) {
 		first = false
 	}
 
+	// handle nullable field dirty_cache_space
+	if m.DirtyCacheSpace != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"dirty_cache_space\":")
+		bytes, err := swag.WriteJSON(m.DirtyCacheSpace)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.DirtyCacheSpace_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"dirty_cache_space\":null")
+		first = false
+	}
+
+	// handle nullable field dirty_cache_usage
+	if m.DirtyCacheUsage != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"dirty_cache_usage\":")
+		bytes, err := swag.WriteJSON(m.DirtyCacheUsage)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.DirtyCacheUsage_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"dirty_cache_usage\":null")
+		first = false
+	}
+
+	// handle non nullable field disk_pools with omitempty
+	if !swag.IsZero(m.DiskPools) {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"disk_pools\":")
+		bytes, err := swag.WriteJSON(m.DiskPools)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	}
+
+	// handle non nullable field disks with omitempty
+	if !swag.IsZero(m.Disks) {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"disks\":")
+		bytes, err := swag.WriteJSON(m.Disks)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	}
+
 	// handle nullable field downgraded_prioritized_space
 	if m.DowngradedPrioritizedSpace != nil {
 		if !first {
@@ -862,6 +975,26 @@ func (m Host) MarshalJSON() ([]byte, error) {
 			b.WriteString(",")
 		}
 		b.WriteString("\"entityAsyncStatus\":null")
+		first = false
+	}
+
+	// handle nullable field failure_cache_space
+	if m.FailureCacheSpace != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"failure_cache_space\":")
+		bytes, err := swag.WriteJSON(m.FailureCacheSpace)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.FailureCacheSpace_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"failure_cache_space\":null")
 		first = false
 	}
 
@@ -1016,6 +1149,26 @@ func (m Host) MarshalJSON() ([]byte, error) {
 			b.WriteString(",")
 		}
 		b.WriteString("\"iommu\":null")
+		first = false
+	}
+
+	// handle nullable field ipmi
+	if m.Ipmi != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"ipmi\":")
+		bytes, err := swag.WriteJSON(m.Ipmi)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.Ipmi_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"ipmi\":null")
 		first = false
 	}
 
@@ -1444,6 +1597,20 @@ func (m Host) MarshalJSON() ([]byte, error) {
 			b.WriteString(",")
 		}
 		b.WriteString("\"pmem_dimm_count\":null")
+		first = false
+	}
+
+	// handle non nullable field pmem_dimms with omitempty
+	if !swag.IsZero(m.PmemDimms) {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"pmem_dimms\":")
+		bytes, err := swag.WriteJSON(m.PmemDimms)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
 		first = false
 	}
 
@@ -2075,6 +2242,26 @@ func (m Host) MarshalJSON() ([]byte, error) {
 		first = false
 	}
 
+	// handle nullable field vsphereEsxiAccount
+	if m.VsphereEsxiAccount != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"vsphereEsxiAccount\":")
+		bytes, err := swag.WriteJSON(m.VsphereEsxiAccount)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.VsphereEsxiAccount_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"vsphereEsxiAccount\":null")
+		first = false
+	}
+
 	// handle nullable field with_faster_ssd_as_cache
 	if m.WithFasterSsdAsCache != nil {
 		if !first {
@@ -2092,6 +2279,26 @@ func (m Host) MarshalJSON() ([]byte, error) {
 			b.WriteString(",")
 		}
 		b.WriteString("\"with_faster_ssd_as_cache\":null")
+		first = false
+	}
+
+	// handle nullable field zone
+	if m.Zone != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"zone\":")
+		bytes, err := swag.WriteJSON(m.Zone)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.Zone_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"zone\":null")
 		first = false
 	}
 
@@ -2147,6 +2354,14 @@ func (m *Host) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateDiskPools(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisks(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEntityAsyncStatus(formats); err != nil {
 		res = append(res, err)
 	}
@@ -2176,6 +2391,10 @@ func (m *Host) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateIommu(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIpmi(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2228,6 +2447,10 @@ func (m *Host) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePmemDimmCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePmemDimms(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2288,6 +2511,14 @@ func (m *Host) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateVms(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateVsphereEsxiAccount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateZone(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2427,6 +2658,58 @@ func (m *Host) validateCPUTemperatureCelsius(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Host) validateDiskPools(formats strfmt.Registry) error {
+	if swag.IsZero(m.DiskPools) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.DiskPools); i++ {
+		if swag.IsZero(m.DiskPools[i]) { // not required
+			continue
+		}
+
+		if m.DiskPools[i] != nil {
+			if err := m.DiskPools[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("disk_pools" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disk_pools" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Host) validateDisks(formats strfmt.Registry) error {
+	if swag.IsZero(m.Disks) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Disks); i++ {
+		if swag.IsZero(m.Disks[i]) { // not required
+			continue
+		}
+
+		if m.Disks[i] != nil {
+			if err := m.Disks[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disks" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Host) validateEntityAsyncStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.EntityAsyncStatus) { // not required
 		return nil
@@ -2538,6 +2821,25 @@ func (m *Host) validateIommu(formats strfmt.Registry) error {
 				return ve.ValidateName("iommu")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("iommu")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Host) validateIpmi(formats strfmt.Registry) error {
+	if swag.IsZero(m.Ipmi) { // not required
+		return nil
+	}
+
+	if m.Ipmi != nil {
+		if err := m.Ipmi.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ipmi")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ipmi")
 			}
 			return err
 		}
@@ -2702,6 +3004,32 @@ func (m *Host) validatePmemDimmCount(formats strfmt.Registry) error {
 
 	if err := validate.Required("pmem_dimm_count", "body", m.PmemDimmCount); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *Host) validatePmemDimms(formats strfmt.Registry) error {
+	if swag.IsZero(m.PmemDimms) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.PmemDimms); i++ {
+		if swag.IsZero(m.PmemDimms[i]) { // not required
+			continue
+		}
+
+		if m.PmemDimms[i] != nil {
+			if err := m.PmemDimms[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("pmem_dimms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("pmem_dimms" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -2906,6 +3234,44 @@ func (m *Host) validateVms(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Host) validateVsphereEsxiAccount(formats strfmt.Registry) error {
+	if swag.IsZero(m.VsphereEsxiAccount) { // not required
+		return nil
+	}
+
+	if m.VsphereEsxiAccount != nil {
+		if err := m.VsphereEsxiAccount.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vsphereEsxiAccount")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vsphereEsxiAccount")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Host) validateZone(formats strfmt.Registry) error {
+	if swag.IsZero(m.Zone) { // not required
+		return nil
+	}
+
+	if m.Zone != nil {
+		if err := m.Zone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("zone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("zone")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this host based on the context it is used
 func (m *Host) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -2919,6 +3285,14 @@ func (m *Host) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	}
 
 	if err := m.contextValidateCPUFanSpeedUnit(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDiskPools(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDisks(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2938,6 +3312,10 @@ func (m *Host) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateIpmi(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateLabels(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -2947,6 +3325,10 @@ func (m *Host) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	}
 
 	if err := m.contextValidateNics(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePmemDimms(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -2963,6 +3345,14 @@ func (m *Host) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	}
 
 	if err := m.contextValidateVms(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVsphereEsxiAccount(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateZone(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -3015,6 +3405,46 @@ func (m *Host) contextValidateCPUFanSpeedUnit(ctx context.Context, formats strfm
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Host) contextValidateDiskPools(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.DiskPools); i++ {
+
+		if m.DiskPools[i] != nil {
+			if err := m.DiskPools[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("disk_pools" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disk_pools" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Host) contextValidateDisks(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Disks); i++ {
+
+		if m.Disks[i] != nil {
+			if err := m.Disks[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("disks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("disks" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -3088,6 +3518,22 @@ func (m *Host) contextValidateIommu(ctx context.Context, formats strfmt.Registry
 	return nil
 }
 
+func (m *Host) contextValidateIpmi(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Ipmi != nil {
+		if err := m.Ipmi.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ipmi")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ipmi")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *Host) contextValidateLabels(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Labels); i++ {
@@ -3134,6 +3580,26 @@ func (m *Host) contextValidateNics(ctx context.Context, formats strfmt.Registry)
 					return ve.ValidateName("nics" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("nics" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Host) contextValidatePmemDimms(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.PmemDimms); i++ {
+
+		if m.PmemDimms[i] != nil {
+			if err := m.PmemDimms[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("pmem_dimms" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("pmem_dimms" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -3211,6 +3677,38 @@ func (m *Host) contextValidateVms(ctx context.Context, formats strfmt.Registry) 
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *Host) contextValidateVsphereEsxiAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.VsphereEsxiAccount != nil {
+		if err := m.VsphereEsxiAccount.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("vsphereEsxiAccount")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("vsphereEsxiAccount")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Host) contextValidateZone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Zone != nil {
+		if err := m.Zone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("zone")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("zone")
+			}
+			return err
+		}
 	}
 
 	return nil
