@@ -54,10 +54,12 @@ func NewGetElfStoragePoliciesConnectionParamsWithHTTPClient(client *http.Client)
 	}
 }
 
-/* GetElfStoragePoliciesConnectionParams contains all the parameters to send to the API endpoint
-   for the get elf storage policies connection operation.
+/*
+GetElfStoragePoliciesConnectionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get elf storage policies connection operation.
+
+	Typically these are written to a http.Request.
 */
 type GetElfStoragePoliciesConnectionParams struct {
 
@@ -65,6 +67,9 @@ type GetElfStoragePoliciesConnectionParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetElfStoragePoliciesConnectionRequestBody
@@ -144,6 +149,17 @@ func (o *GetElfStoragePoliciesConnectionParams) SetContentLanguage(contentLangua
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get elf storage policies connection params
+func (o *GetElfStoragePoliciesConnectionParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetElfStoragePoliciesConnectionParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get elf storage policies connection params
+func (o *GetElfStoragePoliciesConnectionParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get elf storage policies connection params
 func (o *GetElfStoragePoliciesConnectionParams) WithRequestBody(requestBody *models.GetElfStoragePoliciesConnectionRequestBody) *GetElfStoragePoliciesConnectionParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetElfStoragePoliciesConnectionParams) WriteToRequest(r runtime.ClientR
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

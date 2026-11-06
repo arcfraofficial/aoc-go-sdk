@@ -54,10 +54,12 @@ func NewGetVirtualPrivateCloudSecurityPoliciesConnectionParamsWithHTTPClient(cli
 	}
 }
 
-/* GetVirtualPrivateCloudSecurityPoliciesConnectionParams contains all the parameters to send to the API endpoint
-   for the get virtual private cloud security policies connection operation.
+/*
+GetVirtualPrivateCloudSecurityPoliciesConnectionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get virtual private cloud security policies connection operation.
+
+	Typically these are written to a http.Request.
 */
 type GetVirtualPrivateCloudSecurityPoliciesConnectionParams struct {
 
@@ -65,6 +67,9 @@ type GetVirtualPrivateCloudSecurityPoliciesConnectionParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetVirtualPrivateCloudSecurityPoliciesConnectionRequestBody
@@ -144,6 +149,17 @@ func (o *GetVirtualPrivateCloudSecurityPoliciesConnectionParams) SetContentLangu
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get virtual private cloud security policies connection params
+func (o *GetVirtualPrivateCloudSecurityPoliciesConnectionParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetVirtualPrivateCloudSecurityPoliciesConnectionParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get virtual private cloud security policies connection params
+func (o *GetVirtualPrivateCloudSecurityPoliciesConnectionParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get virtual private cloud security policies connection params
 func (o *GetVirtualPrivateCloudSecurityPoliciesConnectionParams) WithRequestBody(requestBody *models.GetVirtualPrivateCloudSecurityPoliciesConnectionRequestBody) *GetVirtualPrivateCloudSecurityPoliciesConnectionParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetVirtualPrivateCloudSecurityPoliciesConnectionParams) WriteToRequest(
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

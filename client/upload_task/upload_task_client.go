@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  GetUploadTasks get upload tasks API
+GetUploadTasks get upload tasks API
 */
 func (a *Client) GetUploadTasks(params *GetUploadTasksParams, opts ...ClientOption) (*GetUploadTasksOK, error) {
 	// TODO: Validate the params before sending
@@ -76,7 +76,7 @@ func (a *Client) GetUploadTasks(params *GetUploadTasksParams, opts ...ClientOpti
 }
 
 /*
-  GetUploadTasksConnection get upload tasks connection API
+GetUploadTasksConnection get upload tasks connection API
 */
 func (a *Client) GetUploadTasksConnection(params *GetUploadTasksConnectionParams, opts ...ClientOption) (*GetUploadTasksConnectionOK, error) {
 	// TODO: Validate the params before sending

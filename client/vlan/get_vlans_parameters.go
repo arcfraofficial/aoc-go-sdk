@@ -54,10 +54,12 @@ func NewGetVlansParamsWithHTTPClient(client *http.Client) *GetVlansParams {
 	}
 }
 
-/* GetVlansParams contains all the parameters to send to the API endpoint
-   for the get vlans operation.
+/*
+GetVlansParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get vlans operation.
+
+	Typically these are written to a http.Request.
 */
 type GetVlansParams struct {
 
@@ -65,6 +67,9 @@ type GetVlansParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetVlansRequestBody
@@ -144,6 +149,17 @@ func (o *GetVlansParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get vlans params
+func (o *GetVlansParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetVlansParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get vlans params
+func (o *GetVlansParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get vlans params
 func (o *GetVlansParams) WithRequestBody(requestBody *models.GetVlansRequestBody) *GetVlansParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetVlansParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

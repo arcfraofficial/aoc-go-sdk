@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-  GetDetailVMInfoByGpuDevices get detail Vm info by gpu devices API
+GetDetailVMInfoByGpuDevices get detail Vm info by gpu devices API
 */
 func (a *Client) GetDetailVMInfoByGpuDevices(params *GetDetailVMInfoByGpuDevicesParams, opts ...ClientOption) (*GetDetailVMInfoByGpuDevicesOK, error) {
 	// TODO: Validate the params before sending
@@ -78,7 +78,7 @@ func (a *Client) GetDetailVMInfoByGpuDevices(params *GetDetailVMInfoByGpuDevices
 }
 
 /*
-  GetGpuDevices get gpu devices API
+GetGpuDevices get gpu devices API
 */
 func (a *Client) GetGpuDevices(params *GetGpuDevicesParams, opts ...ClientOption) (*GetGpuDevicesOK, error) {
 	// TODO: Validate the params before sending
@@ -116,7 +116,7 @@ func (a *Client) GetGpuDevices(params *GetGpuDevicesParams, opts ...ClientOption
 }
 
 /*
-  GetGpuDevicesConnection get gpu devices connection API
+GetGpuDevicesConnection get gpu devices connection API
 */
 func (a *Client) GetGpuDevicesConnection(params *GetGpuDevicesConnectionParams, opts ...ClientOption) (*GetGpuDevicesConnectionOK, error) {
 	// TODO: Validate the params before sending

@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-  CreateRootUser create root user API
+CreateRootUser create root user API
 */
 func (a *Client) CreateRootUser(params *CreateRootUserParams, opts ...ClientOption) (*CreateRootUserOK, error) {
 	// TODO: Validate the params before sending
@@ -86,7 +86,7 @@ func (a *Client) CreateRootUser(params *CreateRootUserParams, opts ...ClientOpti
 }
 
 /*
-  CreateUser create user API
+CreateUser create user API
 */
 func (a *Client) CreateUser(params *CreateUserParams, opts ...ClientOption) (*CreateUserOK, error) {
 	// TODO: Validate the params before sending
@@ -124,7 +124,7 @@ func (a *Client) CreateUser(params *CreateUserParams, opts ...ClientOption) (*Cr
 }
 
 /*
-  DeleteUser delete user API
+DeleteUser delete user API
 */
 func (a *Client) DeleteUser(params *DeleteUserParams, opts ...ClientOption) (*DeleteUserOK, error) {
 	// TODO: Validate the params before sending
@@ -162,7 +162,7 @@ func (a *Client) DeleteUser(params *DeleteUserParams, opts ...ClientOption) (*De
 }
 
 /*
-  GetUsers get users API
+GetUsers get users API
 */
 func (a *Client) GetUsers(params *GetUsersParams, opts ...ClientOption) (*GetUsersOK, error) {
 	// TODO: Validate the params before sending
@@ -200,7 +200,7 @@ func (a *Client) GetUsers(params *GetUsersParams, opts ...ClientOption) (*GetUse
 }
 
 /*
-  GetUsersConnection get users connection API
+GetUsersConnection get users connection API
 */
 func (a *Client) GetUsersConnection(params *GetUsersConnectionParams, opts ...ClientOption) (*GetUsersConnectionOK, error) {
 	// TODO: Validate the params before sending
@@ -238,7 +238,7 @@ func (a *Client) GetUsersConnection(params *GetUsersConnectionParams, opts ...Cl
 }
 
 /*
-  Login login API
+Login login API
 */
 func (a *Client) Login(params *LoginParams, opts ...ClientOption) (*LoginOK, error) {
 	// TODO: Validate the params before sending
@@ -276,7 +276,7 @@ func (a *Client) Login(params *LoginParams, opts ...ClientOption) (*LoginOK, err
 }
 
 /*
-  UpdateUser update user API
+UpdateUser update user API
 */
 func (a *Client) UpdateUser(params *UpdateUserParams, opts ...ClientOption) (*UpdateUserOK, error) {
 	// TODO: Validate the params before sending

@@ -54,10 +54,12 @@ func NewRemoveVMCdRomParamsWithHTTPClient(client *http.Client) *RemoveVMCdRomPar
 	}
 }
 
-/* RemoveVMCdRomParams contains all the parameters to send to the API endpoint
-   for the remove Vm cd rom operation.
+/*
+RemoveVMCdRomParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the remove Vm cd rom operation.
+
+	Typically these are written to a http.Request.
 */
 type RemoveVMCdRomParams struct {
 
@@ -65,6 +67,9 @@ type RemoveVMCdRomParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VMRemoveCdRomParams
@@ -144,6 +149,17 @@ func (o *RemoveVMCdRomParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the remove Vm cd rom params
+func (o *RemoveVMCdRomParams) WithExternalCloudtowerID(externalCloudtowerID *string) *RemoveVMCdRomParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the remove Vm cd rom params
+func (o *RemoveVMCdRomParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the remove Vm cd rom params
 func (o *RemoveVMCdRomParams) WithRequestBody(requestBody *models.VMRemoveCdRomParams) *RemoveVMCdRomParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *RemoveVMCdRomParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

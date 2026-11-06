@@ -24,6 +24,9 @@ type Cluster struct {
 	// access write compress enabled
 	AccessWriteCompressEnabled *bool `json:"access_write_compress_enabled,omitempty"`
 
+	// allocated memory bytes
+	AllocatedMemoryBytes *int64 `json:"allocated_memory_bytes,omitempty"`
+
 	// allocated prioritized space
 	AllocatedPrioritizedSpace *int64 `json:"allocated_prioritized_space,omitempty"`
 
@@ -39,6 +42,12 @@ type Cluster struct {
 
 	// auto converge
 	AutoConverge *bool `json:"auto_converge,omitempty"`
+
+	// cap snapshot unique size
+	CapSnapshotUniqueSize *int64 `json:"cap_snapshot_unique_size,omitempty"`
+
+	// cap volume unique size
+	CapVolumeUniqueSize *int64 `json:"cap_volume_unique_size,omitempty"`
 
 	// commited memory bytes
 	CommitedMemoryBytes *int64 `json:"commited_memory_bytes,omitempty"`
@@ -58,6 +67,12 @@ type Cluster struct {
 
 	// datacenters
 	Datacenters []*NestedDatacenter `json:"datacenters,omitempty"`
+
+	// dirty cache space
+	DirtyCacheSpace *int64 `json:"dirty_cache_space,omitempty"`
+
+	// dirty cache usage
+	DirtyCacheUsage *float64 `json:"dirty_cache_usage,omitempty"`
 
 	// disconnected date
 	DisconnectedDate *string `json:"disconnected_date,omitempty"`
@@ -80,6 +95,9 @@ type Cluster struct {
 
 	// everoute cluster
 	EverouteCluster *NestedEverouteCluster `json:"everoute_cluster,omitempty"`
+
+	// failure cache space
+	FailureCacheSpace *int64 `json:"failure_cache_space,omitempty"`
 
 	// failure data space
 	FailureDataSpace *int64 `json:"failure_data_space,omitempty"`
@@ -149,6 +167,9 @@ type Cluster struct {
 	// max physical data capacity per node
 	MaxPhysicalDataCapacityPerNode *int64 `json:"max_physical_data_capacity_per_node,omitempty"`
 
+	// memory allocation rate
+	MemoryAllocationRate *float64 `json:"memory_allocation_rate,omitempty"`
+
 	// metro availability checklist
 	MetroAvailabilityChecklist *NestedMetroAvailabilityChecklist `json:"metro_availability_checklist,omitempty"`
 
@@ -189,6 +210,12 @@ type Cluster struct {
 
 	// overall efficiency
 	OverallEfficiency *float64 `json:"overall_efficiency,omitempty"`
+
+	// overcommit memory ratio
+	OvercommitMemoryRatio *float64 `json:"overcommit_memory_ratio,omitempty"`
+
+	// overprovision ratio
+	OverprovisionRatio *float64 `json:"overprovision_ratio,omitempty"`
 
 	// perf allocated data space
 	PerfAllocatedDataSpace *int64 `json:"perf_allocated_data_space,omitempty"`
@@ -347,6 +374,8 @@ type Cluster struct {
 type ClusterMarshalOpts struct {
 	AccessWriteCompressEnabled_Explicit_Null_When_Empty bool
 
+	AllocatedMemoryBytes_Explicit_Null_When_Empty bool
+
 	AllocatedPrioritizedSpace_Explicit_Null_When_Empty bool
 
 	AllocatedPrioritizedSpaceUsage_Explicit_Null_When_Empty bool
@@ -356,6 +385,10 @@ type ClusterMarshalOpts struct {
 	Architecture_Explicit_Null_When_Empty bool
 
 	AutoConverge_Explicit_Null_When_Empty bool
+
+	CapSnapshotUniqueSize_Explicit_Null_When_Empty bool
+
+	CapVolumeUniqueSize_Explicit_Null_When_Empty bool
 
 	CommitedMemoryBytes_Explicit_Null_When_Empty bool
 
@@ -368,6 +401,10 @@ type ClusterMarshalOpts struct {
 	DataReductionSaving_Explicit_Null_When_Empty bool
 
 	Datacenters_Explicit_Null_When_Empty bool
+
+	DirtyCacheSpace_Explicit_Null_When_Empty bool
+
+	DirtyCacheUsage_Explicit_Null_When_Empty bool
 
 	DisconnectedDate_Explicit_Null_When_Empty bool
 
@@ -382,6 +419,8 @@ type ClusterMarshalOpts struct {
 	EntityAsyncStatus_Explicit_Null_When_Empty bool
 
 	EverouteCluster_Explicit_Null_When_Empty bool
+
+	FailureCacheSpace_Explicit_Null_When_Empty bool
 
 	FailureDataSpace_Explicit_Null_When_Empty bool
 
@@ -427,6 +466,8 @@ type ClusterMarshalOpts struct {
 
 	MaxPhysicalDataCapacityPerNode_Explicit_Null_When_Empty bool
 
+	MemoryAllocationRate_Explicit_Null_When_Empty bool
+
 	MetroAvailabilityChecklist_Explicit_Null_When_Empty bool
 
 	MgtGateway_Explicit_Null_When_Empty bool
@@ -452,6 +493,10 @@ type ClusterMarshalOpts struct {
 	NvmfEnabled_Explicit_Null_When_Empty bool
 
 	OverallEfficiency_Explicit_Null_When_Empty bool
+
+	OvercommitMemoryRatio_Explicit_Null_When_Empty bool
+
+	OverprovisionRatio_Explicit_Null_When_Empty bool
 
 	PerfAllocatedDataSpace_Explicit_Null_When_Empty bool
 
@@ -578,6 +623,26 @@ func (m Cluster) MarshalJSON() ([]byte, error) {
 		first = false
 	}
 
+	// handle nullable field allocated_memory_bytes
+	if m.AllocatedMemoryBytes != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"allocated_memory_bytes\":")
+		bytes, err := swag.WriteJSON(m.AllocatedMemoryBytes)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.AllocatedMemoryBytes_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"allocated_memory_bytes\":null")
+		first = false
+	}
+
 	// handle nullable field allocated_prioritized_space
 	if m.AllocatedPrioritizedSpace != nil {
 		if !first {
@@ -675,6 +740,46 @@ func (m Cluster) MarshalJSON() ([]byte, error) {
 			b.WriteString(",")
 		}
 		b.WriteString("\"auto_converge\":null")
+		first = false
+	}
+
+	// handle nullable field cap_snapshot_unique_size
+	if m.CapSnapshotUniqueSize != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"cap_snapshot_unique_size\":")
+		bytes, err := swag.WriteJSON(m.CapSnapshotUniqueSize)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.CapSnapshotUniqueSize_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"cap_snapshot_unique_size\":null")
+		first = false
+	}
+
+	// handle nullable field cap_volume_unique_size
+	if m.CapVolumeUniqueSize != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"cap_volume_unique_size\":")
+		bytes, err := swag.WriteJSON(m.CapVolumeUniqueSize)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.CapVolumeUniqueSize_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"cap_volume_unique_size\":null")
 		first = false
 	}
 
@@ -789,6 +894,46 @@ func (m Cluster) MarshalJSON() ([]byte, error) {
 			return nil, err
 		}
 		b.Write(bytes)
+		first = false
+	}
+
+	// handle nullable field dirty_cache_space
+	if m.DirtyCacheSpace != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"dirty_cache_space\":")
+		bytes, err := swag.WriteJSON(m.DirtyCacheSpace)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.DirtyCacheSpace_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"dirty_cache_space\":null")
+		first = false
+	}
+
+	// handle nullable field dirty_cache_usage
+	if m.DirtyCacheUsage != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"dirty_cache_usage\":")
+		bytes, err := swag.WriteJSON(m.DirtyCacheUsage)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.DirtyCacheUsage_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"dirty_cache_usage\":null")
 		first = false
 	}
 
@@ -923,6 +1068,26 @@ func (m Cluster) MarshalJSON() ([]byte, error) {
 			b.WriteString(",")
 		}
 		b.WriteString("\"everoute_cluster\":null")
+		first = false
+	}
+
+	// handle nullable field failure_cache_space
+	if m.FailureCacheSpace != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"failure_cache_space\":")
+		bytes, err := swag.WriteJSON(m.FailureCacheSpace)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.FailureCacheSpace_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"failure_cache_space\":null")
 		first = false
 	}
 
@@ -1354,6 +1519,26 @@ func (m Cluster) MarshalJSON() ([]byte, error) {
 		first = false
 	}
 
+	// handle nullable field memory_allocation_rate
+	if m.MemoryAllocationRate != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"memory_allocation_rate\":")
+		bytes, err := swag.WriteJSON(m.MemoryAllocationRate)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.MemoryAllocationRate_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"memory_allocation_rate\":null")
+		first = false
+	}
+
 	// handle nullable field metro_availability_checklist
 	if m.MetroAvailabilityChecklist != nil {
 		if !first {
@@ -1605,6 +1790,46 @@ func (m Cluster) MarshalJSON() ([]byte, error) {
 			b.WriteString(",")
 		}
 		b.WriteString("\"overall_efficiency\":null")
+		first = false
+	}
+
+	// handle nullable field overcommit_memory_ratio
+	if m.OvercommitMemoryRatio != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"overcommit_memory_ratio\":")
+		bytes, err := swag.WriteJSON(m.OvercommitMemoryRatio)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.OvercommitMemoryRatio_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"overcommit_memory_ratio\":null")
+		first = false
+	}
+
+	// handle nullable field overprovision_ratio
+	if m.OverprovisionRatio != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"overprovision_ratio\":")
+		bytes, err := swag.WriteJSON(m.OverprovisionRatio)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.OverprovisionRatio_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"overprovision_ratio\":null")
 		first = false
 	}
 

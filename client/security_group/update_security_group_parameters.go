@@ -54,10 +54,12 @@ func NewUpdateSecurityGroupParamsWithHTTPClient(client *http.Client) *UpdateSecu
 	}
 }
 
-/* UpdateSecurityGroupParams contains all the parameters to send to the API endpoint
-   for the update security group operation.
+/*
+UpdateSecurityGroupParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update security group operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateSecurityGroupParams struct {
 
@@ -65,6 +67,9 @@ type UpdateSecurityGroupParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.SecurityGroupUpdateBody
@@ -144,6 +149,17 @@ func (o *UpdateSecurityGroupParams) SetContentLanguage(contentLanguage *string) 
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the update security group params
+func (o *UpdateSecurityGroupParams) WithExternalCloudtowerID(externalCloudtowerID *string) *UpdateSecurityGroupParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the update security group params
+func (o *UpdateSecurityGroupParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the update security group params
 func (o *UpdateSecurityGroupParams) WithRequestBody(requestBody *models.SecurityGroupUpdateBody) *UpdateSecurityGroupParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *UpdateSecurityGroupParams) WriteToRequest(r runtime.ClientRequest, reg 
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

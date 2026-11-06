@@ -54,10 +54,12 @@ func NewRemoveContentLibraryVMTemplateClustersParamsWithHTTPClient(client *http.
 	}
 }
 
-/* RemoveContentLibraryVMTemplateClustersParams contains all the parameters to send to the API endpoint
-   for the remove content library Vm template clusters operation.
+/*
+RemoveContentLibraryVMTemplateClustersParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the remove content library Vm template clusters operation.
+
+	Typically these are written to a http.Request.
 */
 type RemoveContentLibraryVMTemplateClustersParams struct {
 
@@ -65,6 +67,9 @@ type RemoveContentLibraryVMTemplateClustersParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.ContentLibraryVMTemplateUpdationClusterParams
@@ -144,6 +149,17 @@ func (o *RemoveContentLibraryVMTemplateClustersParams) SetContentLanguage(conten
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the remove content library Vm template clusters params
+func (o *RemoveContentLibraryVMTemplateClustersParams) WithExternalCloudtowerID(externalCloudtowerID *string) *RemoveContentLibraryVMTemplateClustersParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the remove content library Vm template clusters params
+func (o *RemoveContentLibraryVMTemplateClustersParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the remove content library Vm template clusters params
 func (o *RemoveContentLibraryVMTemplateClustersParams) WithRequestBody(requestBody *models.ContentLibraryVMTemplateUpdationClusterParams) *RemoveContentLibraryVMTemplateClustersParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *RemoveContentLibraryVMTemplateClustersParams) WriteToRequest(r runtime.
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

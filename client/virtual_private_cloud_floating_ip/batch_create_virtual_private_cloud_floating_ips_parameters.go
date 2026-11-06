@@ -54,10 +54,12 @@ func NewBatchCreateVirtualPrivateCloudFloatingIpsParamsWithHTTPClient(client *ht
 	}
 }
 
-/* BatchCreateVirtualPrivateCloudFloatingIpsParams contains all the parameters to send to the API endpoint
-   for the batch create virtual private cloud floating ips operation.
+/*
+BatchCreateVirtualPrivateCloudFloatingIpsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the batch create virtual private cloud floating ips operation.
+
+	Typically these are written to a http.Request.
 */
 type BatchCreateVirtualPrivateCloudFloatingIpsParams struct {
 
@@ -65,6 +67,9 @@ type BatchCreateVirtualPrivateCloudFloatingIpsParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.BatchCreateVirtualPrivateCloudFloatingIpsParams
@@ -144,6 +149,17 @@ func (o *BatchCreateVirtualPrivateCloudFloatingIpsParams) SetContentLanguage(con
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the batch create virtual private cloud floating ips params
+func (o *BatchCreateVirtualPrivateCloudFloatingIpsParams) WithExternalCloudtowerID(externalCloudtowerID *string) *BatchCreateVirtualPrivateCloudFloatingIpsParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the batch create virtual private cloud floating ips params
+func (o *BatchCreateVirtualPrivateCloudFloatingIpsParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the batch create virtual private cloud floating ips params
 func (o *BatchCreateVirtualPrivateCloudFloatingIpsParams) WithRequestBody(requestBody *models.BatchCreateVirtualPrivateCloudFloatingIpsParams) *BatchCreateVirtualPrivateCloudFloatingIpsParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *BatchCreateVirtualPrivateCloudFloatingIpsParams) WriteToRequest(r runti
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

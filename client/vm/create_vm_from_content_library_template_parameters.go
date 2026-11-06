@@ -54,10 +54,12 @@ func NewCreateVMFromContentLibraryTemplateParamsWithHTTPClient(client *http.Clie
 	}
 }
 
-/* CreateVMFromContentLibraryTemplateParams contains all the parameters to send to the API endpoint
-   for the create Vm from content library template operation.
+/*
+CreateVMFromContentLibraryTemplateParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create Vm from content library template operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateVMFromContentLibraryTemplateParams struct {
 
@@ -65,6 +67,9 @@ type CreateVMFromContentLibraryTemplateParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody []*models.VMCreateVMFromContentLibraryTemplateParams
@@ -144,6 +149,17 @@ func (o *CreateVMFromContentLibraryTemplateParams) SetContentLanguage(contentLan
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the create Vm from content library template params
+func (o *CreateVMFromContentLibraryTemplateParams) WithExternalCloudtowerID(externalCloudtowerID *string) *CreateVMFromContentLibraryTemplateParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the create Vm from content library template params
+func (o *CreateVMFromContentLibraryTemplateParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the create Vm from content library template params
 func (o *CreateVMFromContentLibraryTemplateParams) WithRequestBody(requestBody []*models.VMCreateVMFromContentLibraryTemplateParams) *CreateVMFromContentLibraryTemplateParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *CreateVMFromContentLibraryTemplateParams) WriteToRequest(r runtime.Clie
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

@@ -54,10 +54,12 @@ func NewGetNicsParamsWithHTTPClient(client *http.Client) *GetNicsParams {
 	}
 }
 
-/* GetNicsParams contains all the parameters to send to the API endpoint
-   for the get nics operation.
+/*
+GetNicsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get nics operation.
+
+	Typically these are written to a http.Request.
 */
 type GetNicsParams struct {
 
@@ -65,6 +67,9 @@ type GetNicsParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetNicsRequestBody
@@ -144,6 +149,17 @@ func (o *GetNicsParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get nics params
+func (o *GetNicsParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetNicsParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get nics params
+func (o *GetNicsParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get nics params
 func (o *GetNicsParams) WithRequestBody(requestBody *models.GetNicsRequestBody) *GetNicsParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetNicsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regis
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

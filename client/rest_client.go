@@ -6,11 +6,24 @@ package client
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/url"
+	"strings"
+
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
 	"github.com/arcfraofficial/aoc-go-sdk/client/alert"
+	"github.com/arcfraofficial/aoc-go-sdk/client/backup_plan"
+	"github.com/arcfraofficial/aoc-go-sdk/client/backup_plan_execution"
+	"github.com/arcfraofficial/aoc-go-sdk/client/backup_restore_execution"
+	"github.com/arcfraofficial/aoc-go-sdk/client/backup_restore_point"
+	"github.com/arcfraofficial/aoc-go-sdk/client/backup_service"
+	"github.com/arcfraofficial/aoc-go-sdk/client/backup_store_repository"
+	"github.com/arcfraofficial/aoc-go-sdk/client/backup_target_execution"
 	"github.com/arcfraofficial/aoc-go-sdk/client/cluster"
 	"github.com/arcfraofficial/aoc-go-sdk/client/content_library_image"
 	"github.com/arcfraofficial/aoc-go-sdk/client/content_library_vm_template"
@@ -33,9 +46,13 @@ import (
 	"github.com/arcfraofficial/aoc-go-sdk/client/observability"
 	"github.com/arcfraofficial/aoc-go-sdk/client/organization"
 	"github.com/arcfraofficial/aoc-go-sdk/client/ovf"
+	"github.com/arcfraofficial/aoc-go-sdk/client/replica_vm"
+	"github.com/arcfraofficial/aoc-go-sdk/client/replication_plan"
+	"github.com/arcfraofficial/aoc-go-sdk/client/replication_service"
 	"github.com/arcfraofficial/aoc-go-sdk/client/security_group"
 	"github.com/arcfraofficial/aoc-go-sdk/client/security_policy"
 	"github.com/arcfraofficial/aoc-go-sdk/client/svt_image"
+	"github.com/arcfraofficial/aoc-go-sdk/client/sync_replication_plan"
 	"github.com/arcfraofficial/aoc-go-sdk/client/system_audit_log"
 	"github.com/arcfraofficial/aoc-go-sdk/client/task"
 	"github.com/arcfraofficial/aoc-go-sdk/client/upload_task"
@@ -100,8 +117,25 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *AOC
 	}
 
 	// create transport and client
-	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
-	return New(transport, formats)
+	host := cfg.Host
+	basePath := cfg.BasePath
+	probePath := cfg.ProbePath
+	schemes := cfg.Schemes
+	if probePath == "" {
+		probePath = activePassiveDefaultProbePath
+	}
+	commonPath := cfg.CommonBasePath
+	if parsed, err := url.Parse(strings.TrimSpace(cfg.CommonBasePath)); err == nil && parsed.Scheme != "" && parsed.Host != "" {
+		commonPath = parsed.Path
+		host = parsed.Host
+		schemes = []string{parsed.Scheme}
+	}
+	basePath = joinURLPaths(commonPath, basePath)
+	probePath = joinURLPaths(commonPath, probePath)
+	transport := httptransport.New(host, basePath, schemes)
+	client := New(transport, formats)
+	client.probePath = probePath
+	return client
 }
 
 // New creates a new a o c client
@@ -114,6 +148,13 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *AOC {
 	cli := new(AOC)
 	cli.Transport = transport
 	cli.Alert = alert.New(transport, formats)
+	cli.BackupPlan = backup_plan.New(transport, formats)
+	cli.BackupPlanExecution = backup_plan_execution.New(transport, formats)
+	cli.BackupRestoreExecution = backup_restore_execution.New(transport, formats)
+	cli.BackupRestorePoint = backup_restore_point.New(transport, formats)
+	cli.BackupService = backup_service.New(transport, formats)
+	cli.BackupStoreRepository = backup_store_repository.New(transport, formats)
+	cli.BackupTargetExecution = backup_target_execution.New(transport, formats)
 	cli.Cluster = cluster.New(transport, formats)
 	cli.ContentLibraryImage = content_library_image.New(transport, formats)
 	cli.ContentLibraryVMTemplate = content_library_vm_template.New(transport, formats)
@@ -136,9 +177,13 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *AOC {
 	cli.Observability = observability.New(transport, formats)
 	cli.Organization = organization.New(transport, formats)
 	cli.Ovf = ovf.New(transport, formats)
+	cli.ReplicaVM = replica_vm.New(transport, formats)
+	cli.ReplicationPlan = replication_plan.New(transport, formats)
+	cli.ReplicationService = replication_service.New(transport, formats)
 	cli.SecurityGroup = security_group.New(transport, formats)
 	cli.SecurityPolicy = security_policy.New(transport, formats)
 	cli.SvtImage = svt_image.New(transport, formats)
+	cli.SyncReplicationPlan = sync_replication_plan.New(transport, formats)
 	cli.SystemAuditLog = system_audit_log.New(transport, formats)
 	cli.Task = task.New(transport, formats)
 	cli.UploadTask = upload_task.New(transport, formats)
@@ -179,18 +224,27 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *AOC {
 // default settings taken from the meta section of the spec file.
 func DefaultTransportConfig() *TransportConfig {
 	return &TransportConfig{
-		Host:     DefaultHost,
-		BasePath: DefaultBasePath,
-		Schemes:  DefaultSchemes,
+		Host:      DefaultHost,
+		BasePath:  DefaultBasePath,
+		ProbePath: activePassiveDefaultProbePath,
+		Schemes:   DefaultSchemes,
 	}
 }
 
 // TransportConfig contains the transport related info,
 // found in the meta section of the spec file.
 type TransportConfig struct {
-	Host     string
-	BasePath string
-	Schemes  []string
+	CommonBasePath string
+	Host           string
+	BasePath       string
+	ProbePath      string
+	Schemes        []string
+}
+
+// WithCommonBasePath overrides the common base path used by API requests and probes.
+func (cfg *TransportConfig) WithCommonBasePath(commonBasePath string) *TransportConfig {
+	cfg.CommonBasePath = commonBasePath
+	return cfg
 }
 
 // WithHost overrides the default host,
@@ -207,6 +261,12 @@ func (cfg *TransportConfig) WithBasePath(basePath string) *TransportConfig {
 	return cfg
 }
 
+// WithProbePath overrides the default active/passive probe path.
+func (cfg *TransportConfig) WithProbePath(probePath string) *TransportConfig {
+	cfg.ProbePath = probePath
+	return cfg
+}
+
 // WithSchemes overrides the default schemes,
 // provided by the meta section of the spec file.
 func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
@@ -217,6 +277,20 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 // AOC is a client for a o c
 type AOC struct {
 	Alert alert.ClientService
+
+	BackupPlan backup_plan.ClientService
+
+	BackupPlanExecution backup_plan_execution.ClientService
+
+	BackupRestoreExecution backup_restore_execution.ClientService
+
+	BackupRestorePoint backup_restore_point.ClientService
+
+	BackupService backup_service.ClientService
+
+	BackupStoreRepository backup_store_repository.ClientService
+
+	BackupTargetExecution backup_target_execution.ClientService
 
 	Cluster cluster.ClientService
 
@@ -262,11 +336,19 @@ type AOC struct {
 
 	Ovf ovf.ClientService
 
+	ReplicaVM replica_vm.ClientService
+
+	ReplicationPlan replication_plan.ClientService
+
+	ReplicationService replication_service.ClientService
+
 	SecurityGroup security_group.ClientService
 
 	SecurityPolicy security_policy.ClientService
 
 	SvtImage svt_image.ClientService
+
+	SyncReplicationPlan sync_replication_plan.ClientService
 
 	SystemAuditLog system_audit_log.ClientService
 
@@ -335,12 +417,21 @@ type AOC struct {
 	VMVolumeSnapshot vm_volume_snapshot.ClientService
 
 	Transport runtime.ClientTransport
+
+	probePath string
 }
 
 // SetTransport changes the transport on the client and all its subresources
 func (c *AOC) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Alert.SetTransport(transport)
+	c.BackupPlan.SetTransport(transport)
+	c.BackupPlanExecution.SetTransport(transport)
+	c.BackupRestoreExecution.SetTransport(transport)
+	c.BackupRestorePoint.SetTransport(transport)
+	c.BackupService.SetTransport(transport)
+	c.BackupStoreRepository.SetTransport(transport)
+	c.BackupTargetExecution.SetTransport(transport)
 	c.Cluster.SetTransport(transport)
 	c.ContentLibraryImage.SetTransport(transport)
 	c.ContentLibraryVMTemplate.SetTransport(transport)
@@ -363,9 +454,13 @@ func (c *AOC) SetTransport(transport runtime.ClientTransport) {
 	c.Observability.SetTransport(transport)
 	c.Organization.SetTransport(transport)
 	c.Ovf.SetTransport(transport)
+	c.ReplicaVM.SetTransport(transport)
+	c.ReplicationPlan.SetTransport(transport)
+	c.ReplicationService.SetTransport(transport)
 	c.SecurityGroup.SetTransport(transport)
 	c.SecurityPolicy.SetTransport(transport)
 	c.SvtImage.SetTransport(transport)
+	c.SyncReplicationPlan.SetTransport(transport)
 	c.SystemAuditLog.SetTransport(transport)
 	c.Task.SetTransport(transport)
 	c.UploadTask.SetTransport(transport)
@@ -399,4 +494,73 @@ func (c *AOC) SetTransport(transport runtime.ClientTransport) {
 	c.VMTemplate.SetTransport(transport)
 	c.VMVolume.SetTransport(transport)
 	c.VMVolumeSnapshot.SetTransport(transport)
+}
+
+// ProbeActivePassive probes the current endpoint and reports whether it is active.
+// It sends a GET request to /api/healthz on the endpoint base URL.
+// 200 means active, 307 means passive, and any other result is treated as an error.
+func (c *AOC) ProbeActivePassive(ctx context.Context) (bool, error) {
+	transport, ok := c.Transport.(*httptransport.Runtime)
+	if !ok {
+		return false, fmt.Errorf("unsupported transport type for ProbeActivePassive: %T", c.Transport)
+	}
+	if ctx == nil {
+		ctx = context.Background()
+	}
+
+	if transport.Host == "" {
+		return false, fmt.Errorf("probe active-passive missing host")
+	}
+	probePath := c.probePath
+	if probePath == "" {
+		probePath = activePassiveDefaultProbePath
+	}
+
+	op := &runtime.ClientOperation{
+		ID:                 "probe-active-passive",
+		Method:             http.MethodGet,
+		PathPattern:        "/",
+		ProducesMediaTypes: []string{runtime.JSONMime},
+		Params: runtime.ClientRequestWriterFunc(func(runtime.ClientRequest, strfmt.Registry) error {
+			return nil
+		}),
+		Reader: runtime.ClientResponseReaderFunc(func(runtime.ClientResponse, runtime.Consumer) (interface{}, error) {
+			return nil, nil
+		}),
+		Context: ctx,
+	}
+
+	req, err := transport.CreateHttpRequest(op)
+	if err != nil {
+		return false, err
+	}
+	req.URL.Path = probePath
+	req.URL.RawPath = ""
+	req.URL.RawQuery = ""
+
+	httpClient := &http.Client{
+		Transport: transport.Transport,
+		Jar:       transport.Jar,
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return http.ErrUseLastResponse
+		},
+	}
+	if httpClient.Transport == nil {
+		httpClient.Transport = http.DefaultTransport
+	}
+
+	resp, err := httpClient.Do(req.WithContext(ctx))
+	if err != nil {
+		return false, err
+	}
+	defer resp.Body.Close()
+
+	switch resp.StatusCode {
+	case http.StatusOK:
+		return true, nil
+	case http.StatusTemporaryRedirect:
+		return false, nil
+	default:
+		return false, runtime.NewAPIError("probe active-passive returned unexpected status", activePassiveHTTPResponse{response: resp}, resp.StatusCode)
+	}
 }

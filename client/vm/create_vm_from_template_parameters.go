@@ -54,10 +54,12 @@ func NewCreateVMFromTemplateParamsWithHTTPClient(client *http.Client) *CreateVMF
 	}
 }
 
-/* CreateVMFromTemplateParams contains all the parameters to send to the API endpoint
-   for the create Vm from template operation.
+/*
+CreateVMFromTemplateParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create Vm from template operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateVMFromTemplateParams struct {
 
@@ -65,6 +67,9 @@ type CreateVMFromTemplateParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody []*models.VMCreateVMFromTemplateParams
@@ -144,6 +149,17 @@ func (o *CreateVMFromTemplateParams) SetContentLanguage(contentLanguage *string)
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the create Vm from template params
+func (o *CreateVMFromTemplateParams) WithExternalCloudtowerID(externalCloudtowerID *string) *CreateVMFromTemplateParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the create Vm from template params
+func (o *CreateVMFromTemplateParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the create Vm from template params
 func (o *CreateVMFromTemplateParams) WithRequestBody(requestBody []*models.VMCreateVMFromTemplateParams) *CreateVMFromTemplateParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *CreateVMFromTemplateParams) WriteToRequest(r runtime.ClientRequest, reg
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

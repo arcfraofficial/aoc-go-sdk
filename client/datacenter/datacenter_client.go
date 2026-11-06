@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-  CreateDatacenter create datacenter API
+CreateDatacenter create datacenter API
 */
 func (a *Client) CreateDatacenter(params *CreateDatacenterParams, opts ...ClientOption) (*CreateDatacenterOK, error) {
 	// TODO: Validate the params before sending
@@ -78,7 +78,7 @@ func (a *Client) CreateDatacenter(params *CreateDatacenterParams, opts ...Client
 }
 
 /*
-  GetDatacenters get datacenters API
+GetDatacenters get datacenters API
 */
 func (a *Client) GetDatacenters(params *GetDatacentersParams, opts ...ClientOption) (*GetDatacentersOK, error) {
 	// TODO: Validate the params before sending
@@ -116,7 +116,7 @@ func (a *Client) GetDatacenters(params *GetDatacentersParams, opts ...ClientOpti
 }
 
 /*
-  GetDatacentersConnection get datacenters connection API
+GetDatacentersConnection get datacenters connection API
 */
 func (a *Client) GetDatacentersConnection(params *GetDatacentersConnectionParams, opts ...ClientOption) (*GetDatacentersConnectionOK, error) {
 	// TODO: Validate the params before sending

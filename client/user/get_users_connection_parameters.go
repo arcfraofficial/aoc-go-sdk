@@ -54,10 +54,12 @@ func NewGetUsersConnectionParamsWithHTTPClient(client *http.Client) *GetUsersCon
 	}
 }
 
-/* GetUsersConnectionParams contains all the parameters to send to the API endpoint
-   for the get users connection operation.
+/*
+GetUsersConnectionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get users connection operation.
+
+	Typically these are written to a http.Request.
 */
 type GetUsersConnectionParams struct {
 
@@ -65,6 +67,9 @@ type GetUsersConnectionParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetUsersConnectionRequestBody
@@ -144,6 +149,17 @@ func (o *GetUsersConnectionParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get users connection params
+func (o *GetUsersConnectionParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetUsersConnectionParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get users connection params
+func (o *GetUsersConnectionParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get users connection params
 func (o *GetUsersConnectionParams) WithRequestBody(requestBody *models.GetUsersConnectionRequestBody) *GetUsersConnectionParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetUsersConnectionParams) WriteToRequest(r runtime.ClientRequest, reg s
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

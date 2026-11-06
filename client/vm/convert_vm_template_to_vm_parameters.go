@@ -54,10 +54,12 @@ func NewConvertVMTemplateToVMParamsWithHTTPClient(client *http.Client) *ConvertV
 	}
 }
 
-/* ConvertVMTemplateToVMParams contains all the parameters to send to the API endpoint
-   for the convert Vm template to Vm operation.
+/*
+ConvertVMTemplateToVMParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the convert Vm template to Vm operation.
+
+	Typically these are written to a http.Request.
 */
 type ConvertVMTemplateToVMParams struct {
 
@@ -65,6 +67,9 @@ type ConvertVMTemplateToVMParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody []*models.ConvertVMTemplateToVMParams
@@ -144,6 +149,17 @@ func (o *ConvertVMTemplateToVMParams) SetContentLanguage(contentLanguage *string
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the convert Vm template to Vm params
+func (o *ConvertVMTemplateToVMParams) WithExternalCloudtowerID(externalCloudtowerID *string) *ConvertVMTemplateToVMParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the convert Vm template to Vm params
+func (o *ConvertVMTemplateToVMParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the convert Vm template to Vm params
 func (o *ConvertVMTemplateToVMParams) WithRequestBody(requestBody []*models.ConvertVMTemplateToVMParams) *ConvertVMTemplateToVMParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *ConvertVMTemplateToVMParams) WriteToRequest(r runtime.ClientRequest, re
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

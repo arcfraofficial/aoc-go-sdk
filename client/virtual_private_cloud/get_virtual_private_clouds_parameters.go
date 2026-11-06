@@ -54,10 +54,12 @@ func NewGetVirtualPrivateCloudsParamsWithHTTPClient(client *http.Client) *GetVir
 	}
 }
 
-/* GetVirtualPrivateCloudsParams contains all the parameters to send to the API endpoint
-   for the get virtual private clouds operation.
+/*
+GetVirtualPrivateCloudsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get virtual private clouds operation.
+
+	Typically these are written to a http.Request.
 */
 type GetVirtualPrivateCloudsParams struct {
 
@@ -65,6 +67,9 @@ type GetVirtualPrivateCloudsParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetVirtualPrivateCloudsRequestBody
@@ -144,6 +149,17 @@ func (o *GetVirtualPrivateCloudsParams) SetContentLanguage(contentLanguage *stri
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get virtual private clouds params
+func (o *GetVirtualPrivateCloudsParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetVirtualPrivateCloudsParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get virtual private clouds params
+func (o *GetVirtualPrivateCloudsParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get virtual private clouds params
 func (o *GetVirtualPrivateCloudsParams) WithRequestBody(requestBody *models.GetVirtualPrivateCloudsRequestBody) *GetVirtualPrivateCloudsParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetVirtualPrivateCloudsParams) WriteToRequest(r runtime.ClientRequest, 
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

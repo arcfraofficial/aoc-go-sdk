@@ -54,10 +54,12 @@ func NewPoweroffVMParamsWithHTTPClient(client *http.Client) *PoweroffVMParams {
 	}
 }
 
-/* PoweroffVMParams contains all the parameters to send to the API endpoint
-   for the poweroff Vm operation.
+/*
+PoweroffVMParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the poweroff Vm operation.
+
+	Typically these are written to a http.Request.
 */
 type PoweroffVMParams struct {
 
@@ -65,6 +67,9 @@ type PoweroffVMParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VMOperateParams
@@ -144,6 +149,17 @@ func (o *PoweroffVMParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the poweroff Vm params
+func (o *PoweroffVMParams) WithExternalCloudtowerID(externalCloudtowerID *string) *PoweroffVMParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the poweroff Vm params
+func (o *PoweroffVMParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the poweroff Vm params
 func (o *PoweroffVMParams) WithRequestBody(requestBody *models.VMOperateParams) *PoweroffVMParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *PoweroffVMParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

@@ -54,10 +54,12 @@ func NewCreateOrganizationParamsWithHTTPClient(client *http.Client) *CreateOrgan
 	}
 }
 
-/* CreateOrganizationParams contains all the parameters to send to the API endpoint
-   for the create organization operation.
+/*
+CreateOrganizationParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create organization operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateOrganizationParams struct {
 
@@ -65,6 +67,9 @@ type CreateOrganizationParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody []*models.OrganizationCreationParams
@@ -144,6 +149,17 @@ func (o *CreateOrganizationParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the create organization params
+func (o *CreateOrganizationParams) WithExternalCloudtowerID(externalCloudtowerID *string) *CreateOrganizationParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the create organization params
+func (o *CreateOrganizationParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the create organization params
 func (o *CreateOrganizationParams) WithRequestBody(requestBody []*models.OrganizationCreationParams) *CreateOrganizationParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *CreateOrganizationParams) WriteToRequest(r runtime.ClientRequest, reg s
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

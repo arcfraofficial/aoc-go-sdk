@@ -54,10 +54,12 @@ func NewDeleteLabelParamsWithHTTPClient(client *http.Client) *DeleteLabelParams 
 	}
 }
 
-/* DeleteLabelParams contains all the parameters to send to the API endpoint
-   for the delete label operation.
+/*
+DeleteLabelParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete label operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteLabelParams struct {
 
@@ -65,6 +67,9 @@ type DeleteLabelParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.LabelDeletionParams
@@ -144,6 +149,17 @@ func (o *DeleteLabelParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the delete label params
+func (o *DeleteLabelParams) WithExternalCloudtowerID(externalCloudtowerID *string) *DeleteLabelParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the delete label params
+func (o *DeleteLabelParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the delete label params
 func (o *DeleteLabelParams) WithRequestBody(requestBody *models.LabelDeletionParams) *DeleteLabelParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *DeleteLabelParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

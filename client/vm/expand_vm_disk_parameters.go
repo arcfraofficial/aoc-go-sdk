@@ -54,10 +54,12 @@ func NewExpandVMDiskParamsWithHTTPClient(client *http.Client) *ExpandVMDiskParam
 	}
 }
 
-/* ExpandVMDiskParams contains all the parameters to send to the API endpoint
-   for the expand Vm disk operation.
+/*
+ExpandVMDiskParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the expand Vm disk operation.
+
+	Typically these are written to a http.Request.
 */
 type ExpandVMDiskParams struct {
 
@@ -65,6 +67,9 @@ type ExpandVMDiskParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VMExpandVMDiskParams
@@ -144,6 +149,17 @@ func (o *ExpandVMDiskParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the expand Vm disk params
+func (o *ExpandVMDiskParams) WithExternalCloudtowerID(externalCloudtowerID *string) *ExpandVMDiskParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the expand Vm disk params
+func (o *ExpandVMDiskParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the expand Vm disk params
 func (o *ExpandVMDiskParams) WithRequestBody(requestBody *models.VMExpandVMDiskParams) *ExpandVMDiskParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *ExpandVMDiskParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

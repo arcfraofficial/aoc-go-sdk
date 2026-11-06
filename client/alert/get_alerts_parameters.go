@@ -54,10 +54,12 @@ func NewGetAlertsParamsWithHTTPClient(client *http.Client) *GetAlertsParams {
 	}
 }
 
-/* GetAlertsParams contains all the parameters to send to the API endpoint
-   for the get alerts operation.
+/*
+GetAlertsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get alerts operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAlertsParams struct {
 
@@ -65,6 +67,9 @@ type GetAlertsParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetAlertsRequestBody
@@ -144,6 +149,17 @@ func (o *GetAlertsParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get alerts params
+func (o *GetAlertsParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetAlertsParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get alerts params
+func (o *GetAlertsParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get alerts params
 func (o *GetAlertsParams) WithRequestBody(requestBody *models.GetAlertsRequestBody) *GetAlertsParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetAlertsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

@@ -54,10 +54,12 @@ func NewRollbackVMVolumeParamsWithHTTPClient(client *http.Client) *RollbackVMVol
 	}
 }
 
-/* RollbackVMVolumeParams contains all the parameters to send to the API endpoint
-   for the rollback Vm volume operation.
+/*
+RollbackVMVolumeParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the rollback Vm volume operation.
+
+	Typically these are written to a http.Request.
 */
 type RollbackVMVolumeParams struct {
 
@@ -65,6 +67,9 @@ type RollbackVMVolumeParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody []*models.VMVolumeRollbackParams
@@ -144,6 +149,17 @@ func (o *RollbackVMVolumeParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the rollback Vm volume params
+func (o *RollbackVMVolumeParams) WithExternalCloudtowerID(externalCloudtowerID *string) *RollbackVMVolumeParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the rollback Vm volume params
+func (o *RollbackVMVolumeParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the rollback Vm volume params
 func (o *RollbackVMVolumeParams) WithRequestBody(requestBody []*models.VMVolumeRollbackParams) *RollbackVMVolumeParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *RollbackVMVolumeParams) WriteToRequest(r runtime.ClientRequest, reg str
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

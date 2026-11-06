@@ -54,10 +54,12 @@ func NewGetVmsParamsWithHTTPClient(client *http.Client) *GetVmsParams {
 	}
 }
 
-/* GetVmsParams contains all the parameters to send to the API endpoint
-   for the get vms operation.
+/*
+GetVmsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get vms operation.
+
+	Typically these are written to a http.Request.
 */
 type GetVmsParams struct {
 
@@ -65,6 +67,9 @@ type GetVmsParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetVmsRequestBody
@@ -144,6 +149,17 @@ func (o *GetVmsParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get vms params
+func (o *GetVmsParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetVmsParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get vms params
+func (o *GetVmsParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get vms params
 func (o *GetVmsParams) WithRequestBody(requestBody *models.GetVmsRequestBody) *GetVmsParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetVmsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regist
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

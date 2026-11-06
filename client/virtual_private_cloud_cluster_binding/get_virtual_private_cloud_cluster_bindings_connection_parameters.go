@@ -54,10 +54,12 @@ func NewGetVirtualPrivateCloudClusterBindingsConnectionParamsWithHTTPClient(clie
 	}
 }
 
-/* GetVirtualPrivateCloudClusterBindingsConnectionParams contains all the parameters to send to the API endpoint
-   for the get virtual private cloud cluster bindings connection operation.
+/*
+GetVirtualPrivateCloudClusterBindingsConnectionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get virtual private cloud cluster bindings connection operation.
+
+	Typically these are written to a http.Request.
 */
 type GetVirtualPrivateCloudClusterBindingsConnectionParams struct {
 
@@ -65,6 +67,9 @@ type GetVirtualPrivateCloudClusterBindingsConnectionParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetVirtualPrivateCloudClusterBindingsConnectionRequestBody
@@ -144,6 +149,17 @@ func (o *GetVirtualPrivateCloudClusterBindingsConnectionParams) SetContentLangua
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get virtual private cloud cluster bindings connection params
+func (o *GetVirtualPrivateCloudClusterBindingsConnectionParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetVirtualPrivateCloudClusterBindingsConnectionParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get virtual private cloud cluster bindings connection params
+func (o *GetVirtualPrivateCloudClusterBindingsConnectionParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get virtual private cloud cluster bindings connection params
 func (o *GetVirtualPrivateCloudClusterBindingsConnectionParams) WithRequestBody(requestBody *models.GetVirtualPrivateCloudClusterBindingsConnectionRequestBody) *GetVirtualPrivateCloudClusterBindingsConnectionParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetVirtualPrivateCloudClusterBindingsConnectionParams) WriteToRequest(r
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

@@ -54,10 +54,12 @@ func NewAddVMGpuDeviceParamsWithHTTPClient(client *http.Client) *AddVMGpuDeviceP
 	}
 }
 
-/* AddVMGpuDeviceParams contains all the parameters to send to the API endpoint
-   for the add Vm gpu device operation.
+/*
+AddVMGpuDeviceParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add Vm gpu device operation.
+
+	Typically these are written to a http.Request.
 */
 type AddVMGpuDeviceParams struct {
 
@@ -65,6 +67,9 @@ type AddVMGpuDeviceParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VMAddGpuDeviceParams
@@ -144,6 +149,17 @@ func (o *AddVMGpuDeviceParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the add Vm gpu device params
+func (o *AddVMGpuDeviceParams) WithExternalCloudtowerID(externalCloudtowerID *string) *AddVMGpuDeviceParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the add Vm gpu device params
+func (o *AddVMGpuDeviceParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the add Vm gpu device params
 func (o *AddVMGpuDeviceParams) WithRequestBody(requestBody *models.VMAddGpuDeviceParams) *AddVMGpuDeviceParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *AddVMGpuDeviceParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

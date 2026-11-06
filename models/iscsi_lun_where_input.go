@@ -881,6 +881,15 @@ type IscsiLunWhereInput struct {
 	// replica num not in
 	ReplicaNumNotIn []int32 `json:"replica_num_not_in,omitempty"`
 
+	// replication plans every
+	ReplicationPlansEvery *ReplicationPlanWhereInput `json:"replication_plans_every,omitempty"`
+
+	// replication plans none
+	ReplicationPlansNone *ReplicationPlanWhereInput `json:"replication_plans_none,omitempty"`
+
+	// replication plans some
+	ReplicationPlansSome *ReplicationPlanWhereInput `json:"replication_plans_some,omitempty"`
+
 	// resiliency type
 	ResiliencyType *ResiliencyType `json:"resiliency_type,omitempty"`
 
@@ -1662,6 +1671,12 @@ type IscsiLunWhereInputMarshalOpts struct {
 	ReplicaNumNot_Explicit_Null_When_Empty bool
 
 	ReplicaNumNotIn_Explicit_Null_When_Empty bool
+
+	ReplicationPlansEvery_Explicit_Null_When_Empty bool
+
+	ReplicationPlansNone_Explicit_Null_When_Empty bool
+
+	ReplicationPlansSome_Explicit_Null_When_Empty bool
 
 	ResiliencyType_Explicit_Null_When_Empty bool
 
@@ -7132,6 +7147,66 @@ func (m IscsiLunWhereInput) MarshalJSON() ([]byte, error) {
 		first = false
 	}
 
+	// handle nullable field replication_plans_every
+	if m.ReplicationPlansEvery != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"replication_plans_every\":")
+		bytes, err := swag.WriteJSON(m.ReplicationPlansEvery)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ReplicationPlansEvery_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"replication_plans_every\":null")
+		first = false
+	}
+
+	// handle nullable field replication_plans_none
+	if m.ReplicationPlansNone != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"replication_plans_none\":")
+		bytes, err := swag.WriteJSON(m.ReplicationPlansNone)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ReplicationPlansNone_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"replication_plans_none\":null")
+		first = false
+	}
+
+	// handle nullable field replication_plans_some
+	if m.ReplicationPlansSome != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"replication_plans_some\":")
+		bytes, err := swag.WriteJSON(m.ReplicationPlansSome)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ReplicationPlansSome_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"replication_plans_some\":null")
+		first = false
+	}
+
 	// handle nullable field resiliency_type
 	if m.ResiliencyType != nil {
 		if !first {
@@ -8480,6 +8555,18 @@ func (m *IscsiLunWhereInput) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateReplicationPlansEvery(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateReplicationPlansNone(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateReplicationPlansSome(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateResiliencyType(formats); err != nil {
 		res = append(res, err)
 	}
@@ -8896,6 +8983,63 @@ func (m *IscsiLunWhereInput) validateLabelsSome(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *IscsiLunWhereInput) validateReplicationPlansEvery(formats strfmt.Registry) error {
+	if swag.IsZero(m.ReplicationPlansEvery) { // not required
+		return nil
+	}
+
+	if m.ReplicationPlansEvery != nil {
+		if err := m.ReplicationPlansEvery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("replication_plans_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("replication_plans_every")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IscsiLunWhereInput) validateReplicationPlansNone(formats strfmt.Registry) error {
+	if swag.IsZero(m.ReplicationPlansNone) { // not required
+		return nil
+	}
+
+	if m.ReplicationPlansNone != nil {
+		if err := m.ReplicationPlansNone.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("replication_plans_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("replication_plans_none")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IscsiLunWhereInput) validateReplicationPlansSome(formats strfmt.Registry) error {
+	if swag.IsZero(m.ReplicationPlansSome) { // not required
+		return nil
+	}
+
+	if m.ReplicationPlansSome != nil {
+		if err := m.ReplicationPlansSome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("replication_plans_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("replication_plans_some")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *IscsiLunWhereInput) validateResiliencyType(formats strfmt.Registry) error {
 	if swag.IsZero(m.ResiliencyType) { // not required
 		return nil
@@ -9053,6 +9197,18 @@ func (m *IscsiLunWhereInput) ContextValidate(ctx context.Context, formats strfmt
 	}
 
 	if err := m.contextValidateLabelsSome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateReplicationPlansEvery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateReplicationPlansNone(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateReplicationPlansSome(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -9398,6 +9554,54 @@ func (m *IscsiLunWhereInput) contextValidateLabelsSome(ctx context.Context, form
 				return ve.ValidateName("labels_some")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("labels_some")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IscsiLunWhereInput) contextValidateReplicationPlansEvery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ReplicationPlansEvery != nil {
+		if err := m.ReplicationPlansEvery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("replication_plans_every")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("replication_plans_every")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IscsiLunWhereInput) contextValidateReplicationPlansNone(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ReplicationPlansNone != nil {
+		if err := m.ReplicationPlansNone.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("replication_plans_none")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("replication_plans_none")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IscsiLunWhereInput) contextValidateReplicationPlansSome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ReplicationPlansSome != nil {
+		if err := m.ReplicationPlansSome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("replication_plans_some")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("replication_plans_some")
 			}
 			return err
 		}

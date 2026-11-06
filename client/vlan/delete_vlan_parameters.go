@@ -54,10 +54,12 @@ func NewDeleteVlanParamsWithHTTPClient(client *http.Client) *DeleteVlanParams {
 	}
 }
 
-/* DeleteVlanParams contains all the parameters to send to the API endpoint
-   for the delete vlan operation.
+/*
+DeleteVlanParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete vlan operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteVlanParams struct {
 
@@ -65,6 +67,9 @@ type DeleteVlanParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VlanDeletionParams
@@ -144,6 +149,17 @@ func (o *DeleteVlanParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the delete vlan params
+func (o *DeleteVlanParams) WithExternalCloudtowerID(externalCloudtowerID *string) *DeleteVlanParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the delete vlan params
+func (o *DeleteVlanParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the delete vlan params
 func (o *DeleteVlanParams) WithRequestBody(requestBody *models.VlanDeletionParams) *DeleteVlanParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *DeleteVlanParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

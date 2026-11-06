@@ -54,10 +54,12 @@ func NewGetVirtualPrivateCloudRouteTablesParamsWithHTTPClient(client *http.Clien
 	}
 }
 
-/* GetVirtualPrivateCloudRouteTablesParams contains all the parameters to send to the API endpoint
-   for the get virtual private cloud route tables operation.
+/*
+GetVirtualPrivateCloudRouteTablesParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get virtual private cloud route tables operation.
+
+	Typically these are written to a http.Request.
 */
 type GetVirtualPrivateCloudRouteTablesParams struct {
 
@@ -65,6 +67,9 @@ type GetVirtualPrivateCloudRouteTablesParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetVirtualPrivateCloudRouteTablesRequestBody
@@ -144,6 +149,17 @@ func (o *GetVirtualPrivateCloudRouteTablesParams) SetContentLanguage(contentLang
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get virtual private cloud route tables params
+func (o *GetVirtualPrivateCloudRouteTablesParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetVirtualPrivateCloudRouteTablesParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get virtual private cloud route tables params
+func (o *GetVirtualPrivateCloudRouteTablesParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get virtual private cloud route tables params
 func (o *GetVirtualPrivateCloudRouteTablesParams) WithRequestBody(requestBody *models.GetVirtualPrivateCloudRouteTablesRequestBody) *GetVirtualPrivateCloudRouteTablesParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetVirtualPrivateCloudRouteTablesParams) WriteToRequest(r runtime.Clien
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

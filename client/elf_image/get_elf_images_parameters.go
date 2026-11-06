@@ -54,10 +54,12 @@ func NewGetElfImagesParamsWithHTTPClient(client *http.Client) *GetElfImagesParam
 	}
 }
 
-/* GetElfImagesParams contains all the parameters to send to the API endpoint
-   for the get elf images operation.
+/*
+GetElfImagesParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get elf images operation.
+
+	Typically these are written to a http.Request.
 */
 type GetElfImagesParams struct {
 
@@ -65,6 +67,9 @@ type GetElfImagesParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetElfImagesRequestBody
@@ -144,6 +149,17 @@ func (o *GetElfImagesParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get elf images params
+func (o *GetElfImagesParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetElfImagesParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get elf images params
+func (o *GetElfImagesParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get elf images params
 func (o *GetElfImagesParams) WithRequestBody(requestBody *models.GetElfImagesRequestBody) *GetElfImagesParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetElfImagesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

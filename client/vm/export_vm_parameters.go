@@ -54,10 +54,12 @@ func NewExportVMParamsWithHTTPClient(client *http.Client) *ExportVMParams {
 	}
 }
 
-/* ExportVMParams contains all the parameters to send to the API endpoint
-   for the export Vm operation.
+/*
+ExportVMParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the export Vm operation.
+
+	Typically these are written to a http.Request.
 */
 type ExportVMParams struct {
 
@@ -65,6 +67,9 @@ type ExportVMParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VMExportParams
@@ -144,6 +149,17 @@ func (o *ExportVMParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the export Vm params
+func (o *ExportVMParams) WithExternalCloudtowerID(externalCloudtowerID *string) *ExportVMParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the export Vm params
+func (o *ExportVMParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the export Vm params
 func (o *ExportVMParams) WithRequestBody(requestBody *models.VMExportParams) *ExportVMParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *ExportVMParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

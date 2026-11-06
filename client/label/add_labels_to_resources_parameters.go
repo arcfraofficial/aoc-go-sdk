@@ -54,10 +54,12 @@ func NewAddLabelsToResourcesParamsWithHTTPClient(client *http.Client) *AddLabels
 	}
 }
 
-/* AddLabelsToResourcesParams contains all the parameters to send to the API endpoint
-   for the add labels to resources operation.
+/*
+AddLabelsToResourcesParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add labels to resources operation.
+
+	Typically these are written to a http.Request.
 */
 type AddLabelsToResourcesParams struct {
 
@@ -66,8 +68,14 @@ type AddLabelsToResourcesParams struct {
 	// Default: "en-US"
 	ContentLanguage *string
 
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
+
 	// RequestBody.
 	RequestBody *models.AddLabelsToResourcesParams
+
+	// XSkipResources.
+	XSkipResources *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -144,6 +152,17 @@ func (o *AddLabelsToResourcesParams) SetContentLanguage(contentLanguage *string)
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the add labels to resources params
+func (o *AddLabelsToResourcesParams) WithExternalCloudtowerID(externalCloudtowerID *string) *AddLabelsToResourcesParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the add labels to resources params
+func (o *AddLabelsToResourcesParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the add labels to resources params
 func (o *AddLabelsToResourcesParams) WithRequestBody(requestBody *models.AddLabelsToResourcesParams) *AddLabelsToResourcesParams {
 	o.SetRequestBody(requestBody)
@@ -153,6 +172,17 @@ func (o *AddLabelsToResourcesParams) WithRequestBody(requestBody *models.AddLabe
 // SetRequestBody adds the requestBody to the add labels to resources params
 func (o *AddLabelsToResourcesParams) SetRequestBody(requestBody *models.AddLabelsToResourcesParams) {
 	o.RequestBody = requestBody
+}
+
+// WithXSkipResources adds the xSkipResources to the add labels to resources params
+func (o *AddLabelsToResourcesParams) WithXSkipResources(xSkipResources *string) *AddLabelsToResourcesParams {
+	o.SetXSkipResources(xSkipResources)
+	return o
+}
+
+// SetXSkipResources adds the xSkipResources to the add labels to resources params
+func (o *AddLabelsToResourcesParams) SetXSkipResources(xSkipResources *string) {
+	o.XSkipResources = xSkipResources
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -170,8 +200,24 @@ func (o *AddLabelsToResourcesParams) WriteToRequest(r runtime.ClientRequest, reg
 			return err
 		}
 	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
+			return err
+		}
+	}
 	if o.RequestBody != nil {
 		if err := r.SetBodyParam(o.RequestBody); err != nil {
+			return err
+		}
+	}
+
+	if o.XSkipResources != nil {
+
+		// header param x-skip-resources
+		if err := r.SetHeaderParam("x-skip-resources", *o.XSkipResources); err != nil {
 			return err
 		}
 	}

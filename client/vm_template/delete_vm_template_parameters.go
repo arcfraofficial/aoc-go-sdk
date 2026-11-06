@@ -54,10 +54,12 @@ func NewDeleteVMTemplateParamsWithHTTPClient(client *http.Client) *DeleteVMTempl
 	}
 }
 
-/* DeleteVMTemplateParams contains all the parameters to send to the API endpoint
-   for the delete Vm template operation.
+/*
+DeleteVMTemplateParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete Vm template operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteVMTemplateParams struct {
 
@@ -65,6 +67,9 @@ type DeleteVMTemplateParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VMTemplateDeletionParams
@@ -144,6 +149,17 @@ func (o *DeleteVMTemplateParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the delete Vm template params
+func (o *DeleteVMTemplateParams) WithExternalCloudtowerID(externalCloudtowerID *string) *DeleteVMTemplateParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the delete Vm template params
+func (o *DeleteVMTemplateParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the delete Vm template params
 func (o *DeleteVMTemplateParams) WithRequestBody(requestBody *models.VMTemplateDeletionParams) *DeleteVMTemplateParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *DeleteVMTemplateParams) WriteToRequest(r runtime.ClientRequest, reg str
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

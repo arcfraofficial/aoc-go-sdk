@@ -54,10 +54,12 @@ func NewCreateVMFolderParamsWithHTTPClient(client *http.Client) *CreateVMFolderP
 	}
 }
 
-/* CreateVMFolderParams contains all the parameters to send to the API endpoint
-   for the create Vm folder operation.
+/*
+CreateVMFolderParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create Vm folder operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateVMFolderParams struct {
 
@@ -65,6 +67,9 @@ type CreateVMFolderParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody []*models.VMFolderCreationParams
@@ -144,6 +149,17 @@ func (o *CreateVMFolderParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the create Vm folder params
+func (o *CreateVMFolderParams) WithExternalCloudtowerID(externalCloudtowerID *string) *CreateVMFolderParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the create Vm folder params
+func (o *CreateVMFolderParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the create Vm folder params
 func (o *CreateVMFolderParams) WithRequestBody(requestBody []*models.VMFolderCreationParams) *CreateVMFolderParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *CreateVMFolderParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

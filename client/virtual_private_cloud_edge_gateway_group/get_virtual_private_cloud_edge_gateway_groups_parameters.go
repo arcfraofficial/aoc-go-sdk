@@ -54,10 +54,12 @@ func NewGetVirtualPrivateCloudEdgeGatewayGroupsParamsWithHTTPClient(client *http
 	}
 }
 
-/* GetVirtualPrivateCloudEdgeGatewayGroupsParams contains all the parameters to send to the API endpoint
-   for the get virtual private cloud edge gateway groups operation.
+/*
+GetVirtualPrivateCloudEdgeGatewayGroupsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get virtual private cloud edge gateway groups operation.
+
+	Typically these are written to a http.Request.
 */
 type GetVirtualPrivateCloudEdgeGatewayGroupsParams struct {
 
@@ -65,6 +67,9 @@ type GetVirtualPrivateCloudEdgeGatewayGroupsParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetVirtualPrivateCloudEdgeGatewayGroupsRequestBody
@@ -144,6 +149,17 @@ func (o *GetVirtualPrivateCloudEdgeGatewayGroupsParams) SetContentLanguage(conte
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get virtual private cloud edge gateway groups params
+func (o *GetVirtualPrivateCloudEdgeGatewayGroupsParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetVirtualPrivateCloudEdgeGatewayGroupsParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get virtual private cloud edge gateway groups params
+func (o *GetVirtualPrivateCloudEdgeGatewayGroupsParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get virtual private cloud edge gateway groups params
 func (o *GetVirtualPrivateCloudEdgeGatewayGroupsParams) WithRequestBody(requestBody *models.GetVirtualPrivateCloudEdgeGatewayGroupsRequestBody) *GetVirtualPrivateCloudEdgeGatewayGroupsParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetVirtualPrivateCloudEdgeGatewayGroupsParams) WriteToRequest(r runtime
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

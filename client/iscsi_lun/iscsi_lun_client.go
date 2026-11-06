@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-  CreateIscsiLun create iscsi lun API
+CreateIscsiLun create iscsi lun API
 */
 func (a *Client) CreateIscsiLun(params *CreateIscsiLunParams, opts ...ClientOption) (*CreateIscsiLunOK, error) {
 	// TODO: Validate the params before sending
@@ -80,7 +80,7 @@ func (a *Client) CreateIscsiLun(params *CreateIscsiLunParams, opts ...ClientOpti
 }
 
 /*
-  DeleteIscsiLun delete iscsi lun API
+DeleteIscsiLun delete iscsi lun API
 */
 func (a *Client) DeleteIscsiLun(params *DeleteIscsiLunParams, opts ...ClientOption) (*DeleteIscsiLunOK, error) {
 	// TODO: Validate the params before sending
@@ -118,7 +118,7 @@ func (a *Client) DeleteIscsiLun(params *DeleteIscsiLunParams, opts ...ClientOpti
 }
 
 /*
-  GetIscsiLuns get iscsi luns API
+GetIscsiLuns get iscsi luns API
 */
 func (a *Client) GetIscsiLuns(params *GetIscsiLunsParams, opts ...ClientOption) (*GetIscsiLunsOK, error) {
 	// TODO: Validate the params before sending
@@ -156,7 +156,7 @@ func (a *Client) GetIscsiLuns(params *GetIscsiLunsParams, opts ...ClientOption) 
 }
 
 /*
-  GetIscsiLunsConnection get iscsi luns connection API
+GetIscsiLunsConnection get iscsi luns connection API
 */
 func (a *Client) GetIscsiLunsConnection(params *GetIscsiLunsConnectionParams, opts ...ClientOption) (*GetIscsiLunsConnectionOK, error) {
 	// TODO: Validate the params before sending

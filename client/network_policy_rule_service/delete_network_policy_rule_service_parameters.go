@@ -54,10 +54,12 @@ func NewDeleteNetworkPolicyRuleServiceParamsWithHTTPClient(client *http.Client) 
 	}
 }
 
-/* DeleteNetworkPolicyRuleServiceParams contains all the parameters to send to the API endpoint
-   for the delete network policy rule service operation.
+/*
+DeleteNetworkPolicyRuleServiceParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete network policy rule service operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteNetworkPolicyRuleServiceParams struct {
 
@@ -65,6 +67,9 @@ type DeleteNetworkPolicyRuleServiceParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.NetworkPolicyRuleServiceDeletionParams
@@ -144,6 +149,17 @@ func (o *DeleteNetworkPolicyRuleServiceParams) SetContentLanguage(contentLanguag
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the delete network policy rule service params
+func (o *DeleteNetworkPolicyRuleServiceParams) WithExternalCloudtowerID(externalCloudtowerID *string) *DeleteNetworkPolicyRuleServiceParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the delete network policy rule service params
+func (o *DeleteNetworkPolicyRuleServiceParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the delete network policy rule service params
 func (o *DeleteNetworkPolicyRuleServiceParams) WithRequestBody(requestBody *models.NetworkPolicyRuleServiceDeletionParams) *DeleteNetworkPolicyRuleServiceParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *DeleteNetworkPolicyRuleServiceParams) WriteToRequest(r runtime.ClientRe
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

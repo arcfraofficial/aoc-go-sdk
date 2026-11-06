@@ -54,10 +54,12 @@ func NewGetV2EverouteLicensesParamsWithHTTPClient(client *http.Client) *GetV2Eve
 	}
 }
 
-/* GetV2EverouteLicensesParams contains all the parameters to send to the API endpoint
-   for the get v2 everoute licenses operation.
+/*
+GetV2EverouteLicensesParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get v2 everoute licenses operation.
+
+	Typically these are written to a http.Request.
 */
 type GetV2EverouteLicensesParams struct {
 
@@ -65,6 +67,9 @@ type GetV2EverouteLicensesParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetV2EverouteLicensesRequestBody
@@ -144,6 +149,17 @@ func (o *GetV2EverouteLicensesParams) SetContentLanguage(contentLanguage *string
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get v2 everoute licenses params
+func (o *GetV2EverouteLicensesParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetV2EverouteLicensesParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get v2 everoute licenses params
+func (o *GetV2EverouteLicensesParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get v2 everoute licenses params
 func (o *GetV2EverouteLicensesParams) WithRequestBody(requestBody *models.GetV2EverouteLicensesRequestBody) *GetV2EverouteLicensesParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetV2EverouteLicensesParams) WriteToRequest(r runtime.ClientRequest, re
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

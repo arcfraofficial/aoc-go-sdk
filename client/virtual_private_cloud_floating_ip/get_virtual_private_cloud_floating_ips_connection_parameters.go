@@ -54,10 +54,12 @@ func NewGetVirtualPrivateCloudFloatingIpsConnectionParamsWithHTTPClient(client *
 	}
 }
 
-/* GetVirtualPrivateCloudFloatingIpsConnectionParams contains all the parameters to send to the API endpoint
-   for the get virtual private cloud floating ips connection operation.
+/*
+GetVirtualPrivateCloudFloatingIpsConnectionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get virtual private cloud floating ips connection operation.
+
+	Typically these are written to a http.Request.
 */
 type GetVirtualPrivateCloudFloatingIpsConnectionParams struct {
 
@@ -65,6 +67,9 @@ type GetVirtualPrivateCloudFloatingIpsConnectionParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetVirtualPrivateCloudFloatingIpsConnectionRequestBody
@@ -144,6 +149,17 @@ func (o *GetVirtualPrivateCloudFloatingIpsConnectionParams) SetContentLanguage(c
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get virtual private cloud floating ips connection params
+func (o *GetVirtualPrivateCloudFloatingIpsConnectionParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetVirtualPrivateCloudFloatingIpsConnectionParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get virtual private cloud floating ips connection params
+func (o *GetVirtualPrivateCloudFloatingIpsConnectionParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get virtual private cloud floating ips connection params
 func (o *GetVirtualPrivateCloudFloatingIpsConnectionParams) WithRequestBody(requestBody *models.GetVirtualPrivateCloudFloatingIpsConnectionRequestBody) *GetVirtualPrivateCloudFloatingIpsConnectionParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetVirtualPrivateCloudFloatingIpsConnectionParams) WriteToRequest(r run
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

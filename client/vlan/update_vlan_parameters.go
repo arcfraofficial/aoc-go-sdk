@@ -54,10 +54,12 @@ func NewUpdateVlanParamsWithHTTPClient(client *http.Client) *UpdateVlanParams {
 	}
 }
 
-/* UpdateVlanParams contains all the parameters to send to the API endpoint
-   for the update vlan operation.
+/*
+UpdateVlanParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update vlan operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateVlanParams struct {
 
@@ -65,6 +67,9 @@ type UpdateVlanParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VMVlanUpdationParams
@@ -144,6 +149,17 @@ func (o *UpdateVlanParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the update vlan params
+func (o *UpdateVlanParams) WithExternalCloudtowerID(externalCloudtowerID *string) *UpdateVlanParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the update vlan params
+func (o *UpdateVlanParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the update vlan params
 func (o *UpdateVlanParams) WithRequestBody(requestBody *models.VMVlanUpdationParams) *UpdateVlanParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *UpdateVlanParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

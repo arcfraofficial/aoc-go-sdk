@@ -54,10 +54,12 @@ func NewUpdateVMPlacementGroupParamsWithHTTPClient(client *http.Client) *UpdateV
 	}
 }
 
-/* UpdateVMPlacementGroupParams contains all the parameters to send to the API endpoint
-   for the update Vm placement group operation.
+/*
+UpdateVMPlacementGroupParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update Vm placement group operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateVMPlacementGroupParams struct {
 
@@ -65,6 +67,9 @@ type UpdateVMPlacementGroupParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VMPlacementGroupUpdationParams
@@ -144,6 +149,17 @@ func (o *UpdateVMPlacementGroupParams) SetContentLanguage(contentLanguage *strin
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the update Vm placement group params
+func (o *UpdateVMPlacementGroupParams) WithExternalCloudtowerID(externalCloudtowerID *string) *UpdateVMPlacementGroupParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the update Vm placement group params
+func (o *UpdateVMPlacementGroupParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the update Vm placement group params
 func (o *UpdateVMPlacementGroupParams) WithRequestBody(requestBody *models.VMPlacementGroupUpdationParams) *UpdateVMPlacementGroupParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *UpdateVMPlacementGroupParams) WriteToRequest(r runtime.ClientRequest, r
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}
