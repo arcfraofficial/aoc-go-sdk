@@ -54,10 +54,12 @@ func NewGetHostsParamsWithHTTPClient(client *http.Client) *GetHostsParams {
 	}
 }
 
-/* GetHostsParams contains all the parameters to send to the API endpoint
-   for the get hosts operation.
+/*
+GetHostsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get hosts operation.
+
+	Typically these are written to a http.Request.
 */
 type GetHostsParams struct {
 
@@ -65,6 +67,9 @@ type GetHostsParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetHostsRequestBody
@@ -144,6 +149,17 @@ func (o *GetHostsParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get hosts params
+func (o *GetHostsParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetHostsParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get hosts params
+func (o *GetHostsParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get hosts params
 func (o *GetHostsParams) WithRequestBody(requestBody *models.GetHostsRequestBody) *GetHostsParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetHostsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

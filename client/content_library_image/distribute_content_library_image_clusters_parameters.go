@@ -54,10 +54,12 @@ func NewDistributeContentLibraryImageClustersParamsWithHTTPClient(client *http.C
 	}
 }
 
-/* DistributeContentLibraryImageClustersParams contains all the parameters to send to the API endpoint
-   for the distribute content library image clusters operation.
+/*
+DistributeContentLibraryImageClustersParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the distribute content library image clusters operation.
+
+	Typically these are written to a http.Request.
 */
 type DistributeContentLibraryImageClustersParams struct {
 
@@ -65,6 +67,9 @@ type DistributeContentLibraryImageClustersParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.ContentLibraryImageUpdationClusterParams
@@ -144,6 +149,17 @@ func (o *DistributeContentLibraryImageClustersParams) SetContentLanguage(content
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the distribute content library image clusters params
+func (o *DistributeContentLibraryImageClustersParams) WithExternalCloudtowerID(externalCloudtowerID *string) *DistributeContentLibraryImageClustersParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the distribute content library image clusters params
+func (o *DistributeContentLibraryImageClustersParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the distribute content library image clusters params
 func (o *DistributeContentLibraryImageClustersParams) WithRequestBody(requestBody *models.ContentLibraryImageUpdationClusterParams) *DistributeContentLibraryImageClustersParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *DistributeContentLibraryImageClustersParams) WriteToRequest(r runtime.C
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

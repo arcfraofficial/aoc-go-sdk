@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  GetVdses get vdses API
+GetVdses get vdses API
 */
 func (a *Client) GetVdses(params *GetVdsesParams, opts ...ClientOption) (*GetVdsesOK, error) {
 	// TODO: Validate the params before sending
@@ -76,7 +76,7 @@ func (a *Client) GetVdses(params *GetVdsesParams, opts ...ClientOption) (*GetVds
 }
 
 /*
-  GetVdsesConnection get vdses connection API
+GetVdsesConnection get vdses connection API
 */
 func (a *Client) GetVdsesConnection(params *GetVdsesConnectionParams, opts ...ClientOption) (*GetVdsesConnectionOK, error) {
 	// TODO: Validate the params before sending

@@ -54,10 +54,12 @@ func NewUpdateVirtualPrivateCloudSubnetParamsWithHTTPClient(client *http.Client)
 	}
 }
 
-/* UpdateVirtualPrivateCloudSubnetParams contains all the parameters to send to the API endpoint
-   for the update virtual private cloud subnet operation.
+/*
+UpdateVirtualPrivateCloudSubnetParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update virtual private cloud subnet operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateVirtualPrivateCloudSubnetParams struct {
 
@@ -65,6 +67,9 @@ type UpdateVirtualPrivateCloudSubnetParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VirtualPrivateCloudSubnetUpdationParams
@@ -144,6 +149,17 @@ func (o *UpdateVirtualPrivateCloudSubnetParams) SetContentLanguage(contentLangua
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the update virtual private cloud subnet params
+func (o *UpdateVirtualPrivateCloudSubnetParams) WithExternalCloudtowerID(externalCloudtowerID *string) *UpdateVirtualPrivateCloudSubnetParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the update virtual private cloud subnet params
+func (o *UpdateVirtualPrivateCloudSubnetParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the update virtual private cloud subnet params
 func (o *UpdateVirtualPrivateCloudSubnetParams) WithRequestBody(requestBody *models.VirtualPrivateCloudSubnetUpdationParams) *UpdateVirtualPrivateCloudSubnetParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *UpdateVirtualPrivateCloudSubnetParams) WriteToRequest(r runtime.ClientR
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

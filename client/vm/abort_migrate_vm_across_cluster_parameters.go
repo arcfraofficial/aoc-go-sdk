@@ -54,10 +54,12 @@ func NewAbortMigrateVMAcrossClusterParamsWithHTTPClient(client *http.Client) *Ab
 	}
 }
 
-/* AbortMigrateVMAcrossClusterParams contains all the parameters to send to the API endpoint
-   for the abort migrate Vm across cluster operation.
+/*
+AbortMigrateVMAcrossClusterParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the abort migrate Vm across cluster operation.
+
+	Typically these are written to a http.Request.
 */
 type AbortMigrateVMAcrossClusterParams struct {
 
@@ -65,6 +67,9 @@ type AbortMigrateVMAcrossClusterParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.AbortMigrateVMAcrossClusterParams
@@ -144,6 +149,17 @@ func (o *AbortMigrateVMAcrossClusterParams) SetContentLanguage(contentLanguage *
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the abort migrate Vm across cluster params
+func (o *AbortMigrateVMAcrossClusterParams) WithExternalCloudtowerID(externalCloudtowerID *string) *AbortMigrateVMAcrossClusterParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the abort migrate Vm across cluster params
+func (o *AbortMigrateVMAcrossClusterParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the abort migrate Vm across cluster params
 func (o *AbortMigrateVMAcrossClusterParams) WithRequestBody(requestBody *models.AbortMigrateVMAcrossClusterParams) *AbortMigrateVMAcrossClusterParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *AbortMigrateVMAcrossClusterParams) WriteToRequest(r runtime.ClientReque
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

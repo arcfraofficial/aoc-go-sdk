@@ -54,10 +54,12 @@ func NewEjectIsoFromVMCdRomParamsWithHTTPClient(client *http.Client) *EjectIsoFr
 	}
 }
 
-/* EjectIsoFromVMCdRomParams contains all the parameters to send to the API endpoint
-   for the eject iso from Vm cd rom operation.
+/*
+EjectIsoFromVMCdRomParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the eject iso from Vm cd rom operation.
+
+	Typically these are written to a http.Request.
 */
 type EjectIsoFromVMCdRomParams struct {
 
@@ -65,6 +67,9 @@ type EjectIsoFromVMCdRomParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VMEjectCdRomParams
@@ -144,6 +149,17 @@ func (o *EjectIsoFromVMCdRomParams) SetContentLanguage(contentLanguage *string) 
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the eject iso from Vm cd rom params
+func (o *EjectIsoFromVMCdRomParams) WithExternalCloudtowerID(externalCloudtowerID *string) *EjectIsoFromVMCdRomParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the eject iso from Vm cd rom params
+func (o *EjectIsoFromVMCdRomParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the eject iso from Vm cd rom params
 func (o *EjectIsoFromVMCdRomParams) WithRequestBody(requestBody *models.VMEjectCdRomParams) *EjectIsoFromVMCdRomParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *EjectIsoFromVMCdRomParams) WriteToRequest(r runtime.ClientRequest, reg 
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

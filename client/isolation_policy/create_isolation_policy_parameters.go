@@ -54,10 +54,12 @@ func NewCreateIsolationPolicyParamsWithHTTPClient(client *http.Client) *CreateIs
 	}
 }
 
-/* CreateIsolationPolicyParams contains all the parameters to send to the API endpoint
-   for the create isolation policy operation.
+/*
+CreateIsolationPolicyParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create isolation policy operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateIsolationPolicyParams struct {
 
@@ -65,6 +67,9 @@ type CreateIsolationPolicyParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.IsolationPolicyCreateParams
@@ -144,6 +149,17 @@ func (o *CreateIsolationPolicyParams) SetContentLanguage(contentLanguage *string
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the create isolation policy params
+func (o *CreateIsolationPolicyParams) WithExternalCloudtowerID(externalCloudtowerID *string) *CreateIsolationPolicyParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the create isolation policy params
+func (o *CreateIsolationPolicyParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the create isolation policy params
 func (o *CreateIsolationPolicyParams) WithRequestBody(requestBody *models.IsolationPolicyCreateParams) *CreateIsolationPolicyParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *CreateIsolationPolicyParams) WriteToRequest(r runtime.ClientRequest, re
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

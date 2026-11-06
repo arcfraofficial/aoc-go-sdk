@@ -54,10 +54,12 @@ func NewCreateLabelParamsWithHTTPClient(client *http.Client) *CreateLabelParams 
 	}
 }
 
-/* CreateLabelParams contains all the parameters to send to the API endpoint
-   for the create label operation.
+/*
+CreateLabelParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create label operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateLabelParams struct {
 
@@ -65,6 +67,9 @@ type CreateLabelParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody []*models.LabelCreationParams
@@ -144,6 +149,17 @@ func (o *CreateLabelParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the create label params
+func (o *CreateLabelParams) WithExternalCloudtowerID(externalCloudtowerID *string) *CreateLabelParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the create label params
+func (o *CreateLabelParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the create label params
 func (o *CreateLabelParams) WithRequestBody(requestBody []*models.LabelCreationParams) *CreateLabelParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *CreateLabelParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

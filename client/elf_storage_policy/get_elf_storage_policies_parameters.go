@@ -54,10 +54,12 @@ func NewGetElfStoragePoliciesParamsWithHTTPClient(client *http.Client) *GetElfSt
 	}
 }
 
-/* GetElfStoragePoliciesParams contains all the parameters to send to the API endpoint
-   for the get elf storage policies operation.
+/*
+GetElfStoragePoliciesParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get elf storage policies operation.
+
+	Typically these are written to a http.Request.
 */
 type GetElfStoragePoliciesParams struct {
 
@@ -65,6 +67,9 @@ type GetElfStoragePoliciesParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetElfStoragePoliciesRequestBody
@@ -144,6 +149,17 @@ func (o *GetElfStoragePoliciesParams) SetContentLanguage(contentLanguage *string
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get elf storage policies params
+func (o *GetElfStoragePoliciesParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetElfStoragePoliciesParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get elf storage policies params
+func (o *GetElfStoragePoliciesParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get elf storage policies params
 func (o *GetElfStoragePoliciesParams) WithRequestBody(requestBody *models.GetElfStoragePoliciesRequestBody) *GetElfStoragePoliciesParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetElfStoragePoliciesParams) WriteToRequest(r runtime.ClientRequest, re
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

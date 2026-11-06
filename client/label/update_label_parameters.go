@@ -54,10 +54,12 @@ func NewUpdateLabelParamsWithHTTPClient(client *http.Client) *UpdateLabelParams 
 	}
 }
 
-/* UpdateLabelParams contains all the parameters to send to the API endpoint
-   for the update label operation.
+/*
+UpdateLabelParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update label operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateLabelParams struct {
 
@@ -66,8 +68,14 @@ type UpdateLabelParams struct {
 	// Default: "en-US"
 	ContentLanguage *string
 
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
+
 	// RequestBody.
 	RequestBody *models.LabelUpdationParams
+
+	// XSkipResources.
+	XSkipResources *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -144,6 +152,17 @@ func (o *UpdateLabelParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the update label params
+func (o *UpdateLabelParams) WithExternalCloudtowerID(externalCloudtowerID *string) *UpdateLabelParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the update label params
+func (o *UpdateLabelParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the update label params
 func (o *UpdateLabelParams) WithRequestBody(requestBody *models.LabelUpdationParams) *UpdateLabelParams {
 	o.SetRequestBody(requestBody)
@@ -153,6 +172,17 @@ func (o *UpdateLabelParams) WithRequestBody(requestBody *models.LabelUpdationPar
 // SetRequestBody adds the requestBody to the update label params
 func (o *UpdateLabelParams) SetRequestBody(requestBody *models.LabelUpdationParams) {
 	o.RequestBody = requestBody
+}
+
+// WithXSkipResources adds the xSkipResources to the update label params
+func (o *UpdateLabelParams) WithXSkipResources(xSkipResources *string) *UpdateLabelParams {
+	o.SetXSkipResources(xSkipResources)
+	return o
+}
+
+// SetXSkipResources adds the xSkipResources to the update label params
+func (o *UpdateLabelParams) SetXSkipResources(xSkipResources *string) {
+	o.XSkipResources = xSkipResources
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -170,8 +200,24 @@ func (o *UpdateLabelParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 			return err
 		}
 	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
+			return err
+		}
+	}
 	if o.RequestBody != nil {
 		if err := r.SetBodyParam(o.RequestBody); err != nil {
+			return err
+		}
+	}
+
+	if o.XSkipResources != nil {
+
+		// header param x-skip-resources
+		if err := r.SetHeaderParam("x-skip-resources", *o.XSkipResources); err != nil {
 			return err
 		}
 	}

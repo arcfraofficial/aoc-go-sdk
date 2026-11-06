@@ -8,7 +8,6 @@ package models
 import (
 	"bytes"
 	"context"
-	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -21,6 +20,10 @@ import (
 // swagger:model NestedVirtualPrivateCloudService
 type NestedVirtualPrivateCloudService struct {
 
+	// everoute cluster
+	// Required: true
+	EverouteCluster *NestedEverouteCluster `json:"everoute_cluster"`
+
 	// id
 	// Required: true
 	ID *string `json:"id"`
@@ -29,19 +32,15 @@ type NestedVirtualPrivateCloudService struct {
 	// Required: true
 	InternalCidr *string `json:"internal_cidr"`
 
-	// tep ip pools
-	// Required: true
-	TepIPPools []*NestedVirtualPrivateCloudServiceTepIPPool `json:"tep_ip_pools"`
-
 	MarshalOpts *NestedVirtualPrivateCloudServiceMarshalOpts `json:"-"`
 }
 
 type NestedVirtualPrivateCloudServiceMarshalOpts struct {
+	EverouteCluster_Explicit_Null_When_Empty bool
+
 	ID_Explicit_Null_When_Empty bool
 
 	InternalCidr_Explicit_Null_When_Empty bool
-
-	TepIPPools_Explicit_Null_When_Empty bool
 }
 
 func (m NestedVirtualPrivateCloudService) MarshalJSON() ([]byte, error) {
@@ -49,6 +48,26 @@ func (m NestedVirtualPrivateCloudService) MarshalJSON() ([]byte, error) {
 	b.WriteString("{")
 
 	first := true
+
+	// handle nullable field everoute_cluster
+	if m.EverouteCluster != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"everoute_cluster\":")
+		bytes, err := swag.WriteJSON(m.EverouteCluster)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.EverouteCluster_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"everoute_cluster\":null")
+		first = false
+	}
 
 	// handle nullable field id
 	if m.ID != nil {
@@ -90,20 +109,6 @@ func (m NestedVirtualPrivateCloudService) MarshalJSON() ([]byte, error) {
 		first = false
 	}
 
-	// handle non nullable field tep_ip_pools without omitempty
-	{
-		if !first {
-			b.WriteString(",")
-		}
-		b.WriteString("\"tep_ip_pools\":")
-		bytes, err := swag.WriteJSON(m.TepIPPools)
-		if err != nil {
-			return nil, err
-		}
-		b.Write(bytes)
-		first = false
-	}
-
 	b.WriteString("}")
 	return b.Bytes(), nil
 }
@@ -111,6 +116,10 @@ func (m NestedVirtualPrivateCloudService) MarshalJSON() ([]byte, error) {
 // Validate validates this nested virtual private cloud service
 func (m *NestedVirtualPrivateCloudService) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateEverouteCluster(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
@@ -120,13 +129,29 @@ func (m *NestedVirtualPrivateCloudService) Validate(formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
-	if err := m.validateTepIPPools(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *NestedVirtualPrivateCloudService) validateEverouteCluster(formats strfmt.Registry) error {
+
+	if err := validate.Required("everoute_cluster", "body", m.EverouteCluster); err != nil {
+		return err
+	}
+
+	if m.EverouteCluster != nil {
+		if err := m.EverouteCluster.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("everoute_cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("everoute_cluster")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -148,38 +173,11 @@ func (m *NestedVirtualPrivateCloudService) validateInternalCidr(formats strfmt.R
 	return nil
 }
 
-func (m *NestedVirtualPrivateCloudService) validateTepIPPools(formats strfmt.Registry) error {
-
-	if err := validate.Required("tep_ip_pools", "body", m.TepIPPools); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.TepIPPools); i++ {
-		if swag.IsZero(m.TepIPPools[i]) { // not required
-			continue
-		}
-
-		if m.TepIPPools[i] != nil {
-			if err := m.TepIPPools[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("tep_ip_pools" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("tep_ip_pools" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
 // ContextValidate validate this nested virtual private cloud service based on the context it is used
 func (m *NestedVirtualPrivateCloudService) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateTepIPPools(ctx, formats); err != nil {
+	if err := m.contextValidateEverouteCluster(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -189,21 +187,17 @@ func (m *NestedVirtualPrivateCloudService) ContextValidate(ctx context.Context, 
 	return nil
 }
 
-func (m *NestedVirtualPrivateCloudService) contextValidateTepIPPools(ctx context.Context, formats strfmt.Registry) error {
+func (m *NestedVirtualPrivateCloudService) contextValidateEverouteCluster(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.TepIPPools); i++ {
-
-		if m.TepIPPools[i] != nil {
-			if err := m.TepIPPools[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("tep_ip_pools" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("tep_ip_pools" + "." + strconv.Itoa(i))
-				}
-				return err
+	if m.EverouteCluster != nil {
+		if err := m.EverouteCluster.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("everoute_cluster")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("everoute_cluster")
 			}
+			return err
 		}
-
 	}
 
 	return nil

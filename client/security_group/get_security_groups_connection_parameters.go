@@ -54,10 +54,12 @@ func NewGetSecurityGroupsConnectionParamsWithHTTPClient(client *http.Client) *Ge
 	}
 }
 
-/* GetSecurityGroupsConnectionParams contains all the parameters to send to the API endpoint
-   for the get security groups connection operation.
+/*
+GetSecurityGroupsConnectionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get security groups connection operation.
+
+	Typically these are written to a http.Request.
 */
 type GetSecurityGroupsConnectionParams struct {
 
@@ -65,6 +67,9 @@ type GetSecurityGroupsConnectionParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetSecurityGroupsConnectionRequestBody
@@ -144,6 +149,17 @@ func (o *GetSecurityGroupsConnectionParams) SetContentLanguage(contentLanguage *
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get security groups connection params
+func (o *GetSecurityGroupsConnectionParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetSecurityGroupsConnectionParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get security groups connection params
+func (o *GetSecurityGroupsConnectionParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get security groups connection params
 func (o *GetSecurityGroupsConnectionParams) WithRequestBody(requestBody *models.GetSecurityGroupsConnectionRequestBody) *GetSecurityGroupsConnectionParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetSecurityGroupsConnectionParams) WriteToRequest(r runtime.ClientReque
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

@@ -54,10 +54,12 @@ func NewGetVMSnapshotsConnectionParamsWithHTTPClient(client *http.Client) *GetVM
 	}
 }
 
-/* GetVMSnapshotsConnectionParams contains all the parameters to send to the API endpoint
-   for the get Vm snapshots connection operation.
+/*
+GetVMSnapshotsConnectionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get Vm snapshots connection operation.
+
+	Typically these are written to a http.Request.
 */
 type GetVMSnapshotsConnectionParams struct {
 
@@ -65,6 +67,9 @@ type GetVMSnapshotsConnectionParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetVMSnapshotsConnectionRequestBody
@@ -144,6 +149,17 @@ func (o *GetVMSnapshotsConnectionParams) SetContentLanguage(contentLanguage *str
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get Vm snapshots connection params
+func (o *GetVMSnapshotsConnectionParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetVMSnapshotsConnectionParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get Vm snapshots connection params
+func (o *GetVMSnapshotsConnectionParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get Vm snapshots connection params
 func (o *GetVMSnapshotsConnectionParams) WithRequestBody(requestBody *models.GetVMSnapshotsConnectionRequestBody) *GetVMSnapshotsConnectionParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetVMSnapshotsConnectionParams) WriteToRequest(r runtime.ClientRequest,
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

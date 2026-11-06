@@ -54,10 +54,12 @@ func NewRemoveLabelsFromResourcesParamsWithHTTPClient(client *http.Client) *Remo
 	}
 }
 
-/* RemoveLabelsFromResourcesParams contains all the parameters to send to the API endpoint
-   for the remove labels from resources operation.
+/*
+RemoveLabelsFromResourcesParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the remove labels from resources operation.
+
+	Typically these are written to a http.Request.
 */
 type RemoveLabelsFromResourcesParams struct {
 
@@ -66,8 +68,14 @@ type RemoveLabelsFromResourcesParams struct {
 	// Default: "en-US"
 	ContentLanguage *string
 
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
+
 	// RequestBody.
 	RequestBody *models.RemoveLabelsFromResourcesParams
+
+	// XSkipResources.
+	XSkipResources *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -144,6 +152,17 @@ func (o *RemoveLabelsFromResourcesParams) SetContentLanguage(contentLanguage *st
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the remove labels from resources params
+func (o *RemoveLabelsFromResourcesParams) WithExternalCloudtowerID(externalCloudtowerID *string) *RemoveLabelsFromResourcesParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the remove labels from resources params
+func (o *RemoveLabelsFromResourcesParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the remove labels from resources params
 func (o *RemoveLabelsFromResourcesParams) WithRequestBody(requestBody *models.RemoveLabelsFromResourcesParams) *RemoveLabelsFromResourcesParams {
 	o.SetRequestBody(requestBody)
@@ -153,6 +172,17 @@ func (o *RemoveLabelsFromResourcesParams) WithRequestBody(requestBody *models.Re
 // SetRequestBody adds the requestBody to the remove labels from resources params
 func (o *RemoveLabelsFromResourcesParams) SetRequestBody(requestBody *models.RemoveLabelsFromResourcesParams) {
 	o.RequestBody = requestBody
+}
+
+// WithXSkipResources adds the xSkipResources to the remove labels from resources params
+func (o *RemoveLabelsFromResourcesParams) WithXSkipResources(xSkipResources *string) *RemoveLabelsFromResourcesParams {
+	o.SetXSkipResources(xSkipResources)
+	return o
+}
+
+// SetXSkipResources adds the xSkipResources to the remove labels from resources params
+func (o *RemoveLabelsFromResourcesParams) SetXSkipResources(xSkipResources *string) {
+	o.XSkipResources = xSkipResources
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -170,8 +200,24 @@ func (o *RemoveLabelsFromResourcesParams) WriteToRequest(r runtime.ClientRequest
 			return err
 		}
 	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
+			return err
+		}
+	}
 	if o.RequestBody != nil {
 		if err := r.SetBodyParam(o.RequestBody); err != nil {
+			return err
+		}
+	}
+
+	if o.XSkipResources != nil {
+
+		// header param x-skip-resources
+		if err := r.SetHeaderParam("x-skip-resources", *o.XSkipResources); err != nil {
 			return err
 		}
 	}

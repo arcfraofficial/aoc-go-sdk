@@ -54,10 +54,12 @@ func NewUpdateVirtualPrivateCloudSecurityPolicyParamsWithHTTPClient(client *http
 	}
 }
 
-/* UpdateVirtualPrivateCloudSecurityPolicyParams contains all the parameters to send to the API endpoint
-   for the update virtual private cloud security policy operation.
+/*
+UpdateVirtualPrivateCloudSecurityPolicyParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update virtual private cloud security policy operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateVirtualPrivateCloudSecurityPolicyParams struct {
 
@@ -65,6 +67,9 @@ type UpdateVirtualPrivateCloudSecurityPolicyParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VirtualPrivateCloudSecurityPolicyUpdateBody
@@ -144,6 +149,17 @@ func (o *UpdateVirtualPrivateCloudSecurityPolicyParams) SetContentLanguage(conte
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the update virtual private cloud security policy params
+func (o *UpdateVirtualPrivateCloudSecurityPolicyParams) WithExternalCloudtowerID(externalCloudtowerID *string) *UpdateVirtualPrivateCloudSecurityPolicyParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the update virtual private cloud security policy params
+func (o *UpdateVirtualPrivateCloudSecurityPolicyParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the update virtual private cloud security policy params
 func (o *UpdateVirtualPrivateCloudSecurityPolicyParams) WithRequestBody(requestBody *models.VirtualPrivateCloudSecurityPolicyUpdateBody) *UpdateVirtualPrivateCloudSecurityPolicyParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *UpdateVirtualPrivateCloudSecurityPolicyParams) WriteToRequest(r runtime
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

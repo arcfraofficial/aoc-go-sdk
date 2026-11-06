@@ -54,10 +54,12 @@ func NewDeleteVirtualPrivateCloudFloatingIPParamsWithHTTPClient(client *http.Cli
 	}
 }
 
-/* DeleteVirtualPrivateCloudFloatingIPParams contains all the parameters to send to the API endpoint
-   for the delete virtual private cloud floating Ip operation.
+/*
+DeleteVirtualPrivateCloudFloatingIPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete virtual private cloud floating Ip operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteVirtualPrivateCloudFloatingIPParams struct {
 
@@ -65,6 +67,9 @@ type DeleteVirtualPrivateCloudFloatingIPParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VirtualPrivateCloudFloatingIPDeletionParams
@@ -144,6 +149,17 @@ func (o *DeleteVirtualPrivateCloudFloatingIPParams) SetContentLanguage(contentLa
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the delete virtual private cloud floating Ip params
+func (o *DeleteVirtualPrivateCloudFloatingIPParams) WithExternalCloudtowerID(externalCloudtowerID *string) *DeleteVirtualPrivateCloudFloatingIPParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the delete virtual private cloud floating Ip params
+func (o *DeleteVirtualPrivateCloudFloatingIPParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the delete virtual private cloud floating Ip params
 func (o *DeleteVirtualPrivateCloudFloatingIPParams) WithRequestBody(requestBody *models.VirtualPrivateCloudFloatingIPDeletionParams) *DeleteVirtualPrivateCloudFloatingIPParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *DeleteVirtualPrivateCloudFloatingIPParams) WriteToRequest(r runtime.Cli
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

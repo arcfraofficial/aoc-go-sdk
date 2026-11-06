@@ -54,10 +54,12 @@ func NewUpdateVMNicParamsWithHTTPClient(client *http.Client) *UpdateVMNicParams 
 	}
 }
 
-/* UpdateVMNicParams contains all the parameters to send to the API endpoint
-   for the update Vm nic operation.
+/*
+UpdateVMNicParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update Vm nic operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateVMNicParams struct {
 
@@ -65,6 +67,9 @@ type UpdateVMNicParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VMUpdateNicParams
@@ -144,6 +149,17 @@ func (o *UpdateVMNicParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the update Vm nic params
+func (o *UpdateVMNicParams) WithExternalCloudtowerID(externalCloudtowerID *string) *UpdateVMNicParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the update Vm nic params
+func (o *UpdateVMNicParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the update Vm nic params
 func (o *UpdateVMNicParams) WithRequestBody(requestBody *models.VMUpdateNicParams) *UpdateVMNicParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *UpdateVMNicParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

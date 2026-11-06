@@ -54,10 +54,12 @@ func NewConvertContentLibraryVMTemplateFromVMParamsWithHTTPClient(client *http.C
 	}
 }
 
-/* ConvertContentLibraryVMTemplateFromVMParams contains all the parameters to send to the API endpoint
-   for the convert content library Vm template from Vm operation.
+/*
+ConvertContentLibraryVMTemplateFromVMParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the convert content library Vm template from Vm operation.
+
+	Typically these are written to a http.Request.
 */
 type ConvertContentLibraryVMTemplateFromVMParams struct {
 
@@ -65,6 +67,9 @@ type ConvertContentLibraryVMTemplateFromVMParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody []*models.ContentLibraryVMTemplateCreationParams
@@ -144,6 +149,17 @@ func (o *ConvertContentLibraryVMTemplateFromVMParams) SetContentLanguage(content
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the convert content library Vm template from Vm params
+func (o *ConvertContentLibraryVMTemplateFromVMParams) WithExternalCloudtowerID(externalCloudtowerID *string) *ConvertContentLibraryVMTemplateFromVMParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the convert content library Vm template from Vm params
+func (o *ConvertContentLibraryVMTemplateFromVMParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the convert content library Vm template from Vm params
 func (o *ConvertContentLibraryVMTemplateFromVMParams) WithRequestBody(requestBody []*models.ContentLibraryVMTemplateCreationParams) *ConvertContentLibraryVMTemplateFromVMParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *ConvertContentLibraryVMTemplateFromVMParams) WriteToRequest(r runtime.C
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

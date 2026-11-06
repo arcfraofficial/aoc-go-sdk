@@ -54,10 +54,12 @@ func NewGetUsbDevicesParamsWithHTTPClient(client *http.Client) *GetUsbDevicesPar
 	}
 }
 
-/* GetUsbDevicesParams contains all the parameters to send to the API endpoint
-   for the get usb devices operation.
+/*
+GetUsbDevicesParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get usb devices operation.
+
+	Typically these are written to a http.Request.
 */
 type GetUsbDevicesParams struct {
 
@@ -65,6 +67,9 @@ type GetUsbDevicesParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetUsbDevicesRequestBody
@@ -144,6 +149,17 @@ func (o *GetUsbDevicesParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get usb devices params
+func (o *GetUsbDevicesParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetUsbDevicesParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get usb devices params
+func (o *GetUsbDevicesParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get usb devices params
 func (o *GetUsbDevicesParams) WithRequestBody(requestBody *models.GetUsbDevicesRequestBody) *GetUsbDevicesParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetUsbDevicesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

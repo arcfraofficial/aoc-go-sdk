@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  GetHosts get hosts API
+GetHosts get hosts API
 */
 func (a *Client) GetHosts(params *GetHostsParams, opts ...ClientOption) (*GetHostsOK, error) {
 	// TODO: Validate the params before sending
@@ -76,7 +76,7 @@ func (a *Client) GetHosts(params *GetHostsParams, opts ...ClientOption) (*GetHos
 }
 
 /*
-  GetHostsConnection get hosts connection API
+GetHostsConnection get hosts connection API
 */
 func (a *Client) GetHostsConnection(params *GetHostsConnectionParams, opts ...ClientOption) (*GetHostsConnectionOK, error) {
 	// TODO: Validate the params before sending

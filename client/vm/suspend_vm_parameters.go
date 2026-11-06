@@ -54,10 +54,12 @@ func NewSuspendVMParamsWithHTTPClient(client *http.Client) *SuspendVMParams {
 	}
 }
 
-/* SuspendVMParams contains all the parameters to send to the API endpoint
-   for the suspend Vm operation.
+/*
+SuspendVMParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the suspend Vm operation.
+
+	Typically these are written to a http.Request.
 */
 type SuspendVMParams struct {
 
@@ -65,6 +67,9 @@ type SuspendVMParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VMOperateParams
@@ -144,6 +149,17 @@ func (o *SuspendVMParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the suspend Vm params
+func (o *SuspendVMParams) WithExternalCloudtowerID(externalCloudtowerID *string) *SuspendVMParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the suspend Vm params
+func (o *SuspendVMParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the suspend Vm params
 func (o *SuspendVMParams) WithRequestBody(requestBody *models.VMOperateParams) *SuspendVMParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *SuspendVMParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

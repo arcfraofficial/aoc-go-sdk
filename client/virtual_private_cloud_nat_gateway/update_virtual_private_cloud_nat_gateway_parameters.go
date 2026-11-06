@@ -54,10 +54,12 @@ func NewUpdateVirtualPrivateCloudNatGatewayParamsWithHTTPClient(client *http.Cli
 	}
 }
 
-/* UpdateVirtualPrivateCloudNatGatewayParams contains all the parameters to send to the API endpoint
-   for the update virtual private cloud nat gateway operation.
+/*
+UpdateVirtualPrivateCloudNatGatewayParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update virtual private cloud nat gateway operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateVirtualPrivateCloudNatGatewayParams struct {
 
@@ -65,6 +67,9 @@ type UpdateVirtualPrivateCloudNatGatewayParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VirtualPrivateCloudNatGatewayUpdationParams
@@ -144,6 +149,17 @@ func (o *UpdateVirtualPrivateCloudNatGatewayParams) SetContentLanguage(contentLa
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the update virtual private cloud nat gateway params
+func (o *UpdateVirtualPrivateCloudNatGatewayParams) WithExternalCloudtowerID(externalCloudtowerID *string) *UpdateVirtualPrivateCloudNatGatewayParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the update virtual private cloud nat gateway params
+func (o *UpdateVirtualPrivateCloudNatGatewayParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the update virtual private cloud nat gateway params
 func (o *UpdateVirtualPrivateCloudNatGatewayParams) WithRequestBody(requestBody *models.VirtualPrivateCloudNatGatewayUpdationParams) *UpdateVirtualPrivateCloudNatGatewayParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *UpdateVirtualPrivateCloudNatGatewayParams) WriteToRequest(r runtime.Cli
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

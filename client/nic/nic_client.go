@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  GetNics get nics API
+GetNics get nics API
 */
 func (a *Client) GetNics(params *GetNicsParams, opts ...ClientOption) (*GetNicsOK, error) {
 	// TODO: Validate the params before sending
@@ -76,7 +76,7 @@ func (a *Client) GetNics(params *GetNicsParams, opts ...ClientOption) (*GetNicsO
 }
 
 /*
-  GetNicsConnection get nics connection API
+GetNicsConnection get nics connection API
 */
 func (a *Client) GetNicsConnection(params *GetNicsConnectionParams, opts ...ClientOption) (*GetNicsConnectionOK, error) {
 	// TODO: Validate the params before sending

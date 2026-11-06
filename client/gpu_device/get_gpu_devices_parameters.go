@@ -54,10 +54,12 @@ func NewGetGpuDevicesParamsWithHTTPClient(client *http.Client) *GetGpuDevicesPar
 	}
 }
 
-/* GetGpuDevicesParams contains all the parameters to send to the API endpoint
-   for the get gpu devices operation.
+/*
+GetGpuDevicesParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get gpu devices operation.
+
+	Typically these are written to a http.Request.
 */
 type GetGpuDevicesParams struct {
 
@@ -65,6 +67,9 @@ type GetGpuDevicesParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetGpuDevicesRequestBody
@@ -144,6 +149,17 @@ func (o *GetGpuDevicesParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get gpu devices params
+func (o *GetGpuDevicesParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetGpuDevicesParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get gpu devices params
+func (o *GetGpuDevicesParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get gpu devices params
 func (o *GetGpuDevicesParams) WithRequestBody(requestBody *models.GetGpuDevicesRequestBody) *GetGpuDevicesParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetGpuDevicesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

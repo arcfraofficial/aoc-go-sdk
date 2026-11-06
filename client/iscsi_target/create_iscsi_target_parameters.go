@@ -54,10 +54,12 @@ func NewCreateIscsiTargetParamsWithHTTPClient(client *http.Client) *CreateIscsiT
 	}
 }
 
-/* CreateIscsiTargetParams contains all the parameters to send to the API endpoint
-   for the create iscsi target operation.
+/*
+CreateIscsiTargetParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create iscsi target operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateIscsiTargetParams struct {
 
@@ -65,6 +67,9 @@ type CreateIscsiTargetParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody []*models.IscsiTargetCreationParams
@@ -144,6 +149,17 @@ func (o *CreateIscsiTargetParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the create iscsi target params
+func (o *CreateIscsiTargetParams) WithExternalCloudtowerID(externalCloudtowerID *string) *CreateIscsiTargetParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the create iscsi target params
+func (o *CreateIscsiTargetParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the create iscsi target params
 func (o *CreateIscsiTargetParams) WithRequestBody(requestBody []*models.IscsiTargetCreationParams) *CreateIscsiTargetParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *CreateIscsiTargetParams) WriteToRequest(r runtime.ClientRequest, reg st
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

@@ -54,10 +54,12 @@ func NewRollbackVMParamsWithHTTPClient(client *http.Client) *RollbackVMParams {
 	}
 }
 
-/* RollbackVMParams contains all the parameters to send to the API endpoint
-   for the rollback Vm operation.
+/*
+RollbackVMParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the rollback Vm operation.
+
+	Typically these are written to a http.Request.
 */
 type RollbackVMParams struct {
 
@@ -65,6 +67,9 @@ type RollbackVMParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VMRollbackParams
@@ -144,6 +149,17 @@ func (o *RollbackVMParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the rollback Vm params
+func (o *RollbackVMParams) WithExternalCloudtowerID(externalCloudtowerID *string) *RollbackVMParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the rollback Vm params
+func (o *RollbackVMParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the rollback Vm params
 func (o *RollbackVMParams) WithRequestBody(requestBody *models.VMRollbackParams) *RollbackVMParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *RollbackVMParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

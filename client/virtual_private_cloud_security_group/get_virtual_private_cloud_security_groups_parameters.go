@@ -54,10 +54,12 @@ func NewGetVirtualPrivateCloudSecurityGroupsParamsWithHTTPClient(client *http.Cl
 	}
 }
 
-/* GetVirtualPrivateCloudSecurityGroupsParams contains all the parameters to send to the API endpoint
-   for the get virtual private cloud security groups operation.
+/*
+GetVirtualPrivateCloudSecurityGroupsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get virtual private cloud security groups operation.
+
+	Typically these are written to a http.Request.
 */
 type GetVirtualPrivateCloudSecurityGroupsParams struct {
 
@@ -65,6 +67,9 @@ type GetVirtualPrivateCloudSecurityGroupsParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetVirtualPrivateCloudSecurityGroupsRequestBody
@@ -144,6 +149,17 @@ func (o *GetVirtualPrivateCloudSecurityGroupsParams) SetContentLanguage(contentL
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get virtual private cloud security groups params
+func (o *GetVirtualPrivateCloudSecurityGroupsParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetVirtualPrivateCloudSecurityGroupsParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get virtual private cloud security groups params
+func (o *GetVirtualPrivateCloudSecurityGroupsParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get virtual private cloud security groups params
 func (o *GetVirtualPrivateCloudSecurityGroupsParams) WithRequestBody(requestBody *models.GetVirtualPrivateCloudSecurityGroupsRequestBody) *GetVirtualPrivateCloudSecurityGroupsParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetVirtualPrivateCloudSecurityGroupsParams) WriteToRequest(r runtime.Cl
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

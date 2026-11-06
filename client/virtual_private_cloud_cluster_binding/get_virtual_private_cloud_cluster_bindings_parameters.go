@@ -54,10 +54,12 @@ func NewGetVirtualPrivateCloudClusterBindingsParamsWithHTTPClient(client *http.C
 	}
 }
 
-/* GetVirtualPrivateCloudClusterBindingsParams contains all the parameters to send to the API endpoint
-   for the get virtual private cloud cluster bindings operation.
+/*
+GetVirtualPrivateCloudClusterBindingsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get virtual private cloud cluster bindings operation.
+
+	Typically these are written to a http.Request.
 */
 type GetVirtualPrivateCloudClusterBindingsParams struct {
 
@@ -65,6 +67,9 @@ type GetVirtualPrivateCloudClusterBindingsParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.GetVirtualPrivateCloudClusterBindingsRequestBody
@@ -144,6 +149,17 @@ func (o *GetVirtualPrivateCloudClusterBindingsParams) SetContentLanguage(content
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the get virtual private cloud cluster bindings params
+func (o *GetVirtualPrivateCloudClusterBindingsParams) WithExternalCloudtowerID(externalCloudtowerID *string) *GetVirtualPrivateCloudClusterBindingsParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the get virtual private cloud cluster bindings params
+func (o *GetVirtualPrivateCloudClusterBindingsParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the get virtual private cloud cluster bindings params
 func (o *GetVirtualPrivateCloudClusterBindingsParams) WithRequestBody(requestBody *models.GetVirtualPrivateCloudClusterBindingsRequestBody) *GetVirtualPrivateCloudClusterBindingsParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *GetVirtualPrivateCloudClusterBindingsParams) WriteToRequest(r runtime.C
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

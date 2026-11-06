@@ -54,10 +54,12 @@ func NewAddVMToFolderParamsWithHTTPClient(client *http.Client) *AddVMToFolderPar
 	}
 }
 
-/* AddVMToFolderParams contains all the parameters to send to the API endpoint
-   for the add Vm to folder operation.
+/*
+AddVMToFolderParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add Vm to folder operation.
+
+	Typically these are written to a http.Request.
 */
 type AddVMToFolderParams struct {
 
@@ -65,6 +67,9 @@ type AddVMToFolderParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VMAddFolderParams
@@ -144,6 +149,17 @@ func (o *AddVMToFolderParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the add Vm to folder params
+func (o *AddVMToFolderParams) WithExternalCloudtowerID(externalCloudtowerID *string) *AddVMToFolderParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the add Vm to folder params
+func (o *AddVMToFolderParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the add Vm to folder params
 func (o *AddVMToFolderParams) WithRequestBody(requestBody *models.VMAddFolderParams) *AddVMToFolderParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *AddVMToFolderParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

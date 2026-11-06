@@ -45,6 +45,9 @@ type VMVolumeSnapshot struct {
 	// elf storage policy replica num
 	ElfStoragePolicyReplicaNum *int32 `json:"elf_storage_policy_replica_num,omitempty"`
 
+	// elf storage policy stripe num
+	ElfStoragePolicyStripeNum *int32 `json:"elf_storage_policy_stripe_num,omitempty"`
+
 	// elf storage policy thin provision
 	ElfStoragePolicyThinProvision *bool `json:"elf_storage_policy_thin_provision,omitempty"`
 
@@ -69,6 +72,9 @@ type VMVolumeSnapshot struct {
 	// name
 	// Required: true
 	Name *string `json:"name"`
+
+	// provision policy
+	ProvisionPolicy *string `json:"provision_policy,omitempty"`
 
 	// resident in cache
 	ResidentInCache *bool `json:"resident_in_cache,omitempty"`
@@ -116,6 +122,8 @@ type VMVolumeSnapshotMarshalOpts struct {
 
 	ElfStoragePolicyReplicaNum_Explicit_Null_When_Empty bool
 
+	ElfStoragePolicyStripeNum_Explicit_Null_When_Empty bool
+
 	ElfStoragePolicyThinProvision_Explicit_Null_When_Empty bool
 
 	EntityAsyncStatus_Explicit_Null_When_Empty bool
@@ -129,6 +137,8 @@ type VMVolumeSnapshotMarshalOpts struct {
 	LocalID_Explicit_Null_When_Empty bool
 
 	Name_Explicit_Null_When_Empty bool
+
+	ProvisionPolicy_Explicit_Null_When_Empty bool
 
 	ResidentInCache_Explicit_Null_When_Empty bool
 
@@ -295,6 +305,26 @@ func (m VMVolumeSnapshot) MarshalJSON() ([]byte, error) {
 		first = false
 	}
 
+	// handle nullable field elf_storage_policy_stripe_num
+	if m.ElfStoragePolicyStripeNum != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num\":")
+		bytes, err := swag.WriteJSON(m.ElfStoragePolicyStripeNum)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ElfStoragePolicyStripeNum_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num\":null")
+		first = false
+	}
+
 	// handle nullable field elf_storage_policy_thin_provision
 	if m.ElfStoragePolicyThinProvision != nil {
 		if !first {
@@ -426,6 +456,26 @@ func (m VMVolumeSnapshot) MarshalJSON() ([]byte, error) {
 			b.WriteString(",")
 		}
 		b.WriteString("\"name\":null")
+		first = false
+	}
+
+	// handle nullable field provision_policy
+	if m.ProvisionPolicy != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy\":")
+		bytes, err := swag.WriteJSON(m.ProvisionPolicy)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ProvisionPolicy_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy\":null")
 		first = false
 	}
 

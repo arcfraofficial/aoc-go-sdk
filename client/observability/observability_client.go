@@ -36,7 +36,7 @@ type ClientService interface {
 }
 
 /*
-  DisassociateSystemServiceFromObsService disassociate system service from obs service API
+DisassociateSystemServiceFromObsService disassociate system service from obs service API
 */
 func (a *Client) DisassociateSystemServiceFromObsService(params *DisassociateSystemServiceFromObsServiceParams, opts ...ClientOption) (*DisassociateSystemServiceFromObsServiceOK, error) {
 	// TODO: Validate the params before sending

@@ -54,10 +54,12 @@ func NewUpdateVMTemplateParamsWithHTTPClient(client *http.Client) *UpdateVMTempl
 	}
 }
 
-/* UpdateVMTemplateParams contains all the parameters to send to the API endpoint
-   for the update Vm template operation.
+/*
+UpdateVMTemplateParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update Vm template operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateVMTemplateParams struct {
 
@@ -65,6 +67,9 @@ type UpdateVMTemplateParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.VMTemplateUpdationParams
@@ -144,6 +149,17 @@ func (o *UpdateVMTemplateParams) SetContentLanguage(contentLanguage *string) {
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the update Vm template params
+func (o *UpdateVMTemplateParams) WithExternalCloudtowerID(externalCloudtowerID *string) *UpdateVMTemplateParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the update Vm template params
+func (o *UpdateVMTemplateParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the update Vm template params
 func (o *UpdateVMTemplateParams) WithRequestBody(requestBody *models.VMTemplateUpdationParams) *UpdateVMTemplateParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *UpdateVMTemplateParams) WriteToRequest(r runtime.ClientRequest, reg str
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}

@@ -160,6 +160,9 @@ type IscsiLun struct {
 	// Required: true
 	ReplicaNum *int32 `json:"replica_num"`
 
+	// replication plans
+	ReplicationPlans []*NestedReplicationPlan `json:"replication_plans,omitempty"`
+
 	// resiliency type
 	ResiliencyType *ResiliencyType `json:"resiliency_type,omitempty"`
 
@@ -271,6 +274,8 @@ type IscsiLunMarshalOpts struct {
 	Prioritized_Explicit_Null_When_Empty bool
 
 	ReplicaNum_Explicit_Null_When_Empty bool
+
+	ReplicationPlans_Explicit_Null_When_Empty bool
 
 	ResiliencyType_Explicit_Null_When_Empty bool
 
@@ -1031,6 +1036,20 @@ func (m IscsiLun) MarshalJSON() ([]byte, error) {
 		first = false
 	}
 
+	// handle non nullable field replication_plans with omitempty
+	if !swag.IsZero(m.ReplicationPlans) {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"replication_plans\":")
+		bytes, err := swag.WriteJSON(m.ReplicationPlans)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	}
+
 	// handle nullable field resiliency_type
 	if m.ResiliencyType != nil {
 		if !first {
@@ -1344,6 +1363,10 @@ func (m *IscsiLun) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateReplicaNum(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateReplicationPlans(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1731,6 +1754,32 @@ func (m *IscsiLun) validateReplicaNum(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *IscsiLun) validateReplicationPlans(formats strfmt.Registry) error {
+	if swag.IsZero(m.ReplicationPlans) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.ReplicationPlans); i++ {
+		if swag.IsZero(m.ReplicationPlans[i]) { // not required
+			continue
+		}
+
+		if m.ReplicationPlans[i] != nil {
+			if err := m.ReplicationPlans[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("replication_plans" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("replication_plans" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *IscsiLun) validateResiliencyType(formats strfmt.Registry) error {
 	if swag.IsZero(m.ResiliencyType) { // not required
 		return nil
@@ -1837,6 +1886,10 @@ func (m *IscsiLun) ContextValidate(ctx context.Context, formats strfmt.Registry)
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateReplicationPlans(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateResiliencyType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1921,6 +1974,26 @@ func (m *IscsiLun) contextValidateLabels(ctx context.Context, formats strfmt.Reg
 					return ve.ValidateName("labels" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("labels" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *IscsiLun) contextValidateReplicationPlans(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ReplicationPlans); i++ {
+
+		if m.ReplicationPlans[i] != nil {
+			if err := m.ReplicationPlans[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("replication_plans" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("replication_plans" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

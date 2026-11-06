@@ -54,10 +54,12 @@ func NewDeleteContentLibraryImageParamsWithHTTPClient(client *http.Client) *Dele
 	}
 }
 
-/* DeleteContentLibraryImageParams contains all the parameters to send to the API endpoint
-   for the delete content library image operation.
+/*
+DeleteContentLibraryImageParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete content library image operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteContentLibraryImageParams struct {
 
@@ -65,6 +67,9 @@ type DeleteContentLibraryImageParams struct {
 	//
 	// Default: "en-US"
 	ContentLanguage *string
+
+	// ExternalCloudtowerID.
+	ExternalCloudtowerID *string
 
 	// RequestBody.
 	RequestBody *models.ContentLibraryImageDeletionParams
@@ -144,6 +149,17 @@ func (o *DeleteContentLibraryImageParams) SetContentLanguage(contentLanguage *st
 	o.ContentLanguage = contentLanguage
 }
 
+// WithExternalCloudtowerID adds the externalCloudtowerID to the delete content library image params
+func (o *DeleteContentLibraryImageParams) WithExternalCloudtowerID(externalCloudtowerID *string) *DeleteContentLibraryImageParams {
+	o.SetExternalCloudtowerID(externalCloudtowerID)
+	return o
+}
+
+// SetExternalCloudtowerID adds the externalCloudtowerId to the delete content library image params
+func (o *DeleteContentLibraryImageParams) SetExternalCloudtowerID(externalCloudtowerID *string) {
+	o.ExternalCloudtowerID = externalCloudtowerID
+}
+
 // WithRequestBody adds the requestBody to the delete content library image params
 func (o *DeleteContentLibraryImageParams) WithRequestBody(requestBody *models.ContentLibraryImageDeletionParams) *DeleteContentLibraryImageParams {
 	o.SetRequestBody(requestBody)
@@ -167,6 +183,14 @@ func (o *DeleteContentLibraryImageParams) WriteToRequest(r runtime.ClientRequest
 
 		// header param content-language
 		if err := r.SetHeaderParam("content-language", *o.ContentLanguage); err != nil {
+			return err
+		}
+	}
+
+	if o.ExternalCloudtowerID != nil {
+
+		// header param external-cloudtower-id
+		if err := r.SetHeaderParam("external-cloudtower-id", *o.ExternalCloudtowerID); err != nil {
 			return err
 		}
 	}
