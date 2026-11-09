@@ -158,6 +158,30 @@ type VMVolumeWhereInput struct {
 	// elf storage policy replica num not in
 	ElfStoragePolicyReplicaNumNotIn []int32 `json:"elf_storage_policy_replica_num_not_in,omitempty"`
 
+	// elf storage policy stripe num
+	ElfStoragePolicyStripeNum *int32 `json:"elf_storage_policy_stripe_num,omitempty"`
+
+	// elf storage policy stripe num gt
+	ElfStoragePolicyStripeNumGt *int32 `json:"elf_storage_policy_stripe_num_gt,omitempty"`
+
+	// elf storage policy stripe num gte
+	ElfStoragePolicyStripeNumGte *int32 `json:"elf_storage_policy_stripe_num_gte,omitempty"`
+
+	// elf storage policy stripe num in
+	ElfStoragePolicyStripeNumIn []int32 `json:"elf_storage_policy_stripe_num_in,omitempty"`
+
+	// elf storage policy stripe num lt
+	ElfStoragePolicyStripeNumLt *int32 `json:"elf_storage_policy_stripe_num_lt,omitempty"`
+
+	// elf storage policy stripe num lte
+	ElfStoragePolicyStripeNumLte *int32 `json:"elf_storage_policy_stripe_num_lte,omitempty"`
+
+	// elf storage policy stripe num not
+	ElfStoragePolicyStripeNumNot *int32 `json:"elf_storage_policy_stripe_num_not,omitempty"`
+
+	// elf storage policy stripe num not in
+	ElfStoragePolicyStripeNumNotIn []int32 `json:"elf_storage_policy_stripe_num_not_in,omitempty"`
+
 	// elf storage policy thin provision
 	ElfStoragePolicyThinProvision *bool `json:"elf_storage_policy_thin_provision,omitempty"`
 
@@ -434,6 +458,48 @@ type VMVolumeWhereInput struct {
 	// path starts with
 	PathStartsWith *string `json:"path_starts_with,omitempty"`
 
+	// provision policy
+	ProvisionPolicy *string `json:"provision_policy,omitempty"`
+
+	// provision policy contains
+	ProvisionPolicyContains *string `json:"provision_policy_contains,omitempty"`
+
+	// provision policy ends with
+	ProvisionPolicyEndsWith *string `json:"provision_policy_ends_with,omitempty"`
+
+	// provision policy gt
+	ProvisionPolicyGt *string `json:"provision_policy_gt,omitempty"`
+
+	// provision policy gte
+	ProvisionPolicyGte *string `json:"provision_policy_gte,omitempty"`
+
+	// provision policy in
+	ProvisionPolicyIn []string `json:"provision_policy_in,omitempty"`
+
+	// provision policy lt
+	ProvisionPolicyLt *string `json:"provision_policy_lt,omitempty"`
+
+	// provision policy lte
+	ProvisionPolicyLte *string `json:"provision_policy_lte,omitempty"`
+
+	// provision policy not
+	ProvisionPolicyNot *string `json:"provision_policy_not,omitempty"`
+
+	// provision policy not contains
+	ProvisionPolicyNotContains *string `json:"provision_policy_not_contains,omitempty"`
+
+	// provision policy not ends with
+	ProvisionPolicyNotEndsWith *string `json:"provision_policy_not_ends_with,omitempty"`
+
+	// provision policy not in
+	ProvisionPolicyNotIn []string `json:"provision_policy_not_in,omitempty"`
+
+	// provision policy not starts with
+	ProvisionPolicyNotStartsWith *string `json:"provision_policy_not_starts_with,omitempty"`
+
+	// provision policy starts with
+	ProvisionPolicyStartsWith *string `json:"provision_policy_starts_with,omitempty"`
+
 	// resident in cache
 	ResidentInCache *bool `json:"resident_in_cache,omitempty"`
 
@@ -683,6 +749,22 @@ type VMVolumeWhereInputMarshalOpts struct {
 
 	ElfStoragePolicyReplicaNumNotIn_Explicit_Null_When_Empty bool
 
+	ElfStoragePolicyStripeNum_Explicit_Null_When_Empty bool
+
+	ElfStoragePolicyStripeNumGt_Explicit_Null_When_Empty bool
+
+	ElfStoragePolicyStripeNumGte_Explicit_Null_When_Empty bool
+
+	ElfStoragePolicyStripeNumIn_Explicit_Null_When_Empty bool
+
+	ElfStoragePolicyStripeNumLt_Explicit_Null_When_Empty bool
+
+	ElfStoragePolicyStripeNumLte_Explicit_Null_When_Empty bool
+
+	ElfStoragePolicyStripeNumNot_Explicit_Null_When_Empty bool
+
+	ElfStoragePolicyStripeNumNotIn_Explicit_Null_When_Empty bool
+
 	ElfStoragePolicyThinProvision_Explicit_Null_When_Empty bool
 
 	ElfStoragePolicyThinProvisionNot_Explicit_Null_When_Empty bool
@@ -866,6 +948,34 @@ type VMVolumeWhereInputMarshalOpts struct {
 	PathNotStartsWith_Explicit_Null_When_Empty bool
 
 	PathStartsWith_Explicit_Null_When_Empty bool
+
+	ProvisionPolicy_Explicit_Null_When_Empty bool
+
+	ProvisionPolicyContains_Explicit_Null_When_Empty bool
+
+	ProvisionPolicyEndsWith_Explicit_Null_When_Empty bool
+
+	ProvisionPolicyGt_Explicit_Null_When_Empty bool
+
+	ProvisionPolicyGte_Explicit_Null_When_Empty bool
+
+	ProvisionPolicyIn_Explicit_Null_When_Empty bool
+
+	ProvisionPolicyLt_Explicit_Null_When_Empty bool
+
+	ProvisionPolicyLte_Explicit_Null_When_Empty bool
+
+	ProvisionPolicyNot_Explicit_Null_When_Empty bool
+
+	ProvisionPolicyNotContains_Explicit_Null_When_Empty bool
+
+	ProvisionPolicyNotEndsWith_Explicit_Null_When_Empty bool
+
+	ProvisionPolicyNotIn_Explicit_Null_When_Empty bool
+
+	ProvisionPolicyNotStartsWith_Explicit_Null_When_Empty bool
+
+	ProvisionPolicyStartsWith_Explicit_Null_When_Empty bool
 
 	ResidentInCache_Explicit_Null_When_Empty bool
 
@@ -1811,6 +1921,154 @@ func (m VMVolumeWhereInput) MarshalJSON() ([]byte, error) {
 		}
 		b.WriteString("\"elf_storage_policy_replica_num_not_in\":")
 		bytes, err := swag.WriteJSON(m.ElfStoragePolicyReplicaNumNotIn)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	}
+
+	// handle nullable field elf_storage_policy_stripe_num
+	if m.ElfStoragePolicyStripeNum != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num\":")
+		bytes, err := swag.WriteJSON(m.ElfStoragePolicyStripeNum)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ElfStoragePolicyStripeNum_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num\":null")
+		first = false
+	}
+
+	// handle nullable field elf_storage_policy_stripe_num_gt
+	if m.ElfStoragePolicyStripeNumGt != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num_gt\":")
+		bytes, err := swag.WriteJSON(m.ElfStoragePolicyStripeNumGt)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ElfStoragePolicyStripeNumGt_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num_gt\":null")
+		first = false
+	}
+
+	// handle nullable field elf_storage_policy_stripe_num_gte
+	if m.ElfStoragePolicyStripeNumGte != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num_gte\":")
+		bytes, err := swag.WriteJSON(m.ElfStoragePolicyStripeNumGte)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ElfStoragePolicyStripeNumGte_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num_gte\":null")
+		first = false
+	}
+
+	// handle non nullable field elf_storage_policy_stripe_num_in with omitempty
+	if !swag.IsZero(m.ElfStoragePolicyStripeNumIn) {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num_in\":")
+		bytes, err := swag.WriteJSON(m.ElfStoragePolicyStripeNumIn)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	}
+
+	// handle nullable field elf_storage_policy_stripe_num_lt
+	if m.ElfStoragePolicyStripeNumLt != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num_lt\":")
+		bytes, err := swag.WriteJSON(m.ElfStoragePolicyStripeNumLt)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ElfStoragePolicyStripeNumLt_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num_lt\":null")
+		first = false
+	}
+
+	// handle nullable field elf_storage_policy_stripe_num_lte
+	if m.ElfStoragePolicyStripeNumLte != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num_lte\":")
+		bytes, err := swag.WriteJSON(m.ElfStoragePolicyStripeNumLte)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ElfStoragePolicyStripeNumLte_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num_lte\":null")
+		first = false
+	}
+
+	// handle nullable field elf_storage_policy_stripe_num_not
+	if m.ElfStoragePolicyStripeNumNot != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num_not\":")
+		bytes, err := swag.WriteJSON(m.ElfStoragePolicyStripeNumNot)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ElfStoragePolicyStripeNumNot_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num_not\":null")
+		first = false
+	}
+
+	// handle non nullable field elf_storage_policy_stripe_num_not_in with omitempty
+	if !swag.IsZero(m.ElfStoragePolicyStripeNumNotIn) {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"elf_storage_policy_stripe_num_not_in\":")
+		bytes, err := swag.WriteJSON(m.ElfStoragePolicyStripeNumNotIn)
 		if err != nil {
 			return nil, err
 		}
@@ -3559,6 +3817,274 @@ func (m VMVolumeWhereInput) MarshalJSON() ([]byte, error) {
 			b.WriteString(",")
 		}
 		b.WriteString("\"path_starts_with\":null")
+		first = false
+	}
+
+	// handle nullable field provision_policy
+	if m.ProvisionPolicy != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy\":")
+		bytes, err := swag.WriteJSON(m.ProvisionPolicy)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ProvisionPolicy_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy\":null")
+		first = false
+	}
+
+	// handle nullable field provision_policy_contains
+	if m.ProvisionPolicyContains != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_contains\":")
+		bytes, err := swag.WriteJSON(m.ProvisionPolicyContains)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ProvisionPolicyContains_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_contains\":null")
+		first = false
+	}
+
+	// handle nullable field provision_policy_ends_with
+	if m.ProvisionPolicyEndsWith != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_ends_with\":")
+		bytes, err := swag.WriteJSON(m.ProvisionPolicyEndsWith)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ProvisionPolicyEndsWith_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_ends_with\":null")
+		first = false
+	}
+
+	// handle nullable field provision_policy_gt
+	if m.ProvisionPolicyGt != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_gt\":")
+		bytes, err := swag.WriteJSON(m.ProvisionPolicyGt)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ProvisionPolicyGt_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_gt\":null")
+		first = false
+	}
+
+	// handle nullable field provision_policy_gte
+	if m.ProvisionPolicyGte != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_gte\":")
+		bytes, err := swag.WriteJSON(m.ProvisionPolicyGte)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ProvisionPolicyGte_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_gte\":null")
+		first = false
+	}
+
+	// handle non nullable field provision_policy_in with omitempty
+	if !swag.IsZero(m.ProvisionPolicyIn) {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_in\":")
+		bytes, err := swag.WriteJSON(m.ProvisionPolicyIn)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	}
+
+	// handle nullable field provision_policy_lt
+	if m.ProvisionPolicyLt != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_lt\":")
+		bytes, err := swag.WriteJSON(m.ProvisionPolicyLt)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ProvisionPolicyLt_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_lt\":null")
+		first = false
+	}
+
+	// handle nullable field provision_policy_lte
+	if m.ProvisionPolicyLte != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_lte\":")
+		bytes, err := swag.WriteJSON(m.ProvisionPolicyLte)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ProvisionPolicyLte_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_lte\":null")
+		first = false
+	}
+
+	// handle nullable field provision_policy_not
+	if m.ProvisionPolicyNot != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_not\":")
+		bytes, err := swag.WriteJSON(m.ProvisionPolicyNot)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ProvisionPolicyNot_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_not\":null")
+		first = false
+	}
+
+	// handle nullable field provision_policy_not_contains
+	if m.ProvisionPolicyNotContains != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_not_contains\":")
+		bytes, err := swag.WriteJSON(m.ProvisionPolicyNotContains)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ProvisionPolicyNotContains_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_not_contains\":null")
+		first = false
+	}
+
+	// handle nullable field provision_policy_not_ends_with
+	if m.ProvisionPolicyNotEndsWith != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_not_ends_with\":")
+		bytes, err := swag.WriteJSON(m.ProvisionPolicyNotEndsWith)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ProvisionPolicyNotEndsWith_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_not_ends_with\":null")
+		first = false
+	}
+
+	// handle non nullable field provision_policy_not_in with omitempty
+	if !swag.IsZero(m.ProvisionPolicyNotIn) {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_not_in\":")
+		bytes, err := swag.WriteJSON(m.ProvisionPolicyNotIn)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	}
+
+	// handle nullable field provision_policy_not_starts_with
+	if m.ProvisionPolicyNotStartsWith != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_not_starts_with\":")
+		bytes, err := swag.WriteJSON(m.ProvisionPolicyNotStartsWith)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ProvisionPolicyNotStartsWith_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_not_starts_with\":null")
+		first = false
+	}
+
+	// handle nullable field provision_policy_starts_with
+	if m.ProvisionPolicyStartsWith != nil {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_starts_with\":")
+		bytes, err := swag.WriteJSON(m.ProvisionPolicyStartsWith)
+		if err != nil {
+			return nil, err
+		}
+		b.Write(bytes)
+		first = false
+	} else if m.MarshalOpts != nil && m.MarshalOpts.ProvisionPolicyStartsWith_Explicit_Null_When_Empty {
+		if !first {
+			b.WriteString(",")
+		}
+		b.WriteString("\"provision_policy_starts_with\":null")
 		first = false
 	}
 

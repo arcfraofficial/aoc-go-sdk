@@ -36,7 +36,7 @@ type ClientService interface {
 }
 
 /*
-  GetIscsiLunSnapshots get iscsi lun snapshots API
+GetIscsiLunSnapshots get iscsi lun snapshots API
 */
 func (a *Client) GetIscsiLunSnapshots(params *GetIscsiLunSnapshotsParams, opts ...ClientOption) (*GetIscsiLunSnapshotsOK, error) {
 	// TODO: Validate the params before sending

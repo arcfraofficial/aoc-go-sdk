@@ -25,7 +25,7 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 )
-transport := httptransport.New("192.168.36.133", "/v2/api", []string{"http"})
+transport := httptransport.New("aoc.example.com", "/v2/api", []string{"http"})
 client := apiclient.New(transport, strfmt.Default)
 ```
 
@@ -44,7 +44,7 @@ if err != nil {
 	fmt.Print(err)
 	return
 }
-transport := httptransport.NewWithClient("192.168.29.157", "/v2/api", []string{"https"}, tlsClient)
+transport := httptransport.NewWithClient("aoc.example.com", "/v2/api", []string{"https"}, tlsClient)
 client := apiclient.New(transport, strfmt.Default)
 ```
 
@@ -75,8 +75,8 @@ client, err := apiclient.NewWithUserConfig(apiclient.ClientConfig{
 	BasePath: "v2/api",
 	Schemes:  []string{"http"},
 }, apiclient.UserConfig{
-	Name:     "Name",
-	Password: "Password",
+	Name:     "<username>",
+	Password: "<password>",
 	Source:   models.UserSourceLOCAL,
 })
 ```
@@ -89,8 +89,8 @@ import (
 )
 loginParams := User.NewLoginParams()
 loginParams.RequestBody = &models.LoginInput{
-	Username: pointy.String("username"),
-	Password: pointy.String("password"),
+	Username: pointy.String("<username>"),
+	Password: pointy.String("<password>"),
 	Source:   models.NewUserSource(models.UserSourceLOCAL),
 }
 logRes, err := client.User.Login(loginParams)
@@ -151,6 +151,66 @@ tasks := funk.Map(startRes.Payload, func(tvm *models.WithTaskVM) string {
 	return *tvm.TaskID
 }).([]string)
 err = utils.WaitTasks(context.TODO(), client, tasks, 1*time.Second)
+if err != nil {
+	return err
+}
+
+#### Create `ActivePassiveApiClient` instance
+
+AOC introduced multi-management-IP active-passive deployment in version 4.9.0. To access such AOC deployments, you can use `ActivePassiveApiClient` to configure multiple endpoints for the same active-passive cluster. At any given time, it is expected that at most one active endpoint exists. The order of endpoints passed in does not represent the active-passive relationship; the client will select the current active endpoint based on probing results.
+
+```go
+import (
+	"context"
+	apiclient "github.com/arcfraofficial/aoc-go-sdk/client"
+	"github.com/arcfraofficial/aoc-go-sdk/models"
+)
+
+client, err := apiclient.NewActivePassiveWithUserConfig(
+	context.Background(),
+	apiclient.ActivePassiveClientConfig{
+		Endpoints: []apiclient.ActivePassiveEndpointConfig{
+			{Host: "aoc-a.example.com", Schemes: []string{"https"}},
+			{Host: "aoc-b.example.com", Schemes: []string{"https"}},
+		},
+	},
+	apiclient.UserConfig{
+		Name:     "<username>",
+		Password: "<password>",
+		Source:   models.UserSourceLOCAL,
+	},
+)
+if err != nil {
+	return err
+}
+```
+
+#### Failover strategies
+
+`ActivePassiveApiClient` supports the following failover strategies:
+
+- `AUTO_FAILOVER`: The default strategy. When there is no cached active endpoint, it attempts to probe and cache the current active endpoint; after a request returns 307, it automatically re-probes and retries once; after a network I/O exception occurs, it clears the cache but does not automatically retry.
+- `MANUAL_FAILOVER`: After a request returns 307, it does not automatically re-probe or retry. Clearing the cache is handled by the caller for failover. The rest of the business logic is consistent with `AUTO_FAILOVER`.
+- `ALWAYS_PROBE`: Does not cache the active endpoint. Re-probes the active endpoint before each request; after a request returns 307, it does not automatically retry.
+
+If you need to specify a failover strategy, you can pass it in when creating the instance:
+
+```go
+client, err := apiclient.NewActivePassiveWithUserConfig(
+	context.Background(),
+	apiclient.ActivePassiveClientConfig{
+		Endpoints: []apiclient.ActivePassiveEndpointConfig{
+			{Host: "aoc-a.example.com", Schemes: []string{"https"}},
+			{Host: "aoc-b.example.com", Schemes: []string{"https"}},
+		},
+		FailoverStrategy: apiclient.FailoverStrategyManualFailover,
+	},
+	apiclient.UserConfig{
+		Name:     "<username>",
+		Password: "<password>",
+		Source:   models.UserSourceLOCAL,
+	},
+)
 if err != nil {
 	return err
 }

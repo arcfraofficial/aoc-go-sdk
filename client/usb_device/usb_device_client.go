@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  GetUsbDevices get usb devices API
+GetUsbDevices get usb devices API
 */
 func (a *Client) GetUsbDevices(params *GetUsbDevicesParams, opts ...ClientOption) (*GetUsbDevicesOK, error) {
 	// TODO: Validate the params before sending
@@ -76,7 +76,7 @@ func (a *Client) GetUsbDevices(params *GetUsbDevicesParams, opts ...ClientOption
 }
 
 /*
-  GetUsbDevicesConnection get usb devices connection API
+GetUsbDevicesConnection get usb devices connection API
 */
 func (a *Client) GetUsbDevicesConnection(params *GetUsbDevicesConnectionParams, opts ...ClientOption) (*GetUsbDevicesConnectionOK, error) {
 	// TODO: Validate the params before sending
