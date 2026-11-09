@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  GetUserRoleNexts get user role nexts API
+GetUserRoleNexts get user role nexts API
 */
 func (a *Client) GetUserRoleNexts(params *GetUserRoleNextsParams, opts ...ClientOption) (*GetUserRoleNextsOK, error) {
 	// TODO: Validate the params before sending
@@ -76,7 +76,7 @@ func (a *Client) GetUserRoleNexts(params *GetUserRoleNextsParams, opts ...Client
 }
 
 /*
-  GetUserRoleNextsConnection get user role nexts connection API
+GetUserRoleNextsConnection get user role nexts connection API
 */
 func (a *Client) GetUserRoleNextsConnection(params *GetUserRoleNextsConnectionParams, opts ...ClientOption) (*GetUserRoleNextsConnectionOK, error) {
 	// TODO: Validate the params before sending

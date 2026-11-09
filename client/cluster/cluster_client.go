@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-  ConnectCluster connect cluster API
+ConnectCluster connect cluster API
 */
 func (a *Client) ConnectCluster(params *ConnectClusterParams, opts ...ClientOption) (*ConnectClusterOK, error) {
 	// TODO: Validate the params before sending
@@ -78,7 +78,7 @@ func (a *Client) ConnectCluster(params *ConnectClusterParams, opts ...ClientOpti
 }
 
 /*
-  GetClusters get clusters API
+GetClusters get clusters API
 */
 func (a *Client) GetClusters(params *GetClustersParams, opts ...ClientOption) (*GetClustersOK, error) {
 	// TODO: Validate the params before sending
@@ -116,7 +116,7 @@ func (a *Client) GetClusters(params *GetClustersParams, opts ...ClientOption) (*
 }
 
 /*
-  GetClustersConnection get clusters connection API
+GetClustersConnection get clusters connection API
 */
 func (a *Client) GetClustersConnection(params *GetClustersConnectionParams, opts ...ClientOption) (*GetClustersConnectionOK, error) {
 	// TODO: Validate the params before sending
